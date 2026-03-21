@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mohamed Taha — Data Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #e8edf5;
+    --navy-mid: #c5d0e0;
+    --accent: #4da3d4;
+    --accent-light: #0f2a3d;
+    --slate: #a0aec0;
+    --muted: #5a6a7e;
+    --line: #1e2d42;
+    --bg: #080f1a;
+    --white: #0d1b2e;
+    --tag-bg: #111e30;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--navy);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(8, 15, 26, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--line);
+    padding: 0 5%;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.15rem;
+    color: var(--navy);
+    letter-spacing: 0.01em;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    color: var(--slate);
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--accent); }
+
+  /* SECTIONS */
+  section {
+    padding: 100px 5%;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+  }
+
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    color: var(--navy);
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+  }
+
+  .divider {
+    width: 48px;
+    height: 3px;
+    background: var(--accent);
+    margin-bottom: 3rem;
+    border-radius: 2px;
+  }
+
+  /* HERO */
+  #hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding-top: 64px;
+    position: relative;
+    max-width: 100%;
+    padding-left: 5%;
+    padding-right: 5%;
+    overflow: hidden;
+  }
+
+  .hero-grid-bg {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size: 48px 48px;
+    opacity: 0.5;
+    z-index: 0;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 1100px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--accent-light);
+    color: var(--accent);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.4rem 1rem;
+    border-radius: 2rem;
+    margin-bottom: 1.75rem;
+    opacity: 0;
+    animation: fadeUp 0.6s ease forwards 0.1s;
+  }
+
+  .hero-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    color: var(--navy);
+    line-height: 1.05;
+    margin-bottom: 1.25rem;
+    opacity: 0;
+    animation: fadeUp 0.6s ease forwards 0.25s;
+  }
+
+  .hero-name em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .hero-bio {
+    max-width: 600px;
+    font-size: 1.05rem;
+    color: var(--slate);
+    font-weight: 300;
+    line-height: 1.75;
+    margin-bottom: 2.5rem;
+    opacity: 0;
+    animation: fadeUp 0.6s ease forwards 0.4s;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 0.6s ease forwards 0.55s;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    background: var(--accent);
+    color: #080f1a;
+    text-decoration: none;
+    padding: 0.75rem 1.75rem;
+    border-radius: 4px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    transition: background 0.2s, transform 0.2s;
+  }
+
+  .btn-primary:hover {
+    background: #6ab8e0;
+    transform: translateY(-2px);
+  }
+
+  .btn-outline {
+    display: inline-block;
+    border: 1.5px solid var(--muted);
+    color: var(--navy);
+    text-decoration: none;
+    padding: 0.75rem 1.75rem;
+    border-radius: 4px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    transition: border-color 0.2s, color 0.2s, transform 0.2s;
+  }
+
+  .btn-outline:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    transform: translateY(-2px);
+  }
+
+  .hero-stats {
+    display: flex;
+    gap: 3rem;
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--line);
+    opacity: 0;
+    animation: fadeUp 0.6s ease forwards 0.7s;
+  }
+
+  .stat-number {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2rem;
+    color: var(--navy);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 0.8rem;
+    color: var(--muted);
+    font-weight: 400;
+    margin-top: 0.25rem;
+    letter-spacing: 0.03em;
+  }
+
+  /* SKILLS */
+  #skills { background: var(--white); max-width: 100%; padding: 100px 5%; }
+  #skills .inner { max-width: 1100px; margin: 0 auto; }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .skill-card {
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 1.5rem;
+    transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+  }
+
+  .skill-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(29, 111, 164, 0.08);
+  }
+
+  .skill-card-title {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1rem;
+  }
+
+  .skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .tag {
+    background: var(--tag-bg);
+    color: var(--slate);
+    font-size: 0.78rem;
+    font-weight: 500;
+    padding: 0.3rem 0.7rem;
+    border-radius: 3px;
+    letter-spacing: 0.01em;
+  }
+
+  /* PROJECTS */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.75rem;
+  }
+
+  .project-card {
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+  }
+
+  .project-card:hover {
+    border-color: var(--accent);
+    box-shadow: 0 12px 32px rgba(29, 111, 164, 0.09);
+    transform: translateY(-4px);
+  }
+
+  .project-number {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2.5rem;
+    color: var(--line);
+    line-height: 1;
+    font-style: italic;
+  }
+
+  .project-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.2rem;
+    color: var(--navy);
+    line-height: 1.3;
+  }
+
+  .project-desc {
+    font-size: 0.875rem;
+    color: var(--slate);
+    line-height: 1.7;
+    flex: 1;
+  }
+
+  .project-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid var(--line);
+  }
+
+  .project-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    text-decoration: none;
+    color: var(--accent);
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    margin-top: 0.5rem;
+    transition: gap 0.2s;
+  }
+
+  .project-link:hover { gap: 0.7rem; }
+
+  /* EXPERIENCE */
+  .timeline {
+    position: relative;
+    padding-left: 2rem;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 8px;
+    bottom: 8px;
+    width: 2px;
+    background: var(--line);
+  }
+
+  .timeline-item {
+    position: relative;
+    padding-bottom: 2.5rem;
+  }
+
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -2.4rem;
+    top: 8px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--accent);
+    border: 2px solid var(--bg);
+    outline: 2px solid var(--accent);
+  }
+
+  .timeline-period {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.4rem;
+  }
+
+  .timeline-role {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.15rem;
+    color: var(--navy);
+    margin-bottom: 0.2rem;
+  }
+
+  .timeline-org {
+    font-size: 0.875rem;
+    color: var(--muted);
+    font-weight: 400;
+    margin-bottom: 0.75rem;
+  }
+
+  .timeline-desc {
+    font-size: 0.875rem;
+    color: var(--slate);
+    line-height: 1.7;
+  }
+
+  /* CONTACT */
+  #contact { background: var(--white); max-width: 100%; padding: 100px 5%; }
+  #contact .inner { max-width: 1100px; margin: 0 auto; }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .contact-text {
+    font-size: 1rem;
+    color: var(--slate);
+    line-height: 1.8;
+    margin-bottom: 2rem;
+  }
+
+  .contact-links {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .contact-link {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    text-decoration: none;
+    color: var(--navy);
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 1rem 1.25rem;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    background: var(--bg);
+    transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+  }
+
+  .contact-link:hover {
+    border-color: var(--accent);
+    transform: translateX(4px);
+    box-shadow: 0 4px 16px rgba(29, 111, 164, 0.08);
+  }
+
+  .contact-icon {
+    width: 36px;
+    height: 36px;
+    background: var(--accent-light);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .contact-icon svg {
+    width: 18px;
+    height: 18px;
+    fill: var(--accent);
+  }
+
+  /* FOOTER */
+  footer {
+    text-align: center;
+    padding: 2rem 5%;
+    border-top: 1px solid var(--line);
+    font-size: 0.8rem;
+    color: var(--muted);
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .fade-in {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (max-width: 768px) {
+    .hero-stats { gap: 1.5rem; }
+    .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <span class="nav-logo">Mohamed Taha</span>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div id="hero">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Available for Junior Roles</div>
+    <h1 class="hero-name">Mohamed Taha<br><em>Abo Heiba</em></h1>
+    <p class="hero-bio">
+      Junior Data Engineer specializing in building end-to-end data pipelines,
+      Lakehouse architectures, and big data systems. I turn raw, messy data from
+      disconnected sources into clean, analytics-ready models that drive real decisions.
+    </p>
+    <div class="hero-cta">
+      <a href="#projects" class="btn-primary">View Projects</a>
+      <a href="https://linkedin.com/in/mohamed-taha-abo-heiba" target="_blank" class="btn-outline">LinkedIn</a>
+      <a href="https://github.com/MoTahaAboHeiba" target="_blank" class="btn-outline">GitHub</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-number">3</div>
+        <div class="stat-label">Training Programs</div>
+      </div>
+      <div>
+        <div class="stat-number">3</div>
+        <div class="stat-label">Projects Built</div>
+      </div>
+      <div>
+        <div class="stat-number">15+</div>
+        <div class="stat-label">Tools & Technologies</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SKILLS -->
+<div id="skills">
+  <div class="inner">
+    <div class="fade-in">
+      <p class="section-label">Technical Skills</p>
+      <h2 class="section-title">Tools & Technologies</h2>
+      <div class="divider"></div>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card fade-in">
+        <div class="skill-card-title">Data Engineering</div>
+        <div class="skill-tags">
+          <span class="tag">PySpark</span>
+          <span class="tag">Spark SQL</span>
+          <span class="tag">SSIS</span>
+          <span class="tag">Airflow</span>
+          <span class="tag">Delta Lake</span>
+          <span class="tag">Medallion Architecture</span>
+        </div>
+      </div>
+      <div class="skill-card fade-in">
+        <div class="skill-card-title">Big Data</div>
+        <div class="skill-tags">
+          <span class="tag">Hadoop</span>
+          <span class="tag">Kafka</span>
+          <span class="tag">Hive</span>
+          <span class="tag">Flink</span>
+          <span class="tag">Databricks</span>
+        </div>
+      </div>
+      <div class="skill-card fade-in">
+        <div class="skill-card-title">Cloud & Storage</div>
+        <div class="skill-tags">
+          <span class="tag">AWS EC2</span>
+          <span class="tag">AWS S3</span>
+          <span class="tag">AWS RDS</span>
+          <span class="tag">AWS IAM</span>
+          <span class="tag">Unity Catalog</span>
+          <span class="tag">SQL Server</span>
+        </div>
+      </div>
+      <div class="skill-card fade-in">
+        <div class="skill-card-title">Programming</div>
+        <div class="skill-tags">
+          <span class="tag">Python</span>
+          <span class="tag">Pandas</span>
+          <span class="tag">NumPy</span>
+          <span class="tag">T-SQL</span>
+          <span class="tag">Bash</span>
+        </div>
+      </div>
+      <div class="skill-card fade-in">
+        <div class="skill-card-title">Analytics & BI</div>
+        <div class="skill-tags">
+          <span class="tag">Power BI</span>
+          <span class="tag">DAX</span>
+          <span class="tag">Power Query</span>
+          <span class="tag">Star Schema</span>
+          <span class="tag">Dimensional Modeling</span>
+        </div>
+      </div>
+      <div class="skill-card fade-in">
+        <div class="skill-card-title">DevOps & Tools</div>
+        <div class="skill-tags">
+          <span class="tag">Docker</span>
+          <span class="tag">Git</span>
+          <span class="tag">GitHub</span>
+          <span class="tag">Linux</span>
+          <span class="tag">FastAPI</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="fade-in">
+    <p class="section-label">Work</p>
+    <h2 class="section-title">Projects</h2>
+    <div class="divider"></div>
+  </div>
+  <div class="projects-grid">
+
+    <div class="project-card fade-in">
+      <div class="project-number">01</div>
+      <div class="project-title">E-Commerce Lakehouse — Databricks</div>
+      <p class="project-desc">
+        End-to-end Lakehouse built on Databricks using Medallion Architecture. Ingests raw CRM
+        and ERP data from 6 CSV sources, applies PySpark transformations across Bronze and Silver
+        layers, and delivers a star schema via Spark SQL stored as Delta Tables in Unity Catalog.
+        Fully orchestrated with a Databricks Jobs DAG.
+      </p>
+      <div class="project-stack">
+        <span class="tag">Databricks</span>
+        <span class="tag">PySpark</span>
+        <span class="tag">Spark SQL</span>
+        <span class="tag">Delta Lake</span>
+        <span class="tag">Unity Catalog</span>
+      </div>
+      <a href="https://github.com/MoTahaAboHeiba" target="_blank" class="project-link">View on GitHub &rarr;</a>
+    </div>
+
+    <div class="project-card fade-in">
+      <div class="project-number">02</div>
+      <div class="project-title">SQL Server Data Warehouse</div>
+      <p class="project-desc">
+        Modern data warehouse built on SQL Server following Medallion Architecture with
+        Bronze, Silver, and Gold layers. Implements star schema design with surrogate keys,
+        T-SQL stored procedures for ETL, and full dimensional modeling aligned to
+        industry naming conventions.
+      </p>
+      <div class="project-stack">
+        <span class="tag">SQL Server</span>
+        <span class="tag">T-SQL</span>
+        <span class="tag">Star Schema</span>
+        <span class="tag">ETL</span>
+        <span class="tag">Medallion Architecture</span>
+      </div>
+      <a href="https://github.com/MoTahaAboHeiba/SQL-Data-Warehouse-project" target="_blank" class="project-link">View on GitHub &rarr;</a>
+    </div>
+
+    <div class="project-card fade-in">
+      <div class="project-number">03</div>
+      <div class="project-title">EduMate — RAG AI Microservice</div>
+      <p class="project-desc">
+        AI microservice built with FastAPI and LangChain implementing a Retrieval-Augmented
+        Generation pipeline. Uses ChromaDB for vector storage and Groq API for inference.
+        Exposes 7 REST endpoints scoped to answer questions from university course PDFs.
+        Part of a larger academic management platform.
+      </p>
+      <div class="project-stack">
+        <span class="tag">FastAPI</span>
+        <span class="tag">LangChain</span>
+        <span class="tag">ChromaDB</span>
+        <span class="tag">Python</span>
+        <span class="tag">Docker</span>
+      </div>
+      <a href="https://github.com/MoTahaAboHeiba" target="_blank" class="project-link">View on GitHub &rarr;</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="fade-in">
+    <p class="section-label">Background</p>
+    <h2 class="section-title">Training & Education</h2>
+    <div class="divider"></div>
+  </div>
+  <div class="timeline fade-in">
+
+    <div class="timeline-item">
+      <div class="timeline-period">2024 — 2025</div>
+      <div class="timeline-role">Data Engineer Trainee</div>
+      <div class="timeline-org">DEPI — Digital Egypt Pioneers Initiative</div>
+      <p class="timeline-desc">
+        Completed an intensive data engineering training program covering ETL design with SSIS,
+        SQL Server data warehousing, and Python-based data processing with Pandas. Built and
+        delivered end-to-end pipeline projects as part of the program.
+      </p>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-period">2024</div>
+      <div class="timeline-role">Huawei Big Data Trainee</div>
+      <div class="timeline-org">NTI — National Telecommunications Institute</div>
+      <p class="timeline-desc">
+        Hands-on training in the Huawei Big Data ecosystem covering Apache Spark, Hive, Kafka,
+        Flink, and Hadoop. Focused on distributed data processing architectures and real-time
+        streaming pipeline design.
+      </p>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-period">2024</div>
+      <div class="timeline-role">AWS Cloud Engineer Trainee</div>
+      <div class="timeline-org">NTI — National Telecommunications Institute</div>
+      <p class="timeline-desc">
+        Practical training on core AWS services for cloud data engineering including EC2, S3,
+        RDS, IAM, and Auto Scaling. Applied cloud infrastructure skills to deploy and manage
+        data workloads on AWS.
+      </p>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-period">2022 — 2026</div>
+      <div class="timeline-role">Bachelor of Science — Computer Science</div>
+      <div class="timeline-org">Fayoum University, Faculty of Computers and Artificial Intelligence</div>
+      <p class="timeline-desc">
+        Graduating June 2026 with a GPA of 3.4/4.0. Final-year graduation project: EduMat —
+        a unified academic management platform for Egyptian universities integrating
+        attendance, course registration, academic advising, and an AI chatbot.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<div id="contact">
+  <div class="inner">
+    <div class="fade-in">
+      <p class="section-label">Get in Touch</p>
+      <h2 class="section-title">Contact</h2>
+      <div class="divider"></div>
+    </div>
+    <div class="contact-grid">
+      <div class="fade-in">
+        <p class="contact-text">
+          I am actively looking for junior data engineering roles.
+          If you are working on data infrastructure, pipelines, or Lakehouse projects
+          and are looking for someone who can contribute from day one — reach out.
+        </p>
+        <p class="contact-text">
+          You can find my work on GitHub and connect with me on LinkedIn.
+          I am open to full-time roles, internships, and freelance data projects.
+        </p>
+      </div>
+      <div class="contact-links fade-in">
+        <a href="https://linkedin.com/in/mohamed-taha-abo-heiba" target="_blank" class="contact-link">
+          <div class="contact-icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+            </svg>
+          </div>
+          linkedin.com/in/mohamed-taha-abo-heiba
+        </a>
+        <a href="https://github.com/MoTahaAboHeiba" target="_blank" class="contact-link">
+          <div class="contact-icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
+            </svg>
+          </div>
+          github.com/MoTahaAboHeiba
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  Mohamed Taha Abo Heiba &mdash; Junior Data Engineer &mdash; 2025
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+        }, 100);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
