@@ -3,124 +3,533 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mohamed Taha Abo Hieba — Junior Data Engineer</title>
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+<title>Mohamed Taha — Data Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-:root {
-  --green:#aaff00; --black:#080808; --dark:#111;
-  --border:#242424; --white:#f0f0f0; --muted:#777;
-}
-*{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:smooth;}
-body{font-family:'Barlow',sans-serif;background:var(--black);color:var(--white);overflow-x:hidden;}
+  :root {
+    --navy: #e8edf5;
+    --navy-mid: #c5d0e0;
+    --accent: #4da3d4;
+    --accent-light: #0f2a3d;
+    --slate: #a0aec0;
+    --muted: #5a6a7e;
+    --line: #1e2d42;
+    --bg: #080f1a;
+    --white: #0d1b2e;
+    --tag-bg: #111e30;
+  }
 
-/* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:99;height:58px;display:flex;align-items:center;justify-content:space-between;padding:0 6%;background:rgba(8,8,8,.95);border-bottom:1px solid var(--border);}
-.logo{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.2rem;letter-spacing:.04em;text-transform:uppercase;}
-.logo span{color:var(--green);}
-.nav-links{display:flex;gap:2rem;list-style:none;}
-.nav-links a{text-decoration:none;color:var(--muted);font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;transition:color .2s;}
-.nav-links a:hover{color:var(--green);}
+  * { margin: 0; padding: 0; box-sizing: border-box; }
 
-/* HERO */
-#hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:4rem;max-width:1280px;margin:0 auto;padding:80px 6% 40px;}
-.badge{display:inline-block;border:1px solid var(--green);color:var(--green);font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;padding:.32rem .8rem;margin-bottom:1.4rem;}
-h1.name{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(3.5rem,8vw,7.5rem);line-height:.9;text-transform:uppercase;margin-bottom:1.1rem;}
-h1.name span{color:var(--green);}
-.title-tag{font-family:'Barlow Condensed',sans-serif;font-size:1rem;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:var(--muted);margin-bottom:1.1rem;}
-.bio{font-size:.93rem;color:#aaa;line-height:1.8;font-weight:300;max-width:460px;margin-bottom:2.2rem;}
-.cta{display:flex;gap:1rem;flex-wrap:wrap;}
-.btn-fill{display:inline-block;background:var(--green);color:var(--black);text-decoration:none;padding:.72rem 1.7rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.86rem;letter-spacing:.14em;text-transform:uppercase;transition:opacity .2s,transform .2s;}
-.btn-fill:hover{opacity:.82;transform:translateY(-2px);}
-.btn-out{display:inline-block;background:transparent;border:1px solid var(--border);color:var(--white);text-decoration:none;padding:.72rem 1.7rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.86rem;letter-spacing:.14em;text-transform:uppercase;transition:border-color .2s,color .2s,transform .2s;}
-.btn-out:hover{border-color:var(--green);color:var(--green);transform:translateY(-2px);}
-.stats{display:flex;gap:2.4rem;margin-top:2.8rem;padding-top:2rem;border-top:1px solid var(--border);}
-.sn{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:2.4rem;color:var(--green);line-height:1;}
-.sl{font-size:.66rem;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-top:.18rem;}
+  html { scroll-behavior: smooth; }
 
-/* photo side */
-.photo-side{display:flex;justify-content:center;align-items:center;}
-.photo-frame{position:relative;width:360px;height:460px;}
-.photo-frame::before{content:'';position:absolute;top:13px;left:13px;right:-13px;bottom:-13px;border:2px solid var(--green);}
-.photo-frame img,.photo-ph{width:100%;height:100%;object-fit:cover;object-position:top;display:block;filter:grayscale(10%);position:relative;z-index:1;}
-.photo-ph{background:#111;border:1px solid var(--border);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.7rem;z-index:1;}
-.photo-ph p{font-size:.68rem;color:var(--muted);letter-spacing:.15em;text-transform:uppercase;}
-.photo-ph code{font-size:.66rem;color:var(--green);}
-.photo-badge{position:absolute;bottom:-11px;left:-11px;z-index:2;background:var(--green);color:var(--black);font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;padding:.32rem .85rem;}
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--navy);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
 
-/* SECTION WRAPPER */
-.sec{padding:96px 6%;}
-.sec-inner{max-width:1280px;margin:0 auto;}
-.sec-label{font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;color:var(--green);margin-bottom:.35rem;}
-.sec-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(2rem,4vw,3.4rem);text-transform:uppercase;line-height:1;margin-bottom:2.8rem;}
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(8, 15, 26, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--line);
+    padding: 0 5%;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
 
-/* SKILLS */
-#skills{background:var(--dark);}
-.sk-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(185px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);}
-.sk-card{background:var(--dark);padding:1.4rem;}
-.sk-head{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--green);margin-bottom:.9rem;padding-bottom:.55rem;border-bottom:1px solid var(--border);}
-.tags{display:flex;flex-wrap:wrap;gap:.32rem;}
-.tag{font-size:.7rem;color:#aaa;background:#181818;border:1px solid var(--border);padding:.2rem .52rem;}
+  .nav-logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.15rem;
+    color: var(--navy);
+    letter-spacing: 0.01em;
+  }
 
-/* PROJECTS */
-#projects{background:var(--black);}
-.proj-list{display:flex;flex-direction:column;gap:1px;background:var(--border);border:1px solid var(--border);}
-.proj-row{display:grid;grid-template-columns:1fr 1fr;background:var(--black);}
-.proj-vis{background:#090909;overflow:hidden;display:flex;align-items:center;justify-content:center;min-height:240px;border-right:1px solid var(--border);}
-.proj-vis svg{width:100%;height:100%;display:block;}
-.proj-info{padding:2.4rem;display:flex;flex-direction:column;gap:.85rem;}
-.pnum{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:3.2rem;color:var(--border);line-height:1;}
-.ptitle{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.3rem;text-transform:uppercase;letter-spacing:.03em;line-height:1.2;}
-.pdesc{font-size:.84rem;color:#888;line-height:1.75;font-weight:300;flex:1;}
-.pstack{display:flex;flex-wrap:wrap;gap:.32rem;padding-top:.85rem;border-top:1px solid var(--border);}
-.plink{display:inline-flex;align-items:center;gap:.4rem;text-decoration:none;color:var(--green);font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;margin-top:.2rem;transition:gap .2s;}
-.plink:hover{gap:.7rem;}
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
 
-/* EXPERIENCE */
-#experience{background:var(--dark);}
-.timeline{border-left:1px solid var(--border);padding-left:2.4rem;}
-.ti{position:relative;padding-bottom:2.6rem;}
-.ti::before{content:'';position:absolute;left:-2.78rem;top:6px;width:8px;height:8px;background:var(--green);}
-.ti-period{font-size:.66rem;letter-spacing:.15em;text-transform:uppercase;color:var(--green);margin-bottom:.38rem;}
-.ti-role{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.28rem;text-transform:uppercase;letter-spacing:.03em;margin-bottom:.14rem;}
-.ti-org{font-size:.76rem;color:var(--muted);margin-bottom:.6rem;letter-spacing:.04em;}
-.ti-desc{font-size:.84rem;color:#888;line-height:1.75;font-weight:300;max-width:560px;}
+  .nav-links a {
+    text-decoration: none;
+    color: var(--slate);
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    transition: color 0.2s;
+  }
 
-/* CONTACT */
-#contact{background:var(--black);}
-.con-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;}
-.con-head{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(2.4rem,5vw,4.6rem);text-transform:uppercase;line-height:.9;margin-bottom:1.4rem;}
-.con-head span{color:var(--green);}
-.con-sub{font-size:.88rem;color:#888;line-height:1.8;font-weight:300;max-width:360px;}
-.c-links{display:flex;flex-direction:column;gap:1px;background:var(--border);border:1px solid var(--border);}
-.c-link{display:flex;align-items:center;gap:1rem;text-decoration:none;color:var(--white);padding:1.1rem 1.2rem;background:var(--black);font-size:.84rem;transition:background .2s,color .2s;}
-.c-link:hover{background:#0d0d0d;color:var(--green);}
-.c-icon{width:30px;height:30px;background:#161616;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-.c-icon svg{width:14px;height:14px;fill:var(--green);}
-.c-arr{margin-left:auto;color:var(--muted);transition:transform .2s,color .2s;}
-.c-link:hover .c-arr{color:var(--green);transform:translateX(4px);}
+  .nav-links a:hover { color: var(--accent); }
 
-/* FOOTER */
-footer{padding:1.6rem 6%;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
-.f-name{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:.86rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);}
-.f-copy{font-size:.7rem;color:var(--muted);}
+  /* SECTIONS */
+  section {
+    padding: 100px 5%;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
 
-@media(max-width:860px){
-  #hero{grid-template-columns:1fr;}
-  .photo-side{display:none;}
-  .proj-row{grid-template-columns:1fr;}
-  .proj-vis{border-right:none;border-bottom:1px solid var(--border);}
-  .con-grid{grid-template-columns:1fr;gap:2.4rem;}
-  .nav-links{display:none;}
-}
+  .section-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+  }
+
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    color: var(--navy);
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+  }
+
+  .divider {
+    width: 48px;
+    height: 3px;
+    background: var(--accent);
+    margin-bottom: 3rem;
+    border-radius: 2px;
+  }
+
+  /* HERO */
+  #hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding-top: 64px;
+    position: relative;
+    max-width: 100%;
+    padding-left: 5%;
+    padding-right: 5%;
+    overflow: hidden;
+  }
+
+  .hero-grid-bg {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size: 48px 48px;
+    opacity: 0.5;
+    z-index: 0;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 1100px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--accent-light);
+    color: var(--accent);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.4rem 1rem;
+    border-radius: 2rem;
+    margin-bottom: 1.75rem;
+    opacity: 0;
+    animation: fadeUp 0.6s ease forwards 0.1s;
+  }
+
+  .hero-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    color: var(--navy);
+    line-height: 1.05;
+    margin-bottom: 1.25rem;
+    opacity: 0;
+    animation: fadeUp 0.6s ease forwards 0.25s;
+  }
+
+  .hero-name em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .hero-bio {
+    max-width: 600px;
+    font-size: 1.05rem;
+    color: var(--slate);
+    font-weight: 300;
+    line-height: 1.75;
+    margin-bottom: 2.5rem;
+    opacity: 0;
+    animation: fadeUp 0.6s ease forwards 0.4s;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 0.6s ease forwards 0.55s;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    background: var(--accent);
+    color: #080f1a;
+    text-decoration: none;
+    padding: 0.75rem 1.75rem;
+    border-radius: 4px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    transition: background 0.2s, transform 0.2s;
+  }
+
+  .btn-primary:hover {
+    background: #6ab8e0;
+    transform: translateY(-2px);
+  }
+
+  .btn-outline {
+    display: inline-block;
+    border: 1.5px solid var(--muted);
+    color: var(--navy);
+    text-decoration: none;
+    padding: 0.75rem 1.75rem;
+    border-radius: 4px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    transition: border-color 0.2s, color 0.2s, transform 0.2s;
+  }
+
+  .btn-outline:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    transform: translateY(-2px);
+  }
+
+  .hero-stats {
+    display: flex;
+    gap: 3rem;
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--line);
+    opacity: 0;
+    animation: fadeUp 0.6s ease forwards 0.7s;
+  }
+
+  .stat-number {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2rem;
+    color: var(--navy);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 0.8rem;
+    color: var(--muted);
+    font-weight: 400;
+    margin-top: 0.25rem;
+    letter-spacing: 0.03em;
+  }
+
+  /* SKILLS */
+  #skills { background: var(--white); max-width: 100%; padding: 100px 5%; }
+  #skills .inner { max-width: 1100px; margin: 0 auto; }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .skill-card {
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 1.5rem;
+    transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+  }
+
+  .skill-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(29, 111, 164, 0.08);
+  }
+
+  .skill-card-title {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1rem;
+  }
+
+  .skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .tag {
+    background: var(--tag-bg);
+    color: var(--slate);
+    font-size: 0.78rem;
+    font-weight: 500;
+    padding: 0.3rem 0.7rem;
+    border-radius: 3px;
+    letter-spacing: 0.01em;
+  }
+
+  /* PROJECTS */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.75rem;
+  }
+
+  .project-card {
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+  }
+
+  .project-card:hover {
+    border-color: var(--accent);
+    box-shadow: 0 12px 32px rgba(29, 111, 164, 0.09);
+    transform: translateY(-4px);
+  }
+
+  .project-number {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2.5rem;
+    color: var(--line);
+    line-height: 1;
+    font-style: italic;
+  }
+
+  .project-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.2rem;
+    color: var(--navy);
+    line-height: 1.3;
+  }
+
+  .project-desc {
+    font-size: 0.875rem;
+    color: var(--slate);
+    line-height: 1.7;
+    flex: 1;
+  }
+
+  .project-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid var(--line);
+  }
+
+  .project-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    text-decoration: none;
+    color: var(--accent);
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    margin-top: 0.5rem;
+    transition: gap 0.2s;
+  }
+
+  .project-link:hover { gap: 0.7rem; }
+
+  /* EXPERIENCE */
+  .timeline {
+    position: relative;
+    padding-left: 2rem;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 8px;
+    bottom: 8px;
+    width: 2px;
+    background: var(--line);
+  }
+
+  .timeline-item {
+    position: relative;
+    padding-bottom: 2.5rem;
+  }
+
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -2.4rem;
+    top: 8px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--accent);
+    border: 2px solid var(--bg);
+    outline: 2px solid var(--accent);
+  }
+
+  .timeline-period {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.4rem;
+  }
+
+  .timeline-role {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.15rem;
+    color: var(--navy);
+    margin-bottom: 0.2rem;
+  }
+
+  .timeline-org {
+    font-size: 0.875rem;
+    color: var(--muted);
+    font-weight: 400;
+    margin-bottom: 0.75rem;
+  }
+
+  .timeline-desc {
+    font-size: 0.875rem;
+    color: var(--slate);
+    line-height: 1.7;
+  }
+
+  /* CONTACT */
+  #contact { background: var(--white); max-width: 100%; padding: 100px 5%; }
+  #contact .inner { max-width: 1100px; margin: 0 auto; }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .contact-text {
+    font-size: 1rem;
+    color: var(--slate);
+    line-height: 1.8;
+    margin-bottom: 2rem;
+  }
+
+  .contact-links {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .contact-link {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    text-decoration: none;
+    color: var(--navy);
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 1rem 1.25rem;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    background: var(--bg);
+    transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+  }
+
+  .contact-link:hover {
+    border-color: var(--accent);
+    transform: translateX(4px);
+    box-shadow: 0 4px 16px rgba(29, 111, 164, 0.08);
+  }
+
+  .contact-icon {
+    width: 36px;
+    height: 36px;
+    background: var(--accent-light);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .contact-icon svg {
+    width: 18px;
+    height: 18px;
+    fill: var(--accent);
+  }
+
+  /* FOOTER */
+  footer {
+    text-align: center;
+    padding: 2rem 5%;
+    border-top: 1px solid var(--line);
+    font-size: 0.8rem;
+    color: var(--muted);
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .fade-in {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (max-width: 768px) {
+    .hero-stats { gap: 1.5rem; }
+    .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .nav-links { display: none; }
+  }
 </style>
 </head>
 <body>
 
 <!-- NAV -->
 <nav>
-  <div class="logo">MT<span>.</span></div>
+  <span class="nav-logo">Mohamed Taha</span>
   <ul class="nav-links">
+    <li><a href="#about">About</a></li>
     <li><a href="#skills">Skills</a></li>
     <li><a href="#projects">Projects</a></li>
     <li><a href="#experience">Experience</a></li>
@@ -129,300 +538,298 @@ footer{padding:1.6rem 6%;border-top:1px solid var(--border);display:flex;align-i
 </nav>
 
 <!-- HERO -->
-<section id="hero">
-  <div>
-    <div class="badge">Available for Junior Roles — 2025</div>
-    <h1 class="name">Mohamed<br><span>Taha</span></h1>
-    <div class="title-tag">Data Engineer</div>
-    <p class="bio">I build end-to-end data pipelines, Lakehouse architectures, and big data systems that turn raw disconnected data into clean analytics-ready models. From ingestion to dimensional modeling — I own the full stack.</p>
-    <div class="cta">
-      <a href="#projects" class="btn-fill">View Projects</a>
-      <a href="https://linkedin.com/in/mohamed-taha-abo-heiba" target="_blank" class="btn-out">LinkedIn</a>
-      <a href="https://github.com/MoTahaAboHeiba" target="_blank" class="btn-out">GitHub</a>
+<div id="hero">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Available for Junior Roles</div>
+    <h1 class="hero-name">Mohamed Taha<br><em>Abo Heiba</em></h1>
+    <p class="hero-bio">
+      Junior Data Engineer specializing in building end-to-end data pipelines,
+      Lakehouse architectures, and big data systems. I turn raw, messy data from
+      disconnected sources into clean, analytics-ready models that drive real decisions.
+    </p>
+    <div class="hero-cta">
+      <a href="#projects" class="btn-primary">View Projects</a>
+      <a href="https://linkedin.com/in/mohamed-taha-abo-heiba" target="_blank" class="btn-outline">LinkedIn</a>
+      <a href="https://github.com/MoTahaAboHeiba" target="_blank" class="btn-outline">GitHub</a>
     </div>
-    <div class="stats">
-      <div><div class="sn">3</div><div class="sl">Training Programs</div></div>
-      <div><div class="sn">3</div><div class="sl">Projects Built</div></div>
-      <div><div class="sn">15+</div><div class="sl">Technologies</div></div>
-    </div>
-  </div>
-  <div class="photo-side">
-    <div class="photo-frame">
-      <!-- REPLACE with: <img src="photo.jpg" alt="Mohamed Taha"> -->
-      <div class="photo-ph">
-        <p>Add Photo Here</p>
-        <code>&lt;img src="photo.jpg"&gt;</code>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-number">3</div>
+        <div class="stat-label">Training Programs</div>
       </div>
-      <div class="photo-badge">Data Engineer</div>
+      <div>
+        <div class="stat-number">3</div>
+        <div class="stat-label">Projects Built</div>
+      </div>
+      <div>
+        <div class="stat-number">15+</div>
+        <div class="stat-label">Tools & Technologies</div>
+      </div>
     </div>
   </div>
-</section>
+</div>
 
 <!-- SKILLS -->
-<section id="skills" class="sec">
-  <div class="sec-inner">
-    <p class="sec-label">What I Work With</p>
-    <h2 class="sec-title">Skills &amp; Tools</h2>
-    <div class="sk-grid">
-      <div class="sk-card"><div class="sk-head">Data Engineering</div><div class="tags"><span class="tag">PySpark</span><span class="tag">Spark SQL</span><span class="tag">SSIS</span><span class="tag">Airflow</span><span class="tag">Delta Lake</span><span class="tag">Medallion Arch.</span></div></div>
-      <div class="sk-card"><div class="sk-head">Big Data</div><div class="tags"><span class="tag">Hadoop</span><span class="tag">Kafka</span><span class="tag">Hive</span><span class="tag">Flink</span><span class="tag">Databricks</span></div></div>
-      <div class="sk-card"><div class="sk-head">Cloud &amp; Storage</div><div class="tags"><span class="tag">AWS EC2</span><span class="tag">AWS S3</span><span class="tag">AWS RDS</span><span class="tag">AWS IAM</span><span class="tag">Unity Catalog</span><span class="tag">SQL Server</span></div></div>
-      <div class="sk-card"><div class="sk-head">Programming</div><div class="tags"><span class="tag">Python</span><span class="tag">Pandas</span><span class="tag">NumPy</span><span class="tag">T-SQL</span><span class="tag">Bash</span></div></div>
-      <div class="sk-card"><div class="sk-head">Analytics &amp; BI</div><div class="tags"><span class="tag">Power BI</span><span class="tag">DAX</span><span class="tag">Power Query</span><span class="tag">Star Schema</span><span class="tag">Dim. Modeling</span></div></div>
-      <div class="sk-card"><div class="sk-head">DevOps &amp; Tools</div><div class="tags"><span class="tag">Docker</span><span class="tag">Git</span><span class="tag">GitHub</span><span class="tag">Linux</span><span class="tag">FastAPI</span></div></div>
+<div id="skills">
+  <div class="inner">
+    <div class="fade-in">
+      <p class="section-label">Technical Skills</p>
+      <h2 class="section-title">Tools & Technologies</h2>
+      <div class="divider"></div>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card fade-in">
+        <div class="skill-card-title">Data Engineering</div>
+        <div class="skill-tags">
+          <span class="tag">PySpark</span>
+          <span class="tag">Spark SQL</span>
+          <span class="tag">SSIS</span>
+          <span class="tag">Airflow</span>
+          <span class="tag">Delta Lake</span>
+          <span class="tag">Medallion Architecture</span>
+        </div>
+      </div>
+      <div class="skill-card fade-in">
+        <div class="skill-card-title">Big Data</div>
+        <div class="skill-tags">
+          <span class="tag">Hadoop</span>
+          <span class="tag">Kafka</span>
+          <span class="tag">Hive</span>
+          <span class="tag">Flink</span>
+          <span class="tag">Databricks</span>
+        </div>
+      </div>
+      <div class="skill-card fade-in">
+        <div class="skill-card-title">Cloud & Storage</div>
+        <div class="skill-tags">
+          <span class="tag">AWS EC2</span>
+          <span class="tag">AWS S3</span>
+          <span class="tag">AWS RDS</span>
+          <span class="tag">AWS IAM</span>
+          <span class="tag">Unity Catalog</span>
+          <span class="tag">SQL Server</span>
+        </div>
+      </div>
+      <div class="skill-card fade-in">
+        <div class="skill-card-title">Programming</div>
+        <div class="skill-tags">
+          <span class="tag">Python</span>
+          <span class="tag">Pandas</span>
+          <span class="tag">NumPy</span>
+          <span class="tag">T-SQL</span>
+          <span class="tag">Bash</span>
+        </div>
+      </div>
+      <div class="skill-card fade-in">
+        <div class="skill-card-title">Analytics & BI</div>
+        <div class="skill-tags">
+          <span class="tag">Power BI</span>
+          <span class="tag">DAX</span>
+          <span class="tag">Power Query</span>
+          <span class="tag">Star Schema</span>
+          <span class="tag">Dimensional Modeling</span>
+        </div>
+      </div>
+      <div class="skill-card fade-in">
+        <div class="skill-card-title">DevOps & Tools</div>
+        <div class="skill-tags">
+          <span class="tag">Docker</span>
+          <span class="tag">Git</span>
+          <span class="tag">GitHub</span>
+          <span class="tag">Linux</span>
+          <span class="tag">FastAPI</span>
+        </div>
+      </div>
     </div>
   </div>
-</section>
+</div>
 
 <!-- PROJECTS -->
-<section id="projects" class="sec">
-  <div class="sec-inner">
-    <p class="sec-label">Selected Work</p>
-    <h2 class="sec-title">Projects</h2>
-    <div class="proj-list">
+<section id="projects">
+  <div class="fade-in">
+    <p class="section-label">Work</p>
+    <h2 class="section-title">Projects</h2>
+    <div class="divider"></div>
+  </div>
+  <div class="projects-grid">
 
-      <!-- 01 -->
-      <div class="proj-row">
-        <div class="proj-vis">
-          <svg viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg">
-            <defs><filter id="gA"><feGaussianBlur stdDeviation="2.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
-            <rect width="400" height="220" fill="#090909"/>
-            <!-- grid lines -->
-            <line x1="0" y1="73" x2="400" y2="73" stroke="#121212" stroke-width="1"/>
-            <line x1="0" y1="147" x2="400" y2="147" stroke="#121212" stroke-width="1"/>
-            <line x1="100" y1="0" x2="100" y2="220" stroke="#121212" stroke-width="1"/>
-            <line x1="200" y1="0" x2="200" y2="220" stroke="#121212" stroke-width="1"/>
-            <line x1="300" y1="0" x2="300" y2="220" stroke="#121212" stroke-width="1"/>
-            <!-- column headers -->
-            <text x="50" y="18" fill="#2a2a2a" font-size="7" font-family="monospace" text-anchor="middle" letter-spacing="1">SOURCES</text>
-            <text x="150" y="18" fill="#cd7f32" font-size="7" font-family="monospace" text-anchor="middle" letter-spacing="1">BRONZE</text>
-            <text x="250" y="18" fill="#aaa" font-size="7" font-family="monospace" text-anchor="middle" letter-spacing="1">SILVER</text>
-            <text x="350" y="18" fill="#ffd700" font-size="7" font-family="monospace" text-anchor="middle" letter-spacing="1">GOLD</text>
-            <!-- source boxes -->
-            <rect x="8" y="68" width="72" height="24" rx="2" fill="#111" stroke="#222" stroke-width="1"/>
-            <text x="44" y="84" fill="#555" font-size="7.5" font-family="monospace" text-anchor="middle">CRM (3 CSV)</text>
-            <rect x="8" y="128" width="72" height="24" rx="2" fill="#111" stroke="#222" stroke-width="1"/>
-            <text x="44" y="144" fill="#555" font-size="7.5" font-family="monospace" text-anchor="middle">ERP (3 CSV)</text>
-            <!-- BRONZE circle -->
-            <circle cx="150" cy="110" r="28" fill="#110800" stroke="#cd7f32" stroke-width="1.5" filter="url(#gA)"/>
-            <text x="150" y="107" fill="#cd7f32" font-size="8.5" font-family="monospace" text-anchor="middle" font-weight="bold">BRONZE</text>
-            <text x="150" y="120" fill="#4a2800" font-size="6.5" font-family="monospace" text-anchor="middle">delta / raw</text>
-            <!-- SILVER circle -->
-            <circle cx="250" cy="110" r="28" fill="#080c12" stroke="#aaa" stroke-width="1.5" filter="url(#gA)"/>
-            <text x="250" y="107" fill="#aaa" font-size="8.5" font-family="monospace" text-anchor="middle" font-weight="bold">SILVER</text>
-            <text x="250" y="120" fill="#383838" font-size="6.5" font-family="monospace" text-anchor="middle">pyspark</text>
-            <!-- GOLD circle -->
-            <circle cx="350" cy="110" r="28" fill="#110d00" stroke="#ffd700" stroke-width="1.5" filter="url(#gA)"/>
-            <text x="350" y="107" fill="#ffd700" font-size="8.5" font-family="monospace" text-anchor="middle" font-weight="bold">GOLD</text>
-            <text x="350" y="120" fill="#504000" font-size="6.5" font-family="monospace" text-anchor="middle">spark sql</text>
-            <!-- connector lines -->
-            <line x1="80" y1="80" x2="120" y2="100" stroke="#1e1e1e" stroke-width="1" stroke-dasharray="3,3"/>
-            <line x1="80" y1="140" x2="120" y2="120" stroke="#1e1e1e" stroke-width="1" stroke-dasharray="3,3"/>
-            <line x1="178" y1="110" x2="220" y2="110" stroke="#1e1e1e" stroke-width="1" stroke-dasharray="3,3"/>
-            <line x1="278" y1="110" x2="320" y2="110" stroke="#1e1e1e" stroke-width="1" stroke-dasharray="3,3"/>
-            <!-- animated dots -->
-            <circle r="3.5" fill="#aaff00" filter="url(#gA)"><animateMotion dur="2s" repeatCount="indefinite" begin="0s" path="M80,80 Q100,80 120,100"/></circle>
-            <circle r="3.5" fill="#aaff00" filter="url(#gA)"><animateMotion dur="2s" repeatCount="indefinite" begin=".7s" path="M80,140 Q100,140 120,120"/></circle>
-            <circle r="3.5" fill="#cd7f32" filter="url(#gA)"><animateMotion dur="1.8s" repeatCount="indefinite" begin=".4s" path="M178,110 L220,110"/></circle>
-            <circle r="3.5" fill="#aaa" filter="url(#gA)"><animateMotion dur="1.8s" repeatCount="indefinite" begin="1s" path="M278,110 L320,110"/></circle>
-            <!-- pulse rings -->
-            <circle cx="150" cy="110" r="10" fill="none" stroke="#cd7f32" stroke-width="1"><animate attributeName="r" values="10;28" dur="2s" repeatCount="indefinite" begin="0s"/><animate attributeName="opacity" values=".5;0" dur="2s" repeatCount="indefinite" begin="0s"/></circle>
-            <circle cx="250" cy="110" r="10" fill="none" stroke="#aaa" stroke-width="1"><animate attributeName="r" values="10;28" dur="2s" repeatCount="indefinite" begin=".6s"/><animate attributeName="opacity" values=".5;0" dur="2s" repeatCount="indefinite" begin=".6s"/></circle>
-            <circle cx="350" cy="110" r="10" fill="none" stroke="#ffd700" stroke-width="1"><animate attributeName="r" values="10;28" dur="2s" repeatCount="indefinite" begin="1.2s"/><animate attributeName="opacity" values=".5;0" dur="2s" repeatCount="indefinite" begin="1.2s"/></circle>
-            <text x="392" y="216" fill="#181818" font-size="6" font-family="monospace" text-anchor="end">DELTA LAKE</text>
-          </svg>
-        </div>
-        <div class="proj-info">
-          <div class="pnum">01</div>
-          <div class="ptitle">E-Commerce Lakehouse — Databricks</div>
-          <p class="pdesc">End-to-end Lakehouse on Databricks using Medallion Architecture. Ingests raw CRM and ERP data from 6 CSV sources, applies PySpark transformations through Bronze and Silver layers, and delivers a star schema via Spark SQL stored as Delta Tables in Unity Catalog. Orchestrated with a Databricks Jobs three-task DAG.</p>
-          <div class="pstack"><span class="tag">Databricks</span><span class="tag">PySpark</span><span class="tag">Spark SQL</span><span class="tag">Delta Lake</span><span class="tag">Unity Catalog</span></div>
-          <a href="https://github.com/MoTahaAboHeiba" target="_blank" class="plink">View on GitHub &rarr;</a>
-        </div>
+    <div class="project-card fade-in">
+      <div class="project-number">01</div>
+      <div class="project-title">E-Commerce Lakehouse — Databricks</div>
+      <p class="project-desc">
+        End-to-end Lakehouse built on Databricks using Medallion Architecture. Ingests raw CRM
+        and ERP data from 6 CSV sources, applies PySpark transformations across Bronze and Silver
+        layers, and delivers a star schema via Spark SQL stored as Delta Tables in Unity Catalog.
+        Fully orchestrated with a Databricks Jobs DAG.
+      </p>
+      <div class="project-stack">
+        <span class="tag">Databricks</span>
+        <span class="tag">PySpark</span>
+        <span class="tag">Spark SQL</span>
+        <span class="tag">Delta Lake</span>
+        <span class="tag">Unity Catalog</span>
       </div>
-
-      <!-- 02 -->
-      <div class="proj-row">
-        <div class="proj-info">
-          <div class="pnum">02</div>
-          <div class="ptitle">SQL Server Data Warehouse</div>
-          <p class="pdesc">Modern data warehouse on SQL Server following Medallion Architecture with Bronze, Silver, and Gold layers. Implements star schema design with surrogate keys, T-SQL stored procedures for ETL, and full dimensional modeling aligned to industry naming conventions.</p>
-          <div class="pstack"><span class="tag">SQL Server</span><span class="tag">T-SQL</span><span class="tag">SSIS</span><span class="tag">Star Schema</span><span class="tag">ETL</span></div>
-          <a href="https://github.com/MoTahaAboHeiba/SQL-Data-Warehouse-project" target="_blank" class="plink">View on GitHub &rarr;</a>
-        </div>
-        <div class="proj-vis" style="border-right:none;border-left:1px solid var(--border);">
-          <svg viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg">
-            <defs><filter id="gB"><feGaussianBlur stdDeviation="2.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
-            <rect width="400" height="220" fill="#090909"/>
-            <text x="55" y="18" fill="#2a2a2a" font-size="7" font-family="monospace" text-anchor="middle" letter-spacing="1">EXTRACT</text>
-            <text x="160" y="18" fill="#aaff00" font-size="7" font-family="monospace" text-anchor="middle" letter-spacing="1">TRANSFORM</text>
-            <text x="260" y="18" fill="#aaff00" font-size="7" font-family="monospace" text-anchor="middle" letter-spacing="1">LOAD</text>
-            <text x="355" y="18" fill="#ffd700" font-size="7" font-family="monospace" text-anchor="middle" letter-spacing="1">OUTPUT</text>
-            <!-- source rows -->
-            <rect x="6" y="55" width="78" height="22" rx="2" fill="#111" stroke="#222" stroke-width="1"/>
-            <text x="45" y="70" fill="#555" font-size="7" font-family="monospace" text-anchor="middle">CSV SOURCE</text>
-            <rect x="6" y="82" width="78" height="22" rx="2" fill="#111" stroke="#222" stroke-width="1"/>
-            <text x="45" y="97" fill="#555" font-size="7" font-family="monospace" text-anchor="middle">ERP SOURCE</text>
-            <rect x="6" y="109" width="78" height="22" rx="2" fill="#111" stroke="#222" stroke-width="1"/>
-            <text x="45" y="124" fill="#555" font-size="7" font-family="monospace" text-anchor="middle">CRM SOURCE</text>
-            <!-- SSIS box -->
-            <rect x="98" y="82" width="82" height="50" rx="3" fill="#111" stroke="#aaff00" stroke-width="1.5"/>
-            <text x="139" y="103" fill="#aaff00" font-size="9" font-family="monospace" text-anchor="middle" font-weight="bold">SSIS</text>
-            <text x="139" y="117" fill="#3a4a00" font-size="6.5" font-family="monospace" text-anchor="middle">packages</text>
-            <!-- TSQL box -->
-            <rect x="200" y="82" width="82" height="50" rx="3" fill="#111" stroke="#aaff00" stroke-width="1.5"/>
-            <text x="241" y="103" fill="#aaff00" font-size="9" font-family="monospace" text-anchor="middle" font-weight="bold">T-SQL</text>
-            <text x="241" y="117" fill="#3a4a00" font-size="6.5" font-family="monospace" text-anchor="middle">procedures</text>
-            <!-- outputs -->
-            <rect x="304" y="55" width="88" height="22" rx="2" fill="#111" stroke="#ffd700" stroke-width="1"/>
-            <text x="348" y="70" fill="#ffd700" font-size="7" font-family="monospace" text-anchor="middle">DIM CUSTOMER</text>
-            <rect x="304" y="82" width="88" height="22" rx="2" fill="#111" stroke="#ffd700" stroke-width="1"/>
-            <text x="348" y="97" fill="#ffd700" font-size="7" font-family="monospace" text-anchor="middle">DIM PRODUCT</text>
-            <rect x="304" y="109" width="88" height="22" rx="2" fill="#111" stroke="#aaff00" stroke-width="1"/>
-            <text x="348" y="124" fill="#aaff00" font-size="7" font-family="monospace" text-anchor="middle">FACT SALES</text>
-            <!-- lines -->
-            <line x1="84" y1="66" x2="96" y2="97" stroke="#1e1e1e" stroke-width="1" stroke-dasharray="3,3"/>
-            <line x1="84" y1="93" x2="96" y2="107" stroke="#1e1e1e" stroke-width="1" stroke-dasharray="3,3"/>
-            <line x1="84" y1="120" x2="96" y2="117" stroke="#1e1e1e" stroke-width="1" stroke-dasharray="3,3"/>
-            <line x1="180" y1="107" x2="198" y2="107" stroke="#1e1e1e" stroke-width="1" stroke-dasharray="3,3"/>
-            <line x1="282" y1="97" x2="302" y2="66" stroke="#1e1e1e" stroke-width="1" stroke-dasharray="3,3"/>
-            <line x1="282" y1="107" x2="302" y2="93" stroke="#1e1e1e" stroke-width="1" stroke-dasharray="3,3"/>
-            <line x1="282" y1="117" x2="302" y2="120" stroke="#1e1e1e" stroke-width="1" stroke-dasharray="3,3"/>
-            <!-- particles -->
-            <circle r="3" fill="#aaff00" filter="url(#gB)"><animateMotion dur="2.2s" repeatCount="indefinite" begin="0s" path="M84,93 Q90,93 96,107"/></circle>
-            <circle r="3" fill="#aaff00" filter="url(#gB)"><animateMotion dur="2.2s" repeatCount="indefinite" begin=".8s" path="M180,107 L198,107"/></circle>
-            <circle r="3" fill="#ffd700" filter="url(#gB)"><animateMotion dur="2.2s" repeatCount="indefinite" begin="1.6s" path="M282,107 Q292,107 302,93"/></circle>
-            <circle cx="241" cy="107" r="8" fill="none" stroke="#aaff00" stroke-width="1"><animate attributeName="r" values="8;22" dur="2.2s" repeatCount="indefinite"/><animate attributeName="opacity" values=".5;0" dur="2.2s" repeatCount="indefinite"/></circle>
-          </svg>
-        </div>
-      </div>
-
-      <!-- 03 -->
-      <div class="proj-row">
-        <div class="proj-vis">
-          <svg viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg">
-            <defs><filter id="gC"><feGaussianBlur stdDeviation="2.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
-            <rect width="400" height="220" fill="#090909"/>
-            <!-- labels -->
-            <text x="44" y="18" fill="#e55" font-size="7" font-family="monospace" text-anchor="middle" letter-spacing="1">INPUT</text>
-            <text x="140" y="18" fill="#aaff00" font-size="7" font-family="monospace" text-anchor="middle" letter-spacing="1">LANGCHAIN</text>
-            <text x="240" y="18" fill="#a78bfa" font-size="7" font-family="monospace" text-anchor="middle" letter-spacing="1">CHROMADB</text>
-            <text x="338" y="18" fill="#38bdf8" font-size="7" font-family="monospace" text-anchor="middle" letter-spacing="1">GROQ LLM</text>
-            <!-- PDF box -->
-            <rect x="6" y="88" width="72" height="44" rx="3" fill="#111" stroke="#e55" stroke-width="1.5"/>
-            <text x="42" y="107" fill="#e55" font-size="10" font-family="monospace" text-anchor="middle" font-weight="bold">PDF</text>
-            <text x="42" y="120" fill="#5a1010" font-size="6.5" font-family="monospace" text-anchor="middle">course docs</text>
-            <!-- LangChain box -->
-            <rect x="94" y="83" width="88" height="54" rx="3" fill="#111" stroke="#aaff00" stroke-width="1.5"/>
-            <text x="138" y="106" fill="#aaff00" font-size="8.5" font-family="monospace" text-anchor="middle" font-weight="bold">LANGCHAIN</text>
-            <text x="138" y="120" fill="#3a5500" font-size="6.5" font-family="monospace" text-anchor="middle">chunk + embed</text>
-            <!-- ChromaDB box -->
-            <rect x="194" y="83" width="88" height="54" rx="3" fill="#111" stroke="#a78bfa" stroke-width="1.5"/>
-            <text x="238" y="106" fill="#a78bfa" font-size="8.5" font-family="monospace" text-anchor="middle" font-weight="bold">CHROMADB</text>
-            <text x="238" y="120" fill="#3a2a6a" font-size="6.5" font-family="monospace" text-anchor="middle">vector store</text>
-            <!-- Groq box -->
-            <rect x="294" y="83" width="88" height="54" rx="3" fill="#111" stroke="#38bdf8" stroke-width="1.5"/>
-            <text x="338" y="106" fill="#38bdf8" font-size="8.5" font-family="monospace" text-anchor="middle" font-weight="bold">GROQ</text>
-            <text x="338" y="120" fill="#0a3a5a" font-size="6.5" font-family="monospace" text-anchor="middle">inference</text>
-            <!-- FastAPI bottom -->
-            <rect x="270" y="165" width="120" height="24" rx="2" fill="#111" stroke="#aaff00" stroke-width="1"/>
-            <text x="330" y="181" fill="#aaff00" font-size="7.5" font-family="monospace" text-anchor="middle">FastAPI — 7 endpoints</text>
-            <!-- connector lines -->
-            <line x1="78" y1="110" x2="92" y2="110" stroke="#1e1e1e" stroke-width="1" stroke-dasharray="3,3"/>
-            <line x1="182" y1="110" x2="192" y2="110" stroke="#1e1e1e" stroke-width="1" stroke-dasharray="3,3"/>
-            <line x1="282" y1="110" x2="292" y2="110" stroke="#1e1e1e" stroke-width="1" stroke-dasharray="3,3"/>
-            <line x1="338" y1="137" x2="338" y2="163" stroke="#1e1e1e" stroke-width="1" stroke-dasharray="3,3"/>
-            <!-- particles -->
-            <circle r="3.5" fill="#e55" filter="url(#gC)"><animateMotion dur="1.8s" repeatCount="indefinite" begin="0s" path="M78,110 L92,110"/></circle>
-            <circle r="3.5" fill="#aaff00" filter="url(#gC)"><animateMotion dur="1.8s" repeatCount="indefinite" begin=".6s" path="M182,110 L192,110"/></circle>
-            <circle r="3.5" fill="#a78bfa" filter="url(#gC)"><animateMotion dur="1.8s" repeatCount="indefinite" begin="1.2s" path="M282,110 L292,110"/></circle>
-            <circle r="3" fill="#38bdf8" filter="url(#gC)"><animateMotion dur="1.4s" repeatCount="indefinite" begin="1.7s" path="M338,137 L338,163"/></circle>
-            <!-- pulse on ChromaDB -->
-            <circle cx="238" cy="110" r="8" fill="none" stroke="#a78bfa" stroke-width="1"><animate attributeName="r" values="8;24" dur="2s" repeatCount="indefinite" begin=".4s"/><animate attributeName="opacity" values=".5;0" dur="2s" repeatCount="indefinite" begin=".4s"/></circle>
-            <text x="8" y="216" fill="#181818" font-size="6" font-family="monospace">RAG PIPELINE</text>
-          </svg>
-        </div>
-        <div class="proj-info">
-          <div class="pnum">03</div>
-          <div class="ptitle">EduMate — RAG AI Microservice</div>
-          <p class="pdesc">AI microservice built with FastAPI and LangChain implementing a Retrieval-Augmented Generation pipeline. Uses ChromaDB for vector storage and Groq API for inference. Exposes 7 REST endpoints scoped to answer questions from university course PDFs. Part of the EduMat graduation project.</p>
-          <div class="pstack"><span class="tag">FastAPI</span><span class="tag">LangChain</span><span class="tag">ChromaDB</span><span class="tag">Python</span><span class="tag">Docker</span><span class="tag">Groq</span></div>
-          <a href="https://github.com/MoTahaAboHeiba" target="_blank" class="plink">View on GitHub &rarr;</a>
-        </div>
-      </div>
-
+      <a href="https://github.com/MoTahaAboHeiba" target="_blank" class="project-link">View on GitHub &rarr;</a>
     </div>
+
+    <div class="project-card fade-in">
+      <div class="project-number">02</div>
+      <div class="project-title">SQL Server Data Warehouse</div>
+      <p class="project-desc">
+        Modern data warehouse built on SQL Server following Medallion Architecture with
+        Bronze, Silver, and Gold layers. Implements star schema design with surrogate keys,
+        T-SQL stored procedures for ETL, and full dimensional modeling aligned to
+        industry naming conventions.
+      </p>
+      <div class="project-stack">
+        <span class="tag">SQL Server</span>
+        <span class="tag">T-SQL</span>
+        <span class="tag">Star Schema</span>
+        <span class="tag">ETL</span>
+        <span class="tag">Medallion Architecture</span>
+      </div>
+      <a href="https://github.com/MoTahaAboHeiba/SQL-Data-Warehouse-project" target="_blank" class="project-link">View on GitHub &rarr;</a>
+    </div>
+
+    <div class="project-card fade-in">
+      <div class="project-number">03</div>
+      <div class="project-title">EduMate — RAG AI Microservice</div>
+      <p class="project-desc">
+        AI microservice built with FastAPI and LangChain implementing a Retrieval-Augmented
+        Generation pipeline. Uses ChromaDB for vector storage and Groq API for inference.
+        Exposes 7 REST endpoints scoped to answer questions from university course PDFs.
+        Part of a larger academic management platform.
+      </p>
+      <div class="project-stack">
+        <span class="tag">FastAPI</span>
+        <span class="tag">LangChain</span>
+        <span class="tag">ChromaDB</span>
+        <span class="tag">Python</span>
+        <span class="tag">Docker</span>
+      </div>
+      <a href="https://github.com/MoTahaAboHeiba" target="_blank" class="project-link">View on GitHub &rarr;</a>
+    </div>
+
   </div>
 </section>
 
 <!-- EXPERIENCE -->
-<section id="experience" class="sec">
-  <div class="sec-inner">
-    <p class="sec-label">Background</p>
-    <h2 class="sec-title">Training &amp; Education</h2>
-    <div class="timeline">
-      <div class="ti">
-        <div class="ti-period">2024 — 2025</div>
-        <div class="ti-role">Data Engineer Trainee</div>
-        <div class="ti-org">DEPI — Digital Egypt Pioneers Initiative</div>
-        <p class="ti-desc">Intensive training in ETL design with SSIS, SQL Server data warehousing, and Python-based data processing with Pandas. Delivered end-to-end pipeline projects as part of the program.</p>
-      </div>
-      <div class="ti">
-        <div class="ti-period">2024</div>
-        <div class="ti-role">Huawei Big Data Trainee</div>
-        <div class="ti-org">NTI — National Telecommunications Institute</div>
-        <p class="ti-desc">Hands-on training covering Apache Spark, Hive, Kafka, Flink, and Hadoop. Focused on distributed data processing and real-time streaming pipeline design.</p>
-      </div>
-      <div class="ti">
-        <div class="ti-period">2024</div>
-        <div class="ti-role">AWS Cloud Engineer Trainee</div>
-        <div class="ti-org">NTI — National Telecommunications Institute</div>
-        <p class="ti-desc">Practical training on core AWS services including EC2, S3, RDS, IAM, and Auto Scaling. Applied cloud infrastructure skills to deploy and manage data workloads on AWS.</p>
-      </div>
-      <div class="ti">
-        <div class="ti-period">2022 — 2026</div>
-        <div class="ti-role">B.Sc. Computer Science</div>
-        <div class="ti-org">Fayoum University — Faculty of Computers and AI</div>
-        <p class="ti-desc">Graduating June 2026, GPA 3.4/4.0. Final-year project: EduMat — a unified academic management platform for Egyptian universities with AI chatbot, attendance, and course registration.</p>
-      </div>
+<section id="experience">
+  <div class="fade-in">
+    <p class="section-label">Background</p>
+    <h2 class="section-title">Training & Education</h2>
+    <div class="divider"></div>
+  </div>
+  <div class="timeline fade-in">
+
+    <div class="timeline-item">
+      <div class="timeline-period">2024 — 2025</div>
+      <div class="timeline-role">Data Engineer Trainee</div>
+      <div class="timeline-org">DEPI — Digital Egypt Pioneers Initiative</div>
+      <p class="timeline-desc">
+        Completed an intensive data engineering training program covering ETL design with SSIS,
+        SQL Server data warehousing, and Python-based data processing with Pandas. Built and
+        delivered end-to-end pipeline projects as part of the program.
+      </p>
     </div>
+
+    <div class="timeline-item">
+      <div class="timeline-period">2024</div>
+      <div class="timeline-role">Huawei Big Data Trainee</div>
+      <div class="timeline-org">NTI — National Telecommunications Institute</div>
+      <p class="timeline-desc">
+        Hands-on training in the Huawei Big Data ecosystem covering Apache Spark, Hive, Kafka,
+        Flink, and Hadoop. Focused on distributed data processing architectures and real-time
+        streaming pipeline design.
+      </p>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-period">2024</div>
+      <div class="timeline-role">AWS Cloud Engineer Trainee</div>
+      <div class="timeline-org">NTI — National Telecommunications Institute</div>
+      <p class="timeline-desc">
+        Practical training on core AWS services for cloud data engineering including EC2, S3,
+        RDS, IAM, and Auto Scaling. Applied cloud infrastructure skills to deploy and manage
+        data workloads on AWS.
+      </p>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-period">2022 — 2026</div>
+      <div class="timeline-role">Bachelor of Science — Computer Science</div>
+      <div class="timeline-org">Fayoum University, Faculty of Computers and Artificial Intelligence</div>
+      <p class="timeline-desc">
+        Graduating June 2026 with a GPA of 3.4/4.0. Final-year graduation project: EduMat —
+        a unified academic management platform for Egyptian universities integrating
+        attendance, course registration, academic advising, and an AI chatbot.
+      </p>
+    </div>
+
   </div>
 </section>
 
 <!-- CONTACT -->
-<section id="contact" class="sec">
-  <div class="sec-inner">
-    <div class="con-grid">
-      <div>
-        <h2 class="con-head">Let's<br><span>Work</span><br>Together</h2>
-        <p class="con-sub">I am actively looking for junior data engineering roles. If you are building data infrastructure or Lakehouse systems and need someone who can contribute from day one — reach out.</p>
+<div id="contact">
+  <div class="inner">
+    <div class="fade-in">
+      <p class="section-label">Get in Touch</p>
+      <h2 class="section-title">Contact</h2>
+      <div class="divider"></div>
+    </div>
+    <div class="contact-grid">
+      <div class="fade-in">
+        <p class="contact-text">
+          I am actively looking for junior data engineering roles.
+          If you are working on data infrastructure, pipelines, or Lakehouse projects
+          and are looking for someone who can contribute from day one — reach out.
+        </p>
+        <p class="contact-text">
+          You can find my work on GitHub and connect with me on LinkedIn.
+          I am open to full-time roles, internships, and freelance data projects.
+        </p>
       </div>
-      <div class="c-links">
-        <a href="https://linkedin.com/in/mohamed-taha-abo-heiba" target="_blank" class="c-link">
-          <div class="c-icon"><svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></div>
-          <span>linkedin.com/in/mohamed-taha-abo-heiba</span>
-          <span class="c-arr">→</span>
+      <div class="contact-links fade-in">
+        <a href="https://linkedin.com/in/mohamed-taha-abo-heiba" target="_blank" class="contact-link">
+          <div class="contact-icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+            </svg>
+          </div>
+          linkedin.com/in/mohamed-taha-abo-heiba
         </a>
-        <a href="https://github.com/MoTahaAboHeiba" target="_blank" class="c-link">
-          <div class="c-icon"><svg viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></div>
-          <span>github.com/MoTahaAboHeiba</span>
-          <span class="c-arr">→</span>
-        </a>
-        <a href="mailto:Mohamed-aboheiba@outlook.com" class="c-link">
-          <div class="c-icon"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></div>
-          <span>Mohamed-aboheiba@outlook.com</span>
-          <span class="c-arr">→</span>
+        <a href="https://github.com/MoTahaAboHeiba" target="_blank" class="contact-link">
+          <div class="contact-icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
+            </svg>
+          </div>
+          github.com/MoTahaAboHeiba
         </a>
       </div>
     </div>
   </div>
-</section>
+</div>
 
 <!-- FOOTER -->
 <footer>
-  <div class="f-name">Mohamed Taha Abo Heiba</div>
-  <div class="f-copy">Junior Data Engineer &mdash; 2025</div>
+  Mohamed Taha Abo Heiba &mdash; Junior Data Engineer &mdash; 2025
 </footer>
 
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+        }, 100);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
 </body>
 </html>
