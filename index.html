@@ -690,8 +690,7 @@ document.getElementById('contactForm').addEventListener('submit', async function
   btn.textContent = 'Sending…';
   btn.disabled = true;
   try {
-    // Replace YOUR_FORM_ID with your Formspree form ID after signing up at formspree.io
-    const res = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
+    const res = await fetch('https://formspree.io/f/mnjwlaon', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
       body: JSON.stringify({ name, email, message: msg })
