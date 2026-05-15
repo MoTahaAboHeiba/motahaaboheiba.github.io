@@ -797,50 +797,84 @@
     .cert-badge.amber { color: #ff9900; background: rgba(255,153,0,.08); border: 1px solid rgba(255,153,0,.2); }
 
    /* ─── SKILLS ─── */
-#skills {
-  background: var(--surface);
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-  padding: 3rem 2rem;
-}
+<section id="skills">
+  <h2>// TECH STACK Skills & Technologies</h2>
+  <div class="skills-grid">
 
-.skills-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 2rem;
-}
+    <div class="skill-category">
+      <h3>Programming Languages</h3>
+      <ul>
+        <li>Python</li>
+        <li>SQL</li>
+        <li>C++</li>
+        <li>C#</li>
+        <li>Embedded C</li>
+        <li>HTML/CSS/JS</li>
+      </ul>
+    </div>
 
-.skill-category {
-  background: var(--bg);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 1.5rem;
-}
+    <div class="skill-category">
+      <h3>Data Engineering</h3>
+      <ul>
+        <li>Apache Airflow</li>
+        <li>ETL Pipelines</li>
+        <li>PostgreSQL</li>
+        <li>MySQL</li>
+        <li>SQL Server</li>
+        <li>Docker</li>
+      </ul>
+    </div>
 
-.skill-category h3 {
-  font-family: var(--mono);
-  font-size: .9rem;
-  font-weight: 700;
-  color: var(--accent);
-  letter-spacing: .06em;
-  text-transform: uppercase;
-  margin-bottom: 1rem;
-}
+    <div class="skill-category">
+      <h3>Machine Learning</h3>
+      <ul>
+        <li>XGBoost</li>
+        <li>Scikit-learn</li>
+        <li>Pandas</li>
+        <li>NumPy</li>
+        <li>Feature Engineering</li>
+        <li>Streamlit</li>
+      </ul>
+    </div>
 
-.skill-category ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
+    <div class="skill-category">
+      <h3>Backend & Full-Stack</h3>
+      <ul>
+        <li>C# / WinForms</li>
+        <li>ADO.NET</li>
+        <li>REST APIs</li>
+        <li>HTML / CSS / JS</li>
+        <li>Streamlit</li>
+        <li>Plotly</li>
+      </ul>
+    </div>
 
-.skill-category ul li {
-  font-family: var(--mono);
-  font-size: .8rem;
-  font-weight: 500;
-  color: var(--text);
-  margin: .4rem 0;
-}
+    <div class="skill-category">
+      <h3>Dev Tools</h3>
+      <ul>
+        <li>Git / GitHub</li>
+        <li>Docker Compose</li>
+        <li>VS Code</li>
+        <li>SSMS 2019</li>
+        <li>python-dotenv</li>
+        <li>Repository Pattern</li>
+      </ul>
+    </div>
 
+    <div class="skill-category">
+      <h3>Networking & Systems</h3>
+      <ul>
+        <li>CCNA 200-301</li>
+        <li>VLANs</li>
+        <li>L3 Switching</li>
+        <li>Static Routing</li>
+        <li>RTP / SIP</li>
+        <li>Multimedia Networking</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
     .skill-chip:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-lo); }
 
     /* ─── EDUCATION ─── */
