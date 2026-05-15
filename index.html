@@ -795,88 +795,56 @@
     }
     .cert-badge.green { color: var(--green); background: var(--green-lo); border: 1px solid rgba(45,212,160,.2); }
     .cert-badge.amber { color: #ff9900; background: rgba(255,153,0,.08); border: 1px solid rgba(255,153,0,.2); }
-
-   /* ─── SKILLS ─── */
-<section id="skills">
-  <h2>// TECH STACK Skills & Technologies</h2>
-  <div class="skills-grid">
-
-    <div class="skill-category">
-      <h3>Programming Languages</h3>
-      <ul>
-        <li>Python</li>
-        <li>SQL</li>
-        <li>C++</li>
-        <li>C#</li>
-        <li>Embedded C</li>
-        <li>HTML/CSS/JS</li>
-      </ul>
-    </div>
-
-    <div class="skill-category">
-      <h3>Data Engineering</h3>
-      <ul>
-        <li>Apache Airflow</li>
-        <li>ETL Pipelines</li>
-        <li>PostgreSQL</li>
-        <li>MySQL</li>
-        <li>SQL Server</li>
-        <li>Docker</li>
-      </ul>
-    </div>
-
-    <div class="skill-category">
-      <h3>Machine Learning</h3>
-      <ul>
-        <li>XGBoost</li>
-        <li>Scikit-learn</li>
-        <li>Pandas</li>
-        <li>NumPy</li>
-        <li>Feature Engineering</li>
-        <li>Streamlit</li>
-      </ul>
-    </div>
-
-    <div class="skill-category">
-      <h3>Backend & Full-Stack</h3>
-      <ul>
-        <li>C# / WinForms</li>
-        <li>ADO.NET</li>
-        <li>REST APIs</li>
-        <li>HTML / CSS / JS</li>
-        <li>Streamlit</li>
-        <li>Plotly</li>
-      </ul>
-    </div>
-
-    <div class="skill-category">
-      <h3>Dev Tools</h3>
-      <ul>
-        <li>Git / GitHub</li>
-        <li>Docker Compose</li>
-        <li>VS Code</li>
-        <li>SSMS 2019</li>
-        <li>python-dotenv</li>
-        <li>Repository Pattern</li>
-      </ul>
-    </div>
-
-    <div class="skill-category">
-      <h3>Networking & Systems</h3>
-      <ul>
-        <li>CCNA 200-301</li>
-        <li>VLANs</li>
-        <li>L3 Switching</li>
-        <li>Static Routing</li>
-        <li>RTP / SIP</li>
-        <li>Multimedia Networking</li>
-      </ul>
-    </div>
-
-  </div>
-</section>
+ /* ─── SKILLS ─── */
+    #skills { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .skills-list {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+    .skill-row {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 1.5rem;
+      align-items: flex-start;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .skill-row:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+    .skill-row-label {
+      font-family: var(--mono);
+      font-size: .78rem;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      padding-top: .2rem;
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+    }
+    .skill-row-label i { color: var(--accent); font-size: .8rem; }
+    .skill-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .45rem;
+    }
+    .skill-chip {
+      font-family: var(--mono);
+      font-size: .75rem;
+      font-weight: 500;
+      padding: .32rem .75rem;
+      border-radius: 6px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      color: var(--text);
+      transition: border-color .15s, color .15s, background .15s;
+      cursor: default;
+    }
     .skill-chip:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-lo); }
-
     /* ─── EDUCATION ─── */
     .edu-card {
       background: var(--surface);
