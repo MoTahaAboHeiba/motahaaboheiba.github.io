@@ -443,4 +443,1553 @@
     }
     .hero-stat-label {
       font-size: 0.72rem;
-      text-
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+    .hero-stat-divider {
+      width: 1px;
+      background: var(--border);
+      align-self: stretch;
+    }
+
+    /* PHOTO — circular to match the floating orb motion */
+    .hero-photo-wrap {
+      position: relative;
+      animation: fadeInRight 0.9s 0.2s ease both;
+    }
+    .hero-photo-frame {
+      position: relative;
+      width: 320px;
+      height: 320px;
+    }
+    .hero-photo-bg {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(79,141,255,0.15), rgba(100,255,218,0.08));
+      border: 1px solid var(--border-bright);
+    }
+    .hero-photo-bg::before {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      z-index: -1;
+      opacity: 0.3;
+    }
+    .hero-photo-img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+      display: block;
+      position: relative;
+      z-index: 1;
+      filter: grayscale(20%) contrast(1.05);
+      transition: filter var(--transition);
+    }
+    .hero-photo-img:hover { filter: grayscale(0%) contrast(1); }
+
+    .photo-orb {
+      position: absolute;
+      border-radius: 50%;
+      animation: float-orb 4s ease-in-out infinite;
+    }
+    .photo-orb-1 {
+      width: 60px; height: 60px;
+      background: rgba(79,141,255,0.2);
+      border: 1px solid rgba(79,141,255,0.4);
+      top: -20px; right: -20px;
+      animation-delay: 0s;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 24px;
+    }
+    .photo-orb-2 {
+      width: 44px; height: 44px;
+      background: rgba(100,255,218,0.15);
+      border: 1px solid rgba(100,255,218,0.3);
+      bottom: 40px; left: -22px;
+      animation-delay: -2s;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px;
+    }
+    .photo-orb-3 {
+      width: 36px; height: 36px;
+      background: rgba(255,107,107,0.15);
+      border: 1px solid rgba(255,107,107,0.3);
+      bottom: -18px; right: 30px;
+      animation-delay: -1s;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px;
+    }
+    @keyframes float-orb {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-12px); }
+    }
+
+    .photo-role-badge {
+      position: absolute;
+      bottom: -20px; left: 50%;
+      transform: translateX(-50%);
+      background: var(--bg-card);
+      border: 1px solid var(--border-bright);
+      border-radius: 100px;
+      padding: 8px 20px;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--accent-2);
+      white-space: nowrap;
+      z-index: 2;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+    }
+
+    .hero-socials {
+      display: flex;
+      gap: 12px;
+      margin-top: 36px;
+      animation: fadeInUp 0.8s 0.6s ease both;
+    }
+    .social-icon {
+      width: 40px; height: 40px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--text-secondary);
+      transition: var(--transition);
+      font-size: 18px;
+    }
+    .social-icon:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: rgba(79,141,255,0.08);
+      transform: translateY(-3px);
+    }
+    .social-icon svg { width: 18px; height: 18px; fill: currentColor; }
+
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeInRight {
+      from { opacity: 0; transform: translateX(40px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    /* ABOUT */
+    #about {
+      background: var(--bg-secondary);
+      position: relative;
+    }
+    #about::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(79,141,255,0.03) 0%, transparent 50%, rgba(100,255,218,0.02) 100%);
+    }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+    .about-text p {
+      color: var(--text-secondary);
+      line-height: 1.9;
+      margin-bottom: 20px;
+    }
+    .about-text p:last-child { margin-bottom: 0; }
+    .about-text strong { color: var(--accent); font-weight: 600; }
+
+    .about-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .about-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+      transition: border-color var(--transition), transform var(--transition), box-shadow var(--transition);
+    }
+    .about-card:hover {
+      border-color: var(--border-bright);
+      transform: translateY(-4px);
+      box-shadow: var(--glow);
+    }
+    .about-card-icon { font-size: 28px; margin-bottom: 12px; }
+    .about-card-title {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .about-card-desc {
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* EXPERIENCE */
+    #experience {
+      background: var(--bg-primary);
+      position: relative;
+    }
+    .exp-timeline {
+      position: relative;
+      padding-left: 32px;
+    }
+    .exp-timeline::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 8px; bottom: 8px;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--accent), var(--accent-2), transparent);
+      border-radius: 2px;
+    }
+    .exp-item {
+      position: relative;
+      padding: 32px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      margin-bottom: 24px;
+      transition: border-color var(--transition), box-shadow var(--transition), transform var(--transition);
+    }
+    .exp-item:last-child { margin-bottom: 0; }
+    .exp-item:hover {
+      border-color: var(--border-bright);
+      box-shadow: var(--glow);
+      transform: translateX(6px);
+    }
+    .exp-item::before {
+      content: '';
+      position: absolute;
+      left: -39px; top: 36px;
+      width: 14px; height: 14px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 3px solid var(--bg-primary);
+      box-shadow: 0 0 0 2px var(--accent);
+    }
+    .exp-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 8px;
+      flex-wrap: wrap;
+    }
+    .exp-role {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+    .exp-date {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--accent);
+      background: rgba(79,141,255,0.08);
+      border: 1px solid rgba(79,141,255,0.2);
+      padding: 4px 10px;
+      border-radius: 6px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .exp-company {
+      font-size: 0.88rem;
+      color: var(--accent-2);
+      margin-bottom: 16px;
+    }
+    .exp-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(100,255,218,0.08);
+      border: 1px solid rgba(100,255,218,0.2);
+      color: var(--accent-2);
+      font-size: 0.72rem;
+      padding: 3px 10px;
+      border-radius: 100px;
+      margin-bottom: 14px;
+    }
+    .exp-desc {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      line-height: 1.8;
+    }
+    .exp-desc li {
+      position: relative;
+      padding-left: 20px;
+      margin-bottom: 8px;
+    }
+    .exp-desc li::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+    }
+
+    /* PROJECTS */
+    #projects { background: var(--bg-secondary); }
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+      gap: 24px;
+    }
+    .project-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition);
+    }
+    .project-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--border-bright);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.4), var(--glow);
+    }
+    .project-header { padding: 28px 28px 20px; }
+    .project-num {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      color: var(--accent);
+      letter-spacing: 0.1em;
+      margin-bottom: 10px;
+    }
+    .project-title {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      line-height: 1.3;
+    }
+    .project-desc {
+      color: var(--text-secondary);
+      font-size: 0.88rem;
+      line-height: 1.7;
+    }
+
+    /* ANIMATED PIPELINE DIAGRAMS */
+    .pipe-flow-container {
+      margin: 0 28px;
+      background: rgba(0,0,0,0.35);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 18px 20px;
+    }
+    .pipe-stages {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      margin-bottom: 14px;
+    }
+    .pipe-node {
+      padding: 7px 12px;
+      border-radius: 6px;
+      font-family: var(--font-mono);
+      font-weight: 600;
+      font-size: 0.62rem;
+      letter-spacing: 0.06em;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .node-bronze { background: rgba(190,120,40,0.18); border: 1px solid rgba(190,120,40,0.4); color: #c8963e; }
+    .node-silver { background: rgba(140,165,200,0.12); border: 1px solid rgba(140,165,200,0.3); color: #8ba5c8; }
+    .node-gold   { background: rgba(220,185,50,0.12); border: 1px solid rgba(220,185,50,0.3); color: #d4b84a; }
+    .node-in     { background: rgba(79,141,255,0.1);  border: 1px solid rgba(79,141,255,0.25); color: var(--accent); }
+    .node-out    { background: rgba(100,255,218,0.08); border: 1px solid rgba(100,255,218,0.22); color: var(--accent-2); }
+
+    /* animated connector line with travelling dot */
+    .pipe-connector {
+      flex: 1;
+      height: 2px;
+      background: var(--border);
+      position: relative;
+      overflow: visible;
+      min-width: 16px;
+    }
+    .pipe-connector::after {
+      content: '';
+      position: absolute;
+      top: -3px;
+      left: -8px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 6px var(--accent);
+      animation: pipeFlow 2s ease-in-out infinite;
+    }
+    .pipe-connector.d2::after { animation-delay: 0.67s; }
+    .pipe-connector.d3::after { animation-delay: 1.34s; }
+    @keyframes pipeFlow {
+      0%   { left: -8px; opacity: 0; }
+      12%  { opacity: 1; }
+      88%  { opacity: 1; }
+      100% { left: calc(100% + 8px); opacity: 0; }
+    }
+
+    .pipe-meta {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      color: var(--text-muted);
+      line-height: 1.85;
+    }
+    .pipe-meta .hl  { color: var(--accent-2); }
+    .pipe-meta .hl2 { color: var(--accent); }
+    .pipe-meta .hl3 { color: var(--accent-3); }
+
+    .project-footer {
+      padding: 20px 28px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .project-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .project-tag {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      color: var(--accent);
+      background: rgba(79,141,255,0.08);
+      border: 1px solid rgba(79,141,255,0.15);
+      padding: 3px 9px;
+      border-radius: 4px;
+    }
+    .project-links { display: flex; gap: 10px; flex-shrink: 0; }
+    .project-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--accent);
+      padding: 6px 14px;
+      border: 1px solid rgba(79,141,255,0.3);
+      border-radius: 6px;
+      transition: var(--transition);
+    }
+    .project-link:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
+    .project-link-live { color: var(--accent-2); border-color: rgba(100,255,218,0.3); }
+    .project-link-live:hover { background: var(--accent-2); color: #0a0f1e; border-color: var(--accent-2); }
+
+    /* CERTIFICATIONS */
+    #certifications { background: var(--bg-primary); }
+    .certs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .cert-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 32px;
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+      transition: var(--transition);
+    }
+    .cert-card:hover { border-color: var(--border-bright); transform: translateY(-4px); box-shadow: var(--glow); }
+    .cert-icon {
+      width: 56px; height: 56px;
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 28px;
+      flex-shrink: 0;
+    }
+    .cert-icon.aws    { background: rgba(255,153,0,0.15); border: 1px solid rgba(255,153,0,0.3); }
+    .cert-icon.huawei { background: rgba(255,0,0,0.1);   border: 1px solid rgba(255,0,0,0.2);   }
+    .cert-issuer {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .cert-title { font-family: var(--font-display); font-size: 1.05rem; font-weight: 700; margin-bottom: 10px; line-height: 1.3; }
+    .cert-meta { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 8px; }
+    .cert-meta strong { color: var(--accent); }
+    .cert-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(100,255,218,0.08);
+      border: 1px solid rgba(100,255,218,0.2);
+      color: var(--accent-2);
+      font-size: 0.7rem;
+      padding: 3px 10px;
+      border-radius: 100px;
+    }
+
+    /* SKILLS */
+    #skills { background: var(--bg-secondary); }
+    .skills-tabs {
+      display: flex;
+      gap: 4px;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+      background: var(--bg-card);
+      padding: 6px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      width: fit-content;
+    }
+    .skill-tab {
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: var(--transition);
+      border: none;
+      background: transparent;
+      font-family: var(--font-body);
+      letter-spacing: 0.02em;
+    }
+    .skill-tab.active { background: var(--accent); color: #fff; }
+    .skill-tab:not(.active):hover { background: rgba(79,141,255,0.08); color: var(--text-primary); }
+    .skills-panel { display: none; }
+    .skills-panel.active { display: block; }
+    .skills-category-title {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+    .skills-grid { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 36px; }
+    .skills-grid:last-child { margin-bottom: 0; }
+    .skill-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 18px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      font-size: 0.84rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      transition: var(--transition);
+      cursor: default;
+    }
+    .skill-pill:hover {
+      border-color: var(--accent);
+      color: var(--text-primary);
+      background: rgba(79,141,255,0.06);
+      transform: translateY(-2px);
+    }
+    .skill-pill .icon { font-size: 16px; }
+
+    /* EDUCATION */
+    #education { background: var(--bg-primary); }
+    .edu-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 40px;
+      display: flex;
+      gap: 32px;
+      align-items: flex-start;
+      transition: var(--transition);
+    }
+    .edu-card:hover { border-color: var(--border-bright); box-shadow: var(--glow); }
+    .edu-icon {
+      width: 64px; height: 64px;
+      border-radius: 16px;
+      background: rgba(79,141,255,0.1);
+      border: 1px solid rgba(79,141,255,0.2);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 28px;
+      flex-shrink: 0;
+    }
+    .edu-date { font-family: var(--font-mono); font-size: 0.72rem; color: var(--accent); margin-bottom: 8px; }
+    .edu-degree { font-family: var(--font-display); font-size: 1.3rem; font-weight: 700; margin-bottom: 4px; }
+    .edu-school { color: var(--accent-2); font-size: 0.9rem; margin-bottom: 16px; }
+    .edu-desc { color: var(--text-secondary); font-size: 0.88rem; line-height: 1.8; }
+
+    /* CONTACT */
+    #contact { background: var(--bg-secondary); }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
+    .contact-info h3 { font-family: var(--font-display); font-size: 1.6rem; font-weight: 700; margin-bottom: 16px; }
+    .contact-info p { color: var(--text-secondary); line-height: 1.8; margin-bottom: 32px; }
+    .contact-links { display: flex; flex-direction: column; gap: 14px; }
+    .contact-link-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 20px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      color: var(--text-secondary);
+      font-size: 0.88rem;
+      transition: var(--transition);
+    }
+    .contact-link-item:hover { border-color: var(--accent); color: var(--text-primary); transform: translateX(6px); }
+    .contact-link-icon {
+      width: 36px; height: 36px;
+      border-radius: 8px;
+      background: rgba(79,141,255,0.1);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+    .contact-link-icon svg { width: 18px; height: 18px; fill: currentColor; color: var(--accent); }
+    .contact-link-text { flex: 1; }
+    .contact-link-label { font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 2px; }
+    .contact-link-value { font-weight: 500; color: var(--text-primary); font-size: 0.84rem; }
+
+    .contact-form {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 32px;
+    }
+    .form-group { margin-bottom: 20px; }
+    .form-group:last-child { margin-bottom: 0; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    label {
+      display: block;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 8px;
+    }
+    input, textarea {
+      width: 100%;
+      background: var(--bg-primary);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px 16px;
+      font-size: 0.9rem;
+      color: var(--text-primary);
+      font-family: var(--font-body);
+      transition: border-color var(--transition), box-shadow var(--transition);
+      outline: none;
+    }
+    input:focus, textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(79,141,255,0.1); }
+    textarea { resize: vertical; min-height: 120px; }
+    .form-status { display: none; padding: 12px 16px; border-radius: 8px; font-size: 0.85rem; margin-top: 12px; }
+    .form-status.success { display: block; background: rgba(100,255,218,0.1); border: 1px solid rgba(100,255,218,0.3); color: var(--accent-2); }
+    .form-status.error   { display: block; background: rgba(255,107,107,0.1); border: 1px solid rgba(255,107,107,0.3); color: var(--accent-3); }
+
+    /* FOOTER — clean redesign, no emojis */
+    footer {
+      background: var(--bg-primary);
+      border-top: 1px solid var(--border);
+      padding: 64px 0 32px;
+    }
+    .footer-inner {
+      display: grid;
+      grid-template-columns: 1.6fr 1fr;
+      gap: 80px;
+      margin-bottom: 48px;
+      align-items: start;
+    }
+    .footer-brand .footer-logo {
+      font-family: var(--font-mono);
+      font-size: 1.1rem;
+      color: var(--accent);
+      margin-bottom: 14px;
+      letter-spacing: 0.04em;
+    }
+    .footer-brand .footer-logo span { color: var(--accent-2); }
+    .footer-brand p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.8;
+      max-width: 300px;
+      margin-bottom: 24px;
+    }
+    .footer-socials { display: flex; gap: 10px; }
+    .footer-social {
+      width: 38px; height: 38px;
+      border-radius: 9px;
+      border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--text-muted);
+      transition: var(--transition);
+    }
+    .footer-social:hover { border-color: var(--accent); color: var(--accent); background: rgba(79,141,255,0.08); }
+    .footer-social svg { width: 16px; height: 16px; fill: currentColor; }
+
+    .footer-cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+    }
+    .footer-col-title {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-secondary);
+      margin-bottom: 18px;
+    }
+    .footer-links { display: flex; flex-direction: column; gap: 11px; }
+    .footer-links a { font-size: 0.84rem; color: var(--text-muted); transition: color var(--transition); }
+    .footer-links a:hover { color: var(--accent); }
+
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      font-size: 0.76rem;
+      color: var(--text-muted);
+    }
+
+    /* SCROLL TO TOP */
+    #scroll-top {
+      position: fixed;
+      bottom: 32px; right: 32px;
+      width: 44px; height: 44px;
+      border-radius: 10px;
+      background: var(--accent);
+      border: none;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      z-index: 500;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity var(--transition), transform var(--transition), box-shadow var(--transition);
+      box-shadow: 0 4px 20px rgba(79,141,255,0.4);
+    }
+    #scroll-top.visible { opacity: 1; transform: translateY(0); }
+    #scroll-top:hover { transform: translateY(-4px); box-shadow: 0 8px 30px rgba(79,141,255,0.5); }
+    #scroll-top svg { width: 20px; height: 20px; stroke: #fff; fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .hero-inner { grid-template-columns: 1fr; }
+      .hero-photo-wrap { display: flex; justify-content: center; order: -1; }
+      .hero-photo-frame { width: 240px; height: 240px; }
+      .about-grid { grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .certs-grid { grid-template-columns: 1fr; }
+      .footer-inner { grid-template-columns: 1fr; gap: 40px; }
+      .footer-cols { grid-template-columns: 1fr 1fr; }
+      .projects-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 700px) {
+      :root { --section-gap: 80px; }
+      .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
+      .hero-stats { gap: 16px; }
+      .hero-stat-num { font-size: 1.5rem; }
+      .exp-timeline { padding-left: 20px; }
+      .exp-item::before { left: -27px; }
+      .footer-cols { grid-template-columns: 1fr; gap: 28px; }
+      .about-cards { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .edu-card { flex-direction: column; }
+      .cert-card { flex-direction: column; }
+    }
+    @media (max-width: 400px) {
+      .skills-tabs { flex-direction: column; width: 100%; }
+      .hero-ctas { flex-direction: column; }
+      .hero-socials { flex-wrap: wrap; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <nav id="navbar">
+    <span class="nav-logo">MT<span>.</span></span>
+    <div class="nav-links">
+      <a href="#hero">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#certifications">Certs</a>
+      <a href="#skills">Skills</a>
+      <a href="#education">Education</a>
+      <a href="#contact">Contact</a>
+      <a href="Data_Engineer_Mohamed_Taha_AboHeiba_CV.pdf" target="_blank" class="nav-cv">Download CV</a>
+    </div>
+    <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="nav-mobile" id="nav-mobile">
+    <a href="#hero" class="mob-link">About</a>
+    <a href="#experience" class="mob-link">Experience</a>
+    <a href="#projects" class="mob-link">Projects</a>
+    <a href="#certifications" class="mob-link">Certifications</a>
+    <a href="#skills" class="mob-link">Skills</a>
+    <a href="#education" class="mob-link">Education</a>
+    <a href="#contact" class="mob-link">Contact</a>
+    <a href="Data_Engineer_Mohamed_Taha_AboHeiba_CV.pdf" target="_blank" style="color:var(--accent);font-weight:700;padding:12px 16px;">Download CV ↗</a>
+  </div>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-glow-2"></div>
+    <div class="container">
+      <div class="hero-inner">
+        <div class="hero-content">
+          <div class="hero-badge">Open to Data Engineering Roles</div>
+          <h1 class="hero-name">
+            Mohamed Taha
+            <em>Abo Heiba</em>
+          </h1>
+          <div class="hero-role">Data Engineer &amp; Big Data Engineer</div>
+          <p class="hero-bio">
+            Final-year CS at Fayoum University (GPA 3.4). Best-performing trainee at NTI's Huawei Big Data program out of 30+. I've shipped 4 working data systems — a Databricks lakehouse on 200K+ records, a SQL Server DW with full medallion ETL, a semantic search API at sub-100ms latency, and a Power BI report on £9.73M revenue. Code on GitHub. Not tutorial projects.
+          </p>
+
+          <div class="hero-ctas">
+            <a href="#projects" class="btn btn-primary">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+              View Projects
+            </a>
+            <a href="Data_Engineer_Mohamed_Taha_AboHeiba_CV.pdf" target="_blank" class="btn btn-outline">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+              Download CV
+            </a>
+          </div>
+
+          <div class="hero-socials">
+            <a href="https://linkedin.com/in/mohamed-taha-abo-heiba" target="_blank" class="social-icon" title="LinkedIn">
+              <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            </a>
+            <a href="https://github.com/MoTahaAboHeiba" target="_blank" class="social-icon" title="GitHub">
+              <svg viewBox="0 0 24 24"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+            </a>
+            <a href="https://wa.me/201149711922" target="_blank" class="social-icon" title="WhatsApp">
+              <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            </a>
+            <a href="mailto:Mohamed-aboheiba@outlook.com" class="social-icon" title="Email">
+              <svg viewBox="0 0 24 24"><path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 010 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z"/></svg>
+            </a>
+          </div>
+
+          <div class="hero-stats">
+            <div class="hero-stat">
+              <div class="hero-stat-num">4</div>
+              <div class="hero-stat-label">Projects</div>
+            </div>
+            <div class="hero-stat-divider"></div>
+            <div class="hero-stat">
+              <div class="hero-stat-num">3</div>
+              <div class="hero-stat-label">Programs</div>
+            </div>
+            <div class="hero-stat-divider"></div>
+            <div class="hero-stat">
+              <div class="hero-stat-num">2</div>
+              <div class="hero-stat-label">Certs</div>
+            </div>
+            <div class="hero-stat-divider"></div>
+            <div class="hero-stat">
+              <div class="hero-stat-num">200K+</div>
+              <div class="hero-stat-label">Records</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Photo — circular frame -->
+        <div class="hero-photo-wrap">
+          <div class="hero-photo-frame">
+            <div class="hero-photo-bg"></div>
+            <img src="photo.jpg" alt="Mohamed Taha Abo Heiba" class="hero-photo-img" />
+            <div class="photo-orb photo-orb-1">⚡</div>
+            <div class="photo-orb photo-orb-2">🔥</div>
+            <div class="photo-orb photo-orb-3">☁️</div>
+            <div class="photo-role-badge">// Data Engineer</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="container">
+      <div class="section-label">Who I Am</div>
+      <h2 class="section-title">About <em>Me</em></h2>
+      <div class="about-grid">
+        <div class="about-text reveal-left">
+          <p>
+            I'm a <strong>Data Engineer</strong> who builds systems from scratch and ships them. My stack runs from raw CSV ingestion all the way to governed, analytics-ready gold layers — SQL Server data warehouses, Databricks lakehouses, Kafka pipelines, and FastAPI-based retrieval systems.
+          </p>
+          <p>
+            I graduated from NTI's Huawei Big Data program as the <strong>best-performing trainee</strong> across 30+ participants, passed the HCIA-Big Data exam on the first attempt, and hold an <strong>AWS Certified Cloud Practitioner (CLF-C02)</strong> credential. Currently finishing my CS degree at Fayoum University (GPA 3.4/4.0), graduating June 2026.
+          </p>
+          <p>
+            I don't do surface-level projects. Every system I've built handles real data volumes, runs actual transformations, and produces a queryable output. That's the bar I hold myself to.
+          </p>
+          <div style="margin-top:28px;">
+            <a href="#contact" class="btn btn-primary">Get In Touch</a>
+          </div>
+        </div>
+
+        <div class="about-cards stagger reveal-right">
+          <div class="about-card">
+            <div class="about-card-icon">🏗️</div>
+            <div class="about-card-title">ETL Pipelines</div>
+            <div class="about-card-desc">End-to-end batch &amp; streaming pipelines from raw ingestion to analytics-ready gold layer.</div>
+          </div>
+          <div class="about-card">
+            <div class="about-card-icon">☁️</div>
+            <div class="about-card-title">Cloud — AWS</div>
+            <div class="about-card-desc">S3, EC2, RDS, IAM, Glue, Kinesis, Redshift, Athena — Well-Architected Framework.</div>
+          </div>
+          <div class="about-card">
+            <div class="about-card-icon">⚡</div>
+            <div class="about-card-title">Big Data</div>
+            <div class="about-card-desc">Spark, Hadoop, Kafka, Flink — distributed processing at GB-to-TB scale.</div>
+          </div>
+          <div class="about-card">
+            <div class="about-card-icon">🗄️</div>
+            <div class="about-card-title">Data Warehousing</div>
+            <div class="about-card-desc">Star &amp; snowflake schemas, Unity Catalog, medallion architecture, dimensional modelling.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="container">
+      <div class="section-label reveal">Work History</div>
+      <h2 class="section-title reveal">Experience &amp; <em>Training</em></h2>
+      <div class="exp-timeline">
+        <div class="exp-item reveal">
+          <div class="exp-header">
+            <div class="exp-role">AWS Cloud Data Engineer Trainee</div>
+            <div class="exp-date">Oct 2025 — Dec 2025</div>
+          </div>
+          <div class="exp-company">NTI — National Telecommunications Institute · Digital Egypt Youth Program</div>
+          <ul class="exp-desc">
+            <li>Architected a multi-tier cloud data platform on AWS from S3 static hosting to a production-grade EC2/RDS/VPC architecture, applying Well-Architected Framework principles across compute, storage, and networking layers.</li>
+            <li>Configured RDS Multi-AZ with automated failover and S3 data lifecycle policies (Standard → Infrequent Access → Glacier) for cost-optimised cloud storage management.</li>
+          </ul>
+        </div>
+
+        <div class="exp-item reveal">
+          <div class="exp-header">
+            <div class="exp-role">Big Data Engineer Trainee</div>
+            <div class="exp-date">Jul 2025 — Sep 2025</div>
+          </div>
+          <div class="exp-company">NTI — National Telecommunications Institute · Huawei Big Data Program</div>
+          <div class="exp-badge">Best-Performing Trainee — Exam Voucher Awarded</div>
+          <ul class="exp-desc">
+            <li>Awarded best-performing trainee across a cohort of 30+ and earned a Huawei exam voucher — passed the HCIA-Big Data certification on the first attempt.</li>
+            <li>Built GB-scale Spark batch pipelines on Hadoop (HDFS/YARN/Hive) and Kafka + Flink streaming pipelines for real-time log ingestion across 15+ hands-on labs.</li>
+          </ul>
+        </div>
+
+        <div class="exp-item reveal">
+          <div class="exp-header">
+            <div class="exp-role">Data Engineer Trainee</div>
+            <div class="exp-date">Apr 2024 — Oct 2024</div>
+          </div>
+          <div class="exp-company">DEPI — Digital Egypt Pioneers Initiative</div>
+          <ul class="exp-desc">
+            <li>Built 4 SSIS ETL packages ingesting 7 CSV data sources into SQL Server via 17 stored procedures, automating data ingestion and transformation workflows end-to-end.</li>
+            <li>Delivered a validated dataset of 70K records powering a customer churn model achieving 97.4% accuracy, enabling data-driven retention strategies.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="container">
+      <div class="section-label reveal">Work</div>
+      <h2 class="section-title reveal">Featured <em>Projects</em></h2>
+
+      <div class="projects-grid stagger">
+
+        <!-- Project 1 -->
+        <div class="project-card">
+          <div class="project-header">
+            <div class="project-num">// 01</div>
+            <div class="project-title">E-Commerce Lakehouse — Databricks</div>
+            <div class="project-desc">End-to-end lakehouse processing 200K+ records from 6 CRM and ERP sources through a 3-task Databricks Jobs DAG. Bronze ingests raw data, Silver applies PySpark transformations across 6 notebooks, Gold delivers 1 Fact + 2 Dimension Delta Tables as a governed star schema in Unity Catalog.</div>
+          </div>
+          <!-- Animated pipeline diagram -->
+          <div class="pipe-flow-container">
+            <div class="pipe-stages">
+              <div class="pipe-node node-in">6 Sources</div>
+              <div class="pipe-connector"></div>
+              <div class="pipe-node node-bronze">BRONZE</div>
+              <div class="pipe-connector d2"></div>
+              <div class="pipe-node node-silver">SILVER</div>
+              <div class="pipe-connector d3"></div>
+              <div class="pipe-node node-gold">GOLD</div>
+            </div>
+            <div class="pipe-meta">
+              <span class="hl2">PySpark</span> · 6 notebooks · NULL handling · Delta Lake<br>
+              <span class="hl">Fact_Sales · Dim_Customer · Dim_Product</span> — Unity Catalog · <span class="hl2">200K+ records</span>
+            </div>
+          </div>
+          <div class="project-footer">
+            <div class="project-tags">
+              <span class="project-tag">Databricks</span>
+              <span class="project-tag">PySpark</span>
+              <span class="project-tag">Delta Lake</span>
+              <span class="project-tag">ETL</span>
+              <span class="project-tag">Unity Catalog</span>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/MoTahaAboHeiba/E-Commerce-Lakehouse-Using-Databricks" target="_blank" class="project-link">GitHub ↗</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="project-card">
+          <div class="project-header">
+            <div class="project-num">// 02</div>
+            <div class="project-title">SQL Server Data Warehouse</div>
+            <div class="project-desc">Fully scriptable data warehouse on SQL Server loading 60K+ records from 6 CRM and ERP sources. Two master stored procedures orchestrate full Bronze-to-Silver ETL. Gold layer delivers a star schema as SQL views with per-step execution-time logging — cutting ETL debugging time by 25%.</div>
+          </div>
+          <div class="pipe-flow-container">
+            <div class="pipe-stages">
+              <div class="pipe-node node-in">CSV × 6</div>
+              <div class="pipe-connector"></div>
+              <div class="pipe-node node-bronze">BRONZE</div>
+              <div class="pipe-connector d2"></div>
+              <div class="pipe-node node-silver">SILVER</div>
+              <div class="pipe-connector d3"></div>
+              <div class="pipe-node node-gold">GOLD</div>
+            </div>
+            <div class="pipe-meta">
+              <span class="hl2">BULK INSERT</span> · 60K+ records · 17 stored procedures · exec-time log<br>
+              <span class="hl">Fact_Sales · Dim_Customer · Dim_Product</span> — Star Schema views
+            </div>
+          </div>
+          <div class="project-footer">
+            <div class="project-tags">
+              <span class="project-tag">SQL Server</span>
+              <span class="project-tag">T-SQL</span>
+              <span class="project-tag">Stored Procs</span>
+              <span class="project-tag">Star Schema</span>
+              <span class="project-tag">Medallion</span>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/MoTahaAboHeiba/SQL-Data-Warehouse-project" target="_blank" class="project-link">GitHub ↗</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="project-card">
+          <div class="project-header">
+            <div class="project-num">// 03</div>
+            <div class="project-title">EduMate — Document Indexing &amp; RAG Pipeline</div>
+            <div class="project-desc">Data ingestion and retrieval API processing 13K+ document chunks through an automated PDF parsing → chunking → vectorisation → ChromaDB indexing pipeline. Sub-100ms semantic search latency via LangChain retriever. Exposed through FastAPI with 12 REST endpoints.</div>
+          </div>
+          <div class="pipe-flow-container">
+            <div class="pipe-stages">
+              <div class="pipe-node node-in">PDF</div>
+              <div class="pipe-connector"></div>
+              <div class="pipe-node node-bronze">CHUNK</div>
+              <div class="pipe-connector d2"></div>
+              <div class="pipe-node node-silver">EMBED</div>
+              <div class="pipe-connector d3"></div>
+              <div class="pipe-node node-out">QUERY</div>
+            </div>
+            <div class="pipe-meta">
+              <span class="hl2">LangChain</span> → ChromaDB · <span class="hl2">13K+ chunks</span> · text-embedding-ada-002<br>
+              <span class="hl">similarity search</span> → Groq Llama 3.3 70B → FastAPI · <span class="hl2">&lt;100ms</span>
+            </div>
+          </div>
+          <div class="project-footer">
+            <div class="project-tags">
+              <span class="project-tag">FastAPI</span>
+              <span class="project-tag">LangChain</span>
+              <span class="project-tag">ChromaDB</span>
+              <span class="project-tag">Python</span>
+              <span class="project-tag">Docker</span>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/MoTahaAboHeiba/EduMate-RAG" target="_blank" class="project-link">GitHub ↗</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 4 -->
+        <div class="project-card">
+          <div class="project-header">
+            <div class="project-num">// 04</div>
+            <div class="project-title">Online Retail Analytics Dashboard</div>
+            <div class="project-desc">Power BI dashboard transforming 541K+ transactions into actionable insights. Power Query ETL removes 135K null IDs, 10.6K invalid quantities, and 9.3K cancellations — engineers 8 new features. Five DAX measures power 3 dashboard pages over £9.73M revenue across 4,372 customers in 38 countries.</div>
+          </div>
+          <div class="pipe-flow-container">
+            <div class="pipe-stages">
+              <div class="pipe-node node-in">541K rows</div>
+              <div class="pipe-connector"></div>
+              <div class="pipe-node node-silver">POWER QUERY</div>
+              <div class="pipe-connector d2"></div>
+              <div class="pipe-node node-bronze">DAX MODEL</div>
+              <div class="pipe-connector d3"></div>
+              <div class="pipe-node node-out">DASHBOARD</div>
+            </div>
+            <div class="pipe-meta">
+              <span class="hl2">406K clean rows</span> · 8 engineered features · 5 DAX measures<br>
+              <span class="hl">£9.73M revenue</span> · 38 countries · 4,372 customers · 13 months
+            </div>
+          </div>
+          <div class="project-footer">
+            <div class="project-tags">
+              <span class="project-tag">Power BI</span>
+              <span class="project-tag">Power Query</span>
+              <span class="project-tag">DAX</span>
+              <span class="project-tag">ETL</span>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/MoTahaAboHeiba/Online-Retail-PowerBi-Report" target="_blank" class="project-link">GitHub ↗</a>
+              <a href="https://app.powerbi.com/groups/me/reports/36646a6f-dcc0-471f-b6ee-9574f801efcc/22cdcbc6704b728654db?ctid=5f593c84-cad4-46c8-b3de-321c3e829a99&experience=power-bi" target="_blank" class="project-link project-link-live">Live ↗</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CERTIFICATIONS -->
+  <section id="certifications">
+    <div class="container">
+      <div class="section-label reveal">Credentials</div>
+      <h2 class="section-title reveal"><em>Certifications</em></h2>
+      <div class="certs-grid stagger">
+        <div class="cert-card">
+          <div class="cert-icon aws">☁️</div>
+          <div>
+            <div class="cert-issuer">Amazon Web Services</div>
+            <div class="cert-title">AWS Certified Cloud Practitioner (CLF-C02)</div>
+            <div class="cert-meta">Issued <strong>May 2026</strong> · Valid until <strong>May 2029</strong></div>
+            <div class="cert-badge">✓ AWS Certified · Cloud Practitioner</div>
+          </div>
+        </div>
+        <div class="cert-card">
+          <div class="cert-icon huawei">🔴</div>
+          <div>
+            <div class="cert-issuer">Huawei Technologies</div>
+            <div class="cert-title">HCIA — Big Data Associate</div>
+            <div class="cert-meta">Issued <strong>Mar 2026</strong> · Valid until <strong>Mar 2029</strong> · No. 010101801855810426731409</div>
+            <div class="cert-badge">Best-Performing Trainee · First Attempt</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="container">
+      <div class="section-label reveal">Technical Skills</div>
+      <h2 class="section-title reveal">Tools &amp; <em>Technologies</em></h2>
+
+      <div class="skills-tabs reveal">
+        <button class="skill-tab active" data-panel="technical">Technical</button>
+        <button class="skill-tab" data-panel="cloud">Cloud &amp; DevOps</button>
+        <button class="skill-tab" data-panel="analytics">Analytics &amp; DB</button>
+        <button class="skill-tab" data-panel="soft">Soft Skills</button>
+      </div>
+
+      <div class="skills-panel active" id="panel-technical">
+        <div class="skills-category-title">Data Engineering</div>
+        <div class="skills-grid stagger">
+          <div class="skill-pill"><span class="icon">⚡</span>PySpark</div>
+          <div class="skill-pill"><span class="icon">🔷</span>Spark SQL</div>
+          <div class="skill-pill"><span class="icon">△</span>Delta Lake</div>
+          <div class="skill-pill"><span class="icon">🏗️</span>Medallion Architecture</div>
+          <div class="skill-pill"><span class="icon">🧱</span>Databricks</div>
+          <div class="skill-pill"><span class="icon">🔄</span>SSIS</div>
+          <div class="skill-pill"><span class="icon">🔃</span>ETL / ELT</div>
+          <div class="skill-pill"><span class="icon">📦</span>Batch Processing</div>
+        </div>
+        <div class="skills-category-title">Big Data</div>
+        <div class="skills-grid stagger">
+          <div class="skill-pill"><span class="icon">🐘</span>Hadoop</div>
+          <div class="skill-pill"><span class="icon">📂</span>HDFS</div>
+          <div class="skill-pill"><span class="icon">🧵</span>YARN</div>
+          <div class="skill-pill"><span class="icon">🐝</span>Hive</div>
+          <div class="skill-pill"><span class="icon">📨</span>Kafka</div>
+          <div class="skill-pill"><span class="icon">🌊</span>Flink</div>
+          <div class="skill-pill"><span class="icon">🖥️</span>Distributed Computing</div>
+          <div class="skill-pill"><span class="icon">📡</span>Stream Processing</div>
+        </div>
+        <div class="skills-category-title">Programming</div>
+        <div class="skills-grid stagger">
+          <div class="skill-pill"><span class="icon">🐍</span>Python</div>
+          <div class="skill-pill"><span class="icon">🐼</span>Pandas</div>
+          <div class="skill-pill"><span class="icon">🔢</span>NumPy</div>
+          <div class="skill-pill"><span class="icon">🗃️</span>T-SQL</div>
+          <div class="skill-pill"><span class="icon">💻</span>Bash</div>
+          <div class="skill-pill"><span class="icon">🚀</span>FastAPI</div>
+          <div class="skill-pill"><span class="icon">🔗</span>LangChain</div>
+        </div>
+      </div>
+
+      <div class="skills-panel" id="panel-cloud">
+        <div class="skills-category-title">AWS Services</div>
+        <div class="skills-grid stagger">
+          <div class="skill-pill"><span class="icon">🪣</span>S3</div>
+          <div class="skill-pill"><span class="icon">💻</span>EC2</div>
+          <div class="skill-pill"><span class="icon">🗄️</span>RDS</div>
+          <div class="skill-pill"><span class="icon">🔐</span>IAM</div>
+          <div class="skill-pill"><span class="icon">λ</span>Lambda</div>
+          <div class="skill-pill"><span class="icon">🔁</span>Glue</div>
+          <div class="skill-pill"><span class="icon">🌊</span>Kinesis</div>
+          <div class="skill-pill"><span class="icon">🏪</span>Redshift</div>
+          <div class="skill-pill"><span class="icon">🔍</span>Athena</div>
+          <div class="skill-pill"><span class="icon">✨</span>EMR</div>
+          <div class="skill-pill"><span class="icon">🌐</span>VPC</div>
+          <div class="skill-pill"><span class="icon">☁️</span>CloudWatch</div>
+        </div>
+        <div class="skills-category-title">DevOps &amp; Tools</div>
+        <div class="skills-grid stagger">
+          <div class="skill-pill"><span class="icon">🐳</span>Docker</div>
+          <div class="skill-pill"><span class="icon">🔀</span>Git</div>
+          <div class="skill-pill"><span class="icon">🐙</span>GitHub</div>
+          <div class="skill-pill"><span class="icon">🐧</span>Linux</div>
+          <div class="skill-pill"><span class="icon">🌬️</span>Airflow</div>
+        </div>
+      </div>
+
+      <div class="skills-panel" id="panel-analytics">
+        <div class="skills-category-title">Analytics &amp; BI</div>
+        <div class="skills-grid stagger">
+          <div class="skill-pill"><span class="icon">📊</span>Power BI</div>
+          <div class="skill-pill"><span class="icon">📐</span>DAX</div>
+          <div class="skill-pill"><span class="icon">🔄</span>Power Query</div>
+          <div class="skill-pill"><span class="icon">📈</span>Matplotlib</div>
+          <div class="skill-pill"><span class="icon">🖥️</span>Dashboard Design</div>
+        </div>
+        <div class="skills-category-title">Databases</div>
+        <div class="skills-grid stagger">
+          <div class="skill-pill"><span class="icon">🐘</span>PostgreSQL</div>
+          <div class="skill-pill"><span class="icon">🐬</span>MySQL</div>
+          <div class="skill-pill"><span class="icon">⚡</span>DynamoDB</div>
+          <div class="skill-pill"><span class="icon">📑</span>HBase</div>
+          <div class="skill-pill"><span class="icon">🔍</span>ChromaDB</div>
+        </div>
+        <div class="skills-category-title">Data Warehousing</div>
+        <div class="skills-grid stagger">
+          <div class="skill-pill"><span class="icon">⭐</span>Star Schema</div>
+          <div class="skill-pill"><span class="icon">❄️</span>Snowflake Schema</div>
+          <div class="skill-pill"><span class="icon">🗂️</span>Unity Catalog</div>
+          <div class="skill-pill"><span class="icon">📐</span>Dimensional Modeling</div>
+          <div class="skill-pill"><span class="icon">🔒</span>Data Vault Concepts</div>
+        </div>
+      </div>
+
+      <div class="skills-panel" id="panel-soft">
+        <div class="skills-category-title">Professional Skills</div>
+        <div class="skills-grid stagger">
+          <div class="skill-pill"><span class="icon">🏗️</span>Data Architecture</div>
+          <div class="skill-pill"><span class="icon">🔎</span>Problem Solving</div>
+          <div class="skill-pill"><span class="icon">🤝</span>Team Collaboration</div>
+          <div class="skill-pill"><span class="icon">📋</span>Project Management</div>
+          <div class="skill-pill"><span class="icon">📝</span>Technical Documentation</div>
+          <div class="skill-pill"><span class="icon">💡</span>Analytical Thinking</div>
+          <div class="skill-pill"><span class="icon">🎯</span>Attention to Detail</div>
+          <div class="skill-pill"><span class="icon">🚀</span>Fast Learner</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education">
+    <div class="container">
+      <div class="section-label reveal">Academic Background</div>
+      <h2 class="section-title reveal"><em>Education</em></h2>
+      <div class="edu-card reveal">
+        <div class="edu-icon">🎓</div>
+        <div>
+          <div class="edu-date">Oct 2022 — Jun 2026</div>
+          <div class="edu-degree">Bachelor of Science — Computer Science</div>
+          <div class="edu-school">Fayoum University · Faculty of Computers and Artificial Intelligence</div>
+          <div class="edu-desc">
+            GPA 3.4 / 4.0. Core coursework: Big Data Engineering, Cloud Computing, Database Management Systems, Advanced SQL, Data Structures &amp; Algorithms, Machine Learning, Operating Systems (Linux, Docker), Python Programming, Data Visualization (Power BI).<br><br>
+            <strong style="color:var(--accent)">Graduation Project:</strong> EduMate — a unified academic management platform with an RAG chatbot built on LangChain and ChromaDB.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="container">
+      <div class="section-label reveal">Get in Touch</div>
+      <h2 class="section-title reveal">Contact <em>Me</em></h2>
+      <div class="contact-grid">
+        <div class="reveal-left">
+          <div class="contact-info">
+            <h3>Let's build something together</h3>
+            <p>Actively looking for Data Engineering, Big Data, and Cloud Data Engineering roles. If you're building data infrastructure, pipelines, or lakehouses — reach out.</p>
+          </div>
+          <div class="contact-links">
+            <a href="https://linkedin.com/in/mohamed-taha-abo-heiba" target="_blank" class="contact-link-item">
+              <div class="contact-link-icon">
+                <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+              </div>
+              <div class="contact-link-text">
+                <div class="contact-link-label">LinkedIn</div>
+                <div class="contact-link-value">linkedin.com/in/mohamed-taha-abo-heiba</div>
+              </div>
+            </a>
+            <a href="https://github.com/MoTahaAboHeiba" target="_blank" class="contact-link-item">
+              <div class="contact-link-icon">
+                <svg viewBox="0 0 24 24"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+              </div>
+              <div class="contact-link-text">
+                <div class="contact-link-label">GitHub</div>
+                <div class="contact-link-value">github.com/MoTahaAboHeiba</div>
+              </div>
+            </a>
+            <a href="https://wa.me/201149711922" target="_blank" class="contact-link-item">
+              <div class="contact-link-icon">
+                <svg viewBox="0 0 24 24" style="color:var(--accent-2)"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              </div>
+              <div class="contact-link-text">
+                <div class="contact-link-label">WhatsApp</div>
+                <div class="contact-link-value">+20 114 971 1922</div>
+              </div>
+            </a>
+            <a href="mailto:Mohamed-aboheiba@outlook.com" class="contact-link-item">
+              <div class="contact-link-icon">
+                <svg viewBox="0 0 24 24"><path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 010 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z"/></svg>
+              </div>
+              <div class="contact-link-text">
+                <div class="contact-link-label">Email</div>
+                <div class="contact-link-value">Mohamed-aboheiba@outlook.com</div>
+              </div>
+            </a>
+            <a href="Data_Engineer_Mohamed_Taha_AboHeiba_CV.pdf" target="_blank" class="contact-link-item">
+              <div class="contact-link-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--accent);fill:none"><path d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+              </div>
+              <div class="contact-link-text">
+                <div class="contact-link-label">CV</div>
+                <div class="contact-link-value">Download Resume (PDF)</div>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <div class="contact-form reveal-right">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" id="name" placeholder="Your name" />
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" placeholder="your@email.com" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="subject">Subject</label>
+            <input type="text" id="subject" placeholder="What's this about?" />
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" placeholder="Your message…"></textarea>
+          </div>
+          <button class="btn btn-primary" id="form-submit" style="width:100%;justify-content:center;">Send Message</button>
+          <div class="form-status" id="form-status"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER — clean, no emojis -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <div class="footer-logo">MT<span>.</span></div>
+          <p>Data Engineer building production-grade pipelines, lakehouses, and data warehouses. Open to opportunities in Egypt and remotely.</p>
+          <div class="footer-socials">
+            <a href="https://linkedin.com/in/mohamed-taha-abo-heiba" target="_blank" class="footer-social" title="LinkedIn">
+              <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            </a>
+            <a href="https://github.com/MoTahaAboHeiba" target="_blank" class="footer-social" title="GitHub">
+              <svg viewBox="0 0 24 24"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+            </a>
+            <a href="https://wa.me/201149711922" target="_blank" class="footer-social" title="WhatsApp">
+              <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            </a>
+            <a href="mailto:Mohamed-aboheiba@outlook.com" class="footer-social" title="Email">
+              <svg viewBox="0 0 24 24"><path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 010 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-cols">
+          <div>
+            <div class="footer-col-title">Navigate</div>
+            <div class="footer-links">
+              <a href="#hero">About</a>
+              <a href="#experience">Experience</a>
+              <a href="#projects">Projects</a>
+              <a href="#certifications">Certifications</a>
+              <a href="#skills">Skills</a>
+              <a href="#education">Education</a>
+              <a href="#contact">Contact</a>
+            </div>
+          </div>
+          <div>
+            <div class="footer-col-title">Connect</div>
+            <div class="footer-links">
+              <a href="https://linkedin.com/in/mohamed-taha-abo-heiba" target="_blank">LinkedIn Profile</a>
+              <a href="https://github.com/MoTahaAboHeiba" target="_blank">GitHub Repos</a>
+              <a href="https://wa.me/201149711922" target="_blank">WhatsApp</a>
+              <a href="mailto:Mohamed-aboheiba@outlook.com">Email Direct</a>
+              <a href="Data_Engineer_Mohamed_Taha_AboHeiba_CV.pdf" target="_blank">Download CV</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>Mohamed Taha Abo Heiba — Data Engineer — 2026</span>
+        <span style="font-family:var(--font-mono);font-size:0.72rem;">Built with pure HTML</span>
+      </div>
+    </div>
+  </footer>
+
+  <button id="scroll-top" aria-label="Scroll to top">
+    <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"></polyline></svg>
+  </button>
+
+  <script>
+    /* Nav scroll + active */
+    const navbar   = document.getElementById('navbar');
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-links a[href^="#"], .nav-mobile a[href^="#"]');
+
+    function updateNav() {
+      const scrollY = window.scrollY;
+      navbar.classList.toggle('scrolled', scrollY > 20);
+      document.getElementById('scroll-top').classList.toggle('visible', scrollY > 300);
+      let current = '';
+      sections.forEach(sec => {
+        if (scrollY >= sec.offsetTop - 100) current = sec.getAttribute('id');
+      });
+      navLinks.forEach(a => {
+        const href = a.getAttribute('href').replace('#', '');
+        a.classList.toggle('active', href === current);
+      });
+    }
+    window.addEventListener('scroll', updateNav, { passive: true });
+    updateNav();
+
+    /* Hamburger */
+    const hamburger = document.getElementById('hamburger');
+    const navMobile = document.getElementById('nav-mobile');
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('open');
+      navMobile.classList.toggle('open');
+    });
+    document.querySelectorAll('.mob-link').forEach(a => {
+      a.addEventListener('click', () => {
+        hamburger.classList.remove('open');
+        navMobile.classList.remove('open');
+      });
+    });
+
+    /* Scroll reveal */
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          revealObserver.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+    document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .stagger').forEach(el => {
+      revealObserver.observe(el);
+    });
+
+    /* Skills tabs */
+    document.querySelectorAll('.skill-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.skill-tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.skills-panel').forEach(p => p.classList.remove('active'));
+        tab.classList.add('active');
+        const panel = document.getElementById('panel-' + tab.dataset.panel);
+        panel.classList.add('active');
+        panel.querySelectorAll('.stagger').forEach(s => {
+          s.classList.remove('visible');
+          setTimeout(() => s.classList.add('visible'), 50);
+        });
+      });
+    });
+
+    /* Scroll to top */
+    document.getElementById('scroll-top').addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    /* Contact form — fixed mailto using anchor click (reliable across all browsers) */
+    document.getElementById('form-submit').addEventListener('click', () => {
+      const name    = document.getElementById('name').value.trim();
+      const email   = document.getElementById('email').value.trim();
+      const subject = document.getElementById('subject').value.trim();
+      const message = document.getElementById('message').value.trim();
+      const status  = document.getElementById('form-status');
+
+      if (!name || !email || !message) {
+        status.textContent = 'Please fill in Name, Email, and Message.';
+        status.className = 'form-status error';
+        return;
+      }
+      const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRe.test(email)) {
+        status.textContent = 'Please enter a valid email address.';
+        status.className = 'form-status error';
+        return;
+      }
+
+      const mailto = `mailto:Mohamed-aboheiba@outlook.com?subject=${encodeURIComponent(subject || 'Portfolio Contact')}&body=${encodeURIComponent('Name: ' + name + '\nEmail: ' + email + '\n\n' + message)}`;
+
+      /* anchor click is more reliable than window.location.href in sandboxed contexts */
+      const a = document.createElement('a');
+      a.href = mailto;
+      a.style.display = 'none';
+      document.body.appendChild(a);
+      a.click();
+      setTimeout(() => document.body.removeChild(a), 100);
+
+      status.textContent = "Opening your mail client — I'll get back to you soon.";
+      status.className = 'form-status success';
+    });
+
+    /* Stagger trigger for in-view elements on load */
+    document.querySelectorAll('.stagger').forEach(el => {
+      if (el.getBoundingClientRect().top < window.innerHeight) {
+        el.classList.add('visible');
+      }
+    });
+  </script>
+
+</body>
+</html>
