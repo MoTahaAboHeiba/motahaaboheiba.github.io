@@ -173,19 +173,22 @@
 
   border-radius: 16px;
 
-  background: linear-gradient(
-    135deg,
-    rgba(0, 200, 245, 0.18),
-    rgba(0, 200, 245, 0.05)
-  );
+  background:
+    linear-gradient(145deg,
+      #0d1b2a,
+      #11263a);
 
-  border: 1px solid rgba(0, 200, 245, 0.18);
-
-  backdrop-filter: blur(12px);
+  border: 1px solid rgba(0, 200, 245, 0.35);
 
   box-shadow:
-    0 0 18px rgba(0,200,245,.12),
-    inset 0 0 10px rgba(255,255,255,.03);
+    0 0 0 1px rgba(0,200,245,.08),
+    0 8px 24px rgba(0,200,245,.16),
+    inset 0 1px 0 rgba(255,255,255,.04);
+
+  transition:
+    transform .2s ease,
+    box-shadow .2s ease,
+    border-color .2s ease;
 }
     nav .nav-logo-badge {
   width: 44px;
@@ -198,11 +201,13 @@
   width: 50%;
   text-align: center;
 
-  color: var(--text);
+  color: #f4fbff;
 
   font-family: var(--mono);
-  font-size: .95rem;
-  font-weight: 700;
+  font-size: 1rem;
+  font-weight: 800;
+
+  letter-spacing: -.03em;
 
   z-index: 2;
 }
@@ -211,9 +216,25 @@
   position: absolute;
 
   width: 1px;
-  height: 60%;
+  height: 58%;
 
-  background: rgba(255,255,255,.08);
+  background:
+    linear-gradient(
+      to bottom,
+      transparent,
+      rgba(0,200,245,.55),
+      transparent
+    );
+}
+   .nav-logo:hover .nav-logo-badge {
+  transform: translateY(-2px);
+
+  border-color: rgba(0,200,245,.6);
+
+  box-shadow:
+    0 0 0 1px rgba(0,200,245,.12),
+    0 12px 30px rgba(0,200,245,.22),
+    inset 0 1px 0 rgba(255,255,255,.05);
 }
 .nav-logo-name {
   font-family: var(--mono);
