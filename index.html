@@ -426,14 +426,14 @@
     }
     .photo-ring-wrap {
       position: relative;
-      width: 280px; height: 200px;
+      width: 280px; height: 280px;
     }
     .photo-ring {
       position: absolute;
       inset: -6px;
       border-radius: 50%;
       background: conic-gradient(var(--accent) 0deg, rgba(0,200,245,.25) 120deg, transparent 200deg, var(--accent) 360deg);
-      animation: spin-ring 8s linear infinite;
+      animation: spin-ring 5s linear infinite;
     }
     @keyframes spin-ring { to { transform: rotate(360deg); } }
     .photo-ring-inner {
