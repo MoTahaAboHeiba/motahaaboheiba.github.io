@@ -57,7 +57,7 @@
       --sans: 'Sora', -apple-system, sans-serif;
       --radius: 10px;
       --nav-h: 64px;
-      --max-w: 1100px;
+      --max-w: 1200px;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -145,15 +145,15 @@
       backdrop-filter: blur(20px);
       border-bottom: 1px solid var(--border);
     }
-    .nav-inner {
-      max-width: var(--max-w);
-      height: 100%;
-      margin: 0 auto;
-      padding: 0 2rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
+.nav-inner {
+  max-width: var(--max-w);
+  height: 100%;
+  margin: 0 auto;
+  padding: 0 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
     .nav-logo {
       font-family: var(--mono);
       font-weight: 700;
@@ -239,11 +239,12 @@
 .section {
   position: relative;
   z-index: 1;
-  padding: 7rem 6%;
+  padding: 7rem 0;
 }
 .container {
   max-width: var(--max-w);
   margin: 0 auto;
+  padding: 0 2.5rem;
 }
     .section-label {
       font-family: var(--mono);
@@ -1302,7 +1303,7 @@
     <div class="skills-grid">
 
       <div class="skill-card fade-up">
-       <div class="skill-card-icon"><i class="fa-solid fa-gears"></i></div>
+       <div class="skill-card-icon"><i class="fa-solid fa-diagram-project"></i></div>
         <div class="skill-card-title">Data Engineering</div>
         <div class="skill-chips">
           <span class="skill-chip">PySpark</span>
@@ -1351,7 +1352,7 @@
       </div>
 
       <div class="skill-card fade-up" style="transition-delay:.15s">
-       <div class="skill-card-icon"><i class="fa-solid fa-building-columns"></i></div>>
+       <div class="skill-card-icon"><i class="fa-solid fa-building-columns"></i></div>
         <div class="skill-card-title">Data Warehousing</div>
         <div class="skill-chips">
           <span class="skill-chip">SQL Server</span>
