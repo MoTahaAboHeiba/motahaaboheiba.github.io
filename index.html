@@ -162,29 +162,58 @@
 }
 .nav-logo-badge {
   display: flex;
-  align-items: stretch;
-  border-radius: 8px;
+  align-items: center;
+  justify-content: center;
+
+  width: 58px;
+  height: 58px;
+
+  position: relative;
   overflow: hidden;
-  border: 1px solid rgba(0,200,245,.3);
-  box-shadow: 0 0 12px rgba(0,200,245,.15);
+
+  border-radius: 16px;
+
+  background: linear-gradient(
+    135deg,
+    rgba(0, 200, 245, 0.18),
+    rgba(0, 200, 245, 0.05)
+  );
+
+  border: 1px solid rgba(0, 200, 245, 0.18);
+
+  backdrop-filter: blur(12px);
+
+  box-shadow:
+    0 0 18px rgba(0,200,245,.12),
+    inset 0 0 10px rgba(255,255,255,.03);
 }
-.badge-m {
-  background: linear-gradient(135deg, #0d1e2e, #00c8f5);
-  color: #fff;
-  font-family: var(--mono);
-  font-weight: 700;
-  font-size: .85rem;
-  padding: .35rem .5rem;
-  letter-spacing: .02em;
+    nav .nav-logo-badge {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
 }
+
+.badge-m,
 .badge-t {
-  background: linear-gradient(135deg, #1a0a2e, #7c3aed);
-  color: #fff;
+  width: 50%;
+  text-align: center;
+
+  color: var(--text);
+
   font-family: var(--mono);
+  font-size: .95rem;
   font-weight: 700;
-  font-size: .85rem;
-  padding: .35rem .5rem;
-  letter-spacing: .02em;
+
+  z-index: 2;
+}
+
+.badge-divider {
+  position: absolute;
+
+  width: 1px;
+  height: 60%;
+
+  background: rgba(255,255,255,.08);
 }
 .nav-logo-name {
   font-family: var(--mono);
@@ -1080,13 +1109,17 @@
   <!-- Nav -->
   <nav id="navbar">
     <div class="nav-inner">
-        <a href="#hero" class="nav-logo">
-        <div class="nav-logo-badge">
-          <span class="badge-m">M</span>
-          <span class="badge-t">T</span>
-        </div>
-        <span class="nav-logo-name">Abo Heiba<span class="nav-logo-dot"></span></span>
-      </a>
+<a href="#hero" class="nav-logo">
+  <div class="nav-logo-badge">
+    <span class="badge-m">M</span>
+    <span class="badge-divider"></span>
+    <span class="badge-t">T</span>
+  </div>
+
+  <span class="nav-logo-name">
+    Abo Heiba
+  </span>
+</a>
       <ul class="nav-links">
         <li><a href="#about"          data-section="about">About</a></li>
         <li><a href="#experience"     data-section="experience">Experience</a></li>
