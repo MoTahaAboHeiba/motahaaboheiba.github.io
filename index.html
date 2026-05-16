@@ -795,56 +795,58 @@
     }
     .cert-badge.green { color: var(--green); background: var(--green-lo); border: 1px solid rgba(45,212,160,.2); }
     .cert-badge.amber { color: #ff9900; background: rgba(255,153,0,.08); border: 1px solid rgba(255,153,0,.2); }
- /* ─── SKILLS ─── */
-    #skills { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-    .skills-list {
-      display: flex;
-      flex-direction: column;
-      gap: 2rem;
-    }
-    .skill-row {
-      display: grid;
-      grid-template-columns: 200px 1fr;
-      gap: 1.5rem;
-      align-items: flex-start;
-      padding-bottom: 2rem;
-      border-bottom: 1px solid var(--border);
-    }
-    .skill-row:last-child {
-      border-bottom: none;
-      padding-bottom: 0;
-    }
-    .skill-row-label {
-      font-family: var(--mono);
-      font-size: .78rem;
-      font-weight: 700;
-      color: var(--text);
-      letter-spacing: .06em;
-      text-transform: uppercase;
-      padding-top: .2rem;
-      display: flex;
-      align-items: center;
-      gap: .5rem;
-    }
-    .skill-row-label i { color: var(--accent); font-size: .8rem; }
-    .skill-chips {
-      display: flex;
-      flex-wrap: wrap;
-      gap: .45rem;
-    }
-    .skill-chip {
-      font-family: var(--mono);
-      font-size: .75rem;
-      font-weight: 500;
-      padding: .32rem .75rem;
-      border-radius: 6px;
-      background: var(--bg);
-      border: 1px solid var(--border);
-      color: var(--text);
-      transition: border-color .15s, color .15s, background .15s;
-      cursor: default;
-    }
-    .skill-chip:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-lo); }
+/* ─── SKILLS — card grid ─── */
+#skills { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+}
+.skill-card {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 1.5rem 1.4rem 1.6rem;
+  transition: border-color .2s, transform .2s;
+}
+.skill-card:hover { border-color: var(--border-2); transform: translateY(-3px); }
+.skill-card-icon {
+  width: 44px; height: 44px;
+  border-radius: 10px;
+  background: var(--accent-lo);
+  border: 1px solid rgba(0,200,245,.15);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--accent);
+  font-size: 1.1rem;
+  margin-bottom: 1.1rem;
+}
+.skill-card-title {
+  font-size: .92rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: .9rem;
+}
+.skill-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .4rem;
+}
+.skill-chip {
+  font-family: var(--mono);
+  font-size: .71rem;
+  font-weight: 500;
+  padding: .28rem .7rem;
+  border-radius: 100px;
+  background: transparent;
+  border: 1px solid var(--border-2);
+  color: var(--muted);
+  transition: border-color .15s, color .15s;
+  cursor: default;
+}
+.skill-chip:hover { border-color: var(--accent); color: var(--accent); }
+
+@media (max-width: 1024px) { .skills-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px)  { .skills-grid { grid-template-columns: 1fr; } }
     /* ─── EDUCATION ─── */
     .edu-card {
       background: var(--surface);
@@ -1281,120 +1283,127 @@
     </div>
   </section>
 
-  <!-- Skills — Amin-style rows -->
-  <section id="skills" class="section">
-    <div class="container">
-      <div class="section-label">// 04</div>
-      <h2 class="section-title">Tools &amp; <em>Technologies</em></h2>
-      <div class="section-divider"></div>
-      <div class="skills-list">
+  <!-- Skills -->
+<section id="skills" class="section">
+  <div class="container">
+    <div class="section-label">// 04</div>
+    <h2 class="section-title">Tools &amp; <em>Technologies</em></h2>
+    <div class="section-divider"></div>
+    <div class="skills-grid">
 
-        <div class="skill-row fade-up">
-          <div class="skill-row-label"><i class="fa-solid fa-pipe-section"></i> Data Engineering</div>
-          <div class="skill-chips">
-            <span class="skill-chip">PySpark</span>
-            <span class="skill-chip">Spark SQL</span>
-            <span class="skill-chip">Delta Lake</span>
-            <span class="skill-chip">Medallion Architecture</span>
-            <span class="skill-chip">Databricks</span>
-            <span class="skill-chip">SSIS</span>
-            <span class="skill-chip">ETL / ELT</span>
-            <span class="skill-chip">Batch Processing</span>
-          </div>
+      <div class="skill-card fade-up">
+        <div class="skill-card-icon"><i class="fa-solid fa-pipe-section"></i></div>
+        <div class="skill-card-title">Data Engineering</div>
+        <div class="skill-chips">
+          <span class="skill-chip">PySpark</span>
+          <span class="skill-chip">Spark SQL</span>
+          <span class="skill-chip">Delta Lake</span>
+          <span class="skill-chip">Medallion Architecture</span>
+          <span class="skill-chip">Databricks</span>
+          <span class="skill-chip">SSIS</span>
+          <span class="skill-chip">ETL / ELT</span>
+          <span class="skill-chip">Batch Processing</span>
         </div>
-
-        <div class="skill-row fade-up" style="transition-delay:.05s">
-          <div class="skill-row-label"><i class="fa-solid fa-elephant"></i> Big Data</div>
-          <div class="skill-chips">
-            <span class="skill-chip">Hadoop</span>
-            <span class="skill-chip">HDFS</span>
-            <span class="skill-chip">YARN</span>
-            <span class="skill-chip">Hive</span>
-            <span class="skill-chip">Kafka</span>
-            <span class="skill-chip">Flink</span>
-            <span class="skill-chip">Distributed Computing</span>
-            <span class="skill-chip">Stream Processing</span>
-          </div>
-        </div>
-
-        <div class="skill-row fade-up" style="transition-delay:.1s">
-          <div class="skill-row-label"><i class="fa-brands fa-aws"></i> Cloud — AWS</div>
-          <div class="skill-chips">
-            <span class="skill-chip">S3</span>
-            <span class="skill-chip">EC2</span>
-            <span class="skill-chip">RDS</span>
-            <span class="skill-chip">IAM</span>
-            <span class="skill-chip">Lambda</span>
-            <span class="skill-chip">Glue</span>
-            <span class="skill-chip">Kinesis</span>
-            <span class="skill-chip">Redshift</span>
-            <span class="skill-chip">Athena</span>
-            <span class="skill-chip">EMR</span>
-            <span class="skill-chip">VPC</span>
-            <span class="skill-chip">CloudWatch</span>
-          </div>
-        </div>
-
-        <div class="skill-row fade-up" style="transition-delay:.15s">
-          <div class="skill-row-label"><i class="fa-solid fa-code"></i> Programming</div>
-          <div class="skill-chips">
-            <span class="skill-chip">Python</span>
-            <span class="skill-chip">Pandas</span>
-            <span class="skill-chip">NumPy</span>
-            <span class="skill-chip">T-SQL</span>
-            <span class="skill-chip">Bash</span>
-            <span class="skill-chip">FastAPI</span>
-            <span class="skill-chip">LangChain</span>
-          </div>
-        </div>
-
-        <div class="skill-row fade-up" style="transition-delay:.2s">
-          <div class="skill-row-label"><i class="fa-solid fa-cubes"></i> Data Warehousing</div>
-          <div class="skill-chips">
-            <span class="skill-chip">SQL Server</span>
-            <span class="skill-chip">Star Schema</span>
-            <span class="skill-chip">Snowflake Schema</span>
-            <span class="skill-chip">Unity Catalog</span>
-            <span class="skill-chip">Dimensional Modeling</span>
-          </div>
-        </div>
-
-        <div class="skill-row fade-up" style="transition-delay:.25s">
-          <div class="skill-row-label"><i class="fa-solid fa-chart-bar"></i> Analytics &amp; BI</div>
-          <div class="skill-chips">
-            <span class="skill-chip">Power BI</span>
-            <span class="skill-chip">DAX</span>
-            <span class="skill-chip">Power Query</span>
-            <span class="skill-chip">Matplotlib</span>
-            <span class="skill-chip">Dashboard Design</span>
-          </div>
-        </div>
-
-        <div class="skill-row fade-up" style="transition-delay:.3s">
-          <div class="skill-row-label"><i class="fa-solid fa-server"></i> Databases</div>
-          <div class="skill-chips">
-            <span class="skill-chip">PostgreSQL</span>
-            <span class="skill-chip">MySQL</span>
-            <span class="skill-chip">DynamoDB</span>
-            <span class="skill-chip">HBase</span>
-            <span class="skill-chip">ChromaDB</span>
-          </div>
-        </div>
-
-        <div class="skill-row fade-up" style="transition-delay:.35s">
-          <div class="skill-row-label"><i class="fa-brands fa-docker"></i> DevOps &amp; Tools</div>
-          <div class="skill-chips">
-            <span class="skill-chip">Docker</span>
-            <span class="skill-chip">Git</span>
-            <span class="skill-chip">GitHub</span>
-            <span class="skill-chip">Linux</span>
-          </div>
-        </div>
-
       </div>
-    </div>
-  </section>
 
+      <div class="skill-card fade-up" style="transition-delay:.05s">
+        <div class="skill-card-icon"><i class="fa-solid fa-elephant"></i></div>
+        <div class="skill-card-title">Big Data</div>
+        <div class="skill-chips">
+          <span class="skill-chip">Hadoop</span>
+          <span class="skill-chip">HDFS</span>
+          <span class="skill-chip">YARN</span>
+          <span class="skill-chip">Hive</span>
+          <span class="skill-chip">Kafka</span>
+          <span class="skill-chip">Flink</span>
+          <span class="skill-chip">Distributed Computing</span>
+          <span class="skill-chip">Stream Processing</span>
+        </div>
+      </div>
+
+      <div class="skill-card fade-up" style="transition-delay:.1s">
+        <div class="skill-card-icon"><i class="fa-brands fa-aws"></i></div>
+        <div class="skill-card-title">Cloud — AWS</div>
+        <div class="skill-chips">
+          <span class="skill-chip">S3</span>
+          <span class="skill-chip">EC2</span>
+          <span class="skill-chip">RDS</span>
+          <span class="skill-chip">IAM</span>
+          <span class="skill-chip">Lambda</span>
+          <span class="skill-chip">Glue</span>
+          <span class="skill-chip">Kinesis</span>
+          <span class="skill-chip">Redshift</span>
+          <span class="skill-chip">Athena</span>
+          <span class="skill-chip">EMR</span>
+          <span class="skill-chip">VPC</span>
+          <span class="skill-chip">CloudWatch</span>
+        </div>
+      </div>
+
+      <div class="skill-card fade-up" style="transition-delay:.15s">
+        <div class="skill-card-icon"><i class="fa-solid fa-cubes"></i></div>
+        <div class="skill-card-title">Data Warehousing</div>
+        <div class="skill-chips">
+          <span class="skill-chip">SQL Server</span>
+          <span class="skill-chip">Star Schema</span>
+          <span class="skill-chip">Snowflake Schema</span>
+          <span class="skill-chip">Unity Catalog</span>
+          <span class="skill-chip">Dimensional Modeling</span>
+        </div>
+      </div>
+
+      <div class="skill-card fade-up" style="transition-delay:.2s">
+        <div class="skill-card-icon"><i class="fa-solid fa-code"></i></div>
+        <div class="skill-card-title">Programming</div>
+        <div class="skill-chips">
+          <span class="skill-chip">Python</span>
+          <span class="skill-chip">Pandas</span>
+          <span class="skill-chip">NumPy</span>
+          <span class="skill-chip">T-SQL</span>
+          <span class="skill-chip">Bash</span>
+          <span class="skill-chip">FastAPI</span>
+          <span class="skill-chip">LangChain</span>
+        </div>
+      </div>
+
+      <div class="skill-card fade-up" style="transition-delay:.25s">
+        <div class="skill-card-icon"><i class="fa-solid fa-chart-bar"></i></div>
+        <div class="skill-card-title">Analytics &amp; BI</div>
+        <div class="skill-chips">
+          <span class="skill-chip">Power BI</span>
+          <span class="skill-chip">DAX</span>
+          <span class="skill-chip">Power Query</span>
+          <span class="skill-chip">Matplotlib</span>
+          <span class="skill-chip">Dashboard Design</span>
+        </div>
+      </div>
+
+      <div class="skill-card fade-up" style="transition-delay:.3s">
+        <div class="skill-card-icon"><i class="fa-solid fa-server"></i></div>
+        <div class="skill-card-title">Databases</div>
+        <div class="skill-chips">
+          <span class="skill-chip">PostgreSQL</span>
+          <span class="skill-chip">MySQL</span>
+          <span class="skill-chip">DynamoDB</span>
+          <span class="skill-chip">HBase</span>
+          <span class="skill-chip">ChromaDB</span>
+        </div>
+      </div>
+
+      <div class="skill-card fade-up" style="transition-delay:.35s">
+        <div class="skill-card-icon"><i class="fa-brands fa-docker"></i></div>
+        <div class="skill-card-title">DevOps &amp; Tools</div>
+        <div class="skill-chips">
+          <span class="skill-chip">Docker</span>
+          <span class="skill-chip">Git</span>
+          <span class="skill-chip">GitHub</span>
+          <span class="skill-chip">Linux</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
   <!-- Education -->
   <section id="education" class="section">
     <div class="container">
