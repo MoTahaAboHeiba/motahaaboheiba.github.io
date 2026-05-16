@@ -15,13 +15,21 @@
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary_large_image">
 
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-M1XZ86G7KY"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-M1XZ86G7KY');
-  </script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-M1XZ86G7KY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-M1XZ86G7KY', {
+    send_page_view: true,
+    cookie_flags: 'SameSite=None;Secure'
+  });
+  document.addEventListener('visibilitychange', function() {
+    if (document.visibilityState === 'hidden') {
+      gtag('event', 'page_view', { page_title: document.title, page_location: window.location.href });
+    }
+  });
+</script>
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -228,11 +236,15 @@
     .mobile-nav.open { display: flex; }
 
     /* Section Wrapper */
-    .section {
-      position: relative;
-      z-index: 1;
-      padding: 96px 0;
-    }
+.section {
+  position: relative;
+  z-index: 1;
+  padding: 7rem 6%;
+}
+.container {
+  max-width: var(--max-w);
+  margin: 0 auto;
+}
     .section-label {
       font-family: var(--mono);
       font-size: .72rem;
@@ -1146,8 +1158,8 @@
   <!-- About -->
   <section id="about" class="section">
     <div class="container">
-      <div class="section-label">// 00</div>
-      <h2 class="section-title">About <em>Me</em></h2>
+      <div class="section-label">// about me</div>
+      <h2 class="section-title">The Person <em>Behind the Code </em></h2>
       <div class="section-divider"></div>
       <div class="about-grid">
         <div class="about-text fade-up">
@@ -1187,7 +1199,7 @@
   <!-- Experience -->
   <section id="experience" class="section">
     <div class="container">
-      <div class="section-label">// 01</div>
+      <div class="section-label">// work history</div>
       <h2 class="section-title">Experience &amp; <em>Training</em></h2>
       <div class="section-divider"></div>
       <div class="exp-timeline">
@@ -1240,8 +1252,8 @@
   <!-- Projects -->
   <section id="projects" class="section">
     <div class="container">
-      <div class="section-label">// 02</div>
-      <h2 class="section-title">Featured <em>Projects</em></h2>
+      <div class="section-label">// portfolio</div>
+      <h2 class="section-title"><em>Projects</em></h2>
       <div class="section-divider"></div>
       <div class="projects-grid" id="projects-container"></div>
     </div>
@@ -1250,7 +1262,7 @@
   <!-- Certifications -->
   <section id="certifications" class="section">
     <div class="container">
-      <div class="section-label">// 03</div>
+      <div class="section-label">// credentials</div>
       <h2 class="section-title"><em>Certifications</em></h2>
       <div class="section-divider"></div>
       <div class="certs-grid">
@@ -1284,13 +1296,13 @@
   <!-- Skills -->
 <section id="skills" class="section">
   <div class="container">
-    <div class="section-label">// 04</div>
+    <div class="section-label">// tech stack</div>
     <h2 class="section-title">Tools &amp; <em>Technologies</em></h2>
     <div class="section-divider"></div>
     <div class="skills-grid">
 
       <div class="skill-card fade-up">
-        <div class="skill-card-icon"><i class="fa-solid fa-pipe-section"></i></div>
+       <div class="skill-card-icon"><i class="fa-solid fa-gears"></i></div>
         <div class="skill-card-title">Data Engineering</div>
         <div class="skill-chips">
           <span class="skill-chip">PySpark</span>
@@ -1305,7 +1317,7 @@
       </div>
 
       <div class="skill-card fade-up" style="transition-delay:.05s">
-        <div class="skill-card-icon"><i class="fa-solid fa-elephant"></i></div>
+        <div class="skill-card-icon"><i class="fa-solid fa-server"></i></div>
         <div class="skill-card-title">Big Data</div>
         <div class="skill-chips">
           <span class="skill-chip">Hadoop</span>
@@ -1339,7 +1351,7 @@
       </div>
 
       <div class="skill-card fade-up" style="transition-delay:.15s">
-        <div class="skill-card-icon"><i class="fa-solid fa-cubes"></i></div>
+       <div class="skill-card-icon"><i class="fa-solid fa-building-columns"></i></div>>
         <div class="skill-card-title">Data Warehousing</div>
         <div class="skill-chips">
           <span class="skill-chip">SQL Server</span>
@@ -1377,7 +1389,7 @@
       </div>
 
       <div class="skill-card fade-up" style="transition-delay:.3s">
-        <div class="skill-card-icon"><i class="fa-solid fa-server"></i></div>
+        <div class="skill-card-icon"><i class="fa-solid fa-database"></i></div>
         <div class="skill-card-title">Databases</div>
         <div class="skill-chips">
           <span class="skill-chip">PostgreSQL</span>
@@ -1405,7 +1417,7 @@
   <!-- Education -->
   <section id="education" class="section">
     <div class="container">
-      <div class="section-label">// 05</div>
+      <div class="section-label">// background</div>
       <h2 class="section-title"><em>Education</em></h2>
       <div class="section-divider"></div>
       <div class="edu-card fade-up">
@@ -1428,7 +1440,7 @@
   <!-- Contact -->
   <section id="contact" class="section" style="background: var(--surface); border-top: 1px solid var(--border);">
     <div class="container">
-      <div class="section-label">// 06</div>
+      <div class="section-label">// let's talk</div>
       <h2 class="section-title">Get In <em>Touch</em></h2>
       <div class="section-divider"></div>
       <div class="contact-grid">
