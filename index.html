@@ -114,20 +114,35 @@
       display: flex; align-items: center; gap: .6rem; text-decoration: none;
     }
     .nav-logo-badge {
-      display: flex; align-items: center; justify-content: center;
-      width: 36px; height: 36px; border-radius: 9px;
+      position: relative; overflow: hidden;
+      width: 44px; height: 44px; border-radius: 12px;
       background: linear-gradient(145deg, #0d1b2a, #11263a);
-      border: 1px solid rgba(0,200,245,.3);
-      font-family: var(--mono); font-size: .85rem; font-weight: 800;
-      color: var(--accent); letter-spacing: -.02em;
-      transition: border-color .2s;
+      border: 1px solid rgba(0,200,245,0.35);
+      box-shadow: 0 0 0 1px rgba(0,200,245,.08), 0 8px 24px rgba(0,200,245,.16), inset 0 1px 0 rgba(255,255,255,.04);
+      display: flex; align-items: center;
+      transition: transform .2s, border-color .2s, box-shadow .2s;
+      flex-shrink: 0;
     }
-    .nav-logo:hover .nav-logo-badge { border-color: rgba(0,200,245,.6); }
+    .nav-logo:hover .nav-logo-badge {
+      border-color: rgba(0,200,245,.6);
+      transform: translateY(-2px);
+    }
+    .badge-m, .badge-t {
+      width: 50%; text-align: center;
+      font-family: var(--mono); font-size: 1rem; font-weight: 800;
+      color: #f4fbff; line-height: 44px; z-index: 1;
+    }
+    .badge-divider {
+      position: absolute; left: 50%; top: 50%;
+      transform: translateX(-50%) translateY(-50%);
+      width: 1px; height: 58%;
+      background: linear-gradient(to bottom, transparent, rgba(0,200,245,.55), transparent);
+      pointer-events: none;
+    }
     .nav-logo-name {
-      font-family: var(--mono); font-weight: 600; font-size: .88rem;
-      color: var(--text); letter-spacing: .02em;
+      font-family: var(--mono); font-weight: 700; font-size: 1rem;
+      color: var(--text);
     }
-    .nav-logo-dot { color: var(--accent); }
     .nav-links {
       display: flex; align-items: center; gap: 1.75rem;
     }
@@ -189,7 +204,7 @@
     }
     .hero-inner {
       width: 100%; max-width: var(--max-w);
-      display: grid; grid-template-columns: 1fr 480px;
+      display: grid; grid-template-columns: 1fr 520px;
       gap: 5rem; align-items: center; padding: 5rem 2.5rem;
     }
     .hero-status {
@@ -249,7 +264,38 @@
     }
     .hero-metric-label { font-size: .75rem; color: var(--muted); letter-spacing: .03em; }
 
-    /* Hero right: terminal panel */
+    /* Hero right: photo column */
+    .hero-photo-col {
+      display: flex; flex-direction: column; align-items: center; gap: 1.5rem;
+    }
+    .photo-ring-wrap { position: relative; width: 280px; height: 280px; flex-shrink: 0; }
+    .photo-ring {
+      position: absolute; inset: -6px; border-radius: 50%;
+      background: conic-gradient(var(--accent) 0deg, rgba(0,200,245,.25) 120deg, transparent 200deg, var(--accent) 360deg);
+      animation: spin-ring 8s linear infinite;
+    }
+    @keyframes spin-ring { to { transform: rotate(360deg); } }
+    .photo-ring-inner { position: absolute; inset: 3px; border-radius: 50%; background: var(--bg); }
+    .hero-photo {
+      position: absolute; inset: 8px; border-radius: 50%;
+      object-fit: cover; width: calc(100% - 16px); height: calc(100% - 16px);
+    }
+    .hero-metric-cards { display: flex; flex-direction: column; gap: .65rem; width: 100%; }
+    .metric-card {
+      background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: .8rem 1rem; display: flex; align-items: center; gap: .8rem;
+      transition: border-color .2s, transform .2s;
+    }
+    .metric-card:hover { border-color: var(--accent); transform: translateX(-4px); }
+    .metric-icon {
+      width: 34px; height: 34px; border-radius: 8px; background: var(--accent-lo);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--accent); font-size: .85rem; flex-shrink: 0;
+    }
+    .metric-val { font-family: var(--mono); font-size: 1rem; font-weight: 700; color: var(--text); display: block; }
+    .metric-desc { font-size: .72rem; color: var(--muted); line-height: 1.35; }
+
+    /* Terminal (used in about section only) */
     .hero-panel {
       background: #060e18; border: 1px solid var(--border);
       border-radius: 12px; overflow: hidden; font-family: var(--mono);
@@ -305,26 +351,48 @@
     }
     .about-cta:hover { background: var(--accent-lo); border-color: rgba(0,200,245,.5); }
 
-    /* ── ENGINEERING PRINCIPLES ── */
+    /* ── ENGINEERING PRINCIPLES — pipeline layout ── */
     #principles { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-    .principles-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
-      background: var(--border); border: 1px solid var(--border); border-radius: 12px;
-      overflow: hidden;
+    .pipeline-scroll-wrap { overflow-x: auto; padding-bottom: 1rem; -webkit-overflow-scrolling: touch; }
+    .pipeline-flow {
+      display: flex; align-items: stretch;
+      min-width: max-content; gap: 0;
     }
-    .principle-item {
-      background: var(--surface); padding: 1.8rem 1.6rem;
-      transition: background .2s;
+    .pipe-node {
+      background: var(--bg); border: 1px solid var(--border);
+      border-radius: 10px; padding: 1.2rem 1rem;
+      min-width: 170px; max-width: 200px; flex: 1;
+      transition: border-color .2s, transform .2s;
     }
-    .principle-item:hover { background: var(--surface-2); }
-    .principle-num {
-      font-family: var(--mono); font-size: .65rem; font-weight: 600;
-      color: var(--dim); letter-spacing: .1em; margin-bottom: .6rem;
+    .pipe-node:hover { border-color: var(--accent); transform: translateY(-3px); }
+    .pipe-num {
+      font-family: var(--mono); font-size: .62rem; font-weight: 600;
+      color: var(--dim); letter-spacing: .1em; margin-bottom: .55rem;
     }
-    .principle-title {
-      font-size: .92rem; font-weight: 700; color: var(--text); margin-bottom: .5rem;
+    .pipe-title { font-size: .88rem; font-weight: 700; color: var(--text); margin-bottom: .4rem; }
+    .pipe-desc { font-size: .76rem; color: var(--muted); line-height: 1.6; }
+    .pipe-connector {
+      display: flex; align-items: center; padding: 0 .35rem; flex-shrink: 0;
     }
-    .principle-desc { font-size: .82rem; color: var(--muted); line-height: 1.7; }
+    .pipe-connector-inner {
+      display: flex; align-items: center; gap: 0;
+    }
+    .pipe-line {
+      width: 28px; height: 2px;
+      background: rgba(0,200,245,.25);
+    }
+    .pipe-arrow-head {
+      color: var(--dim); font-size: .7rem; line-height: 1;
+      margin-left: -1px;
+    }
+    @media (max-width: 900px) {
+      .pipeline-flow { flex-wrap: wrap; min-width: 0; gap: 1px; }
+      .pipe-node { min-width: calc(33.33% - 2px); max-width: none; flex: 1 1 calc(33% - 2px); border-radius: 0; }
+      .pipe-connector { display: none; }
+    }
+    @media (max-width: 600px) {
+      .pipe-node { min-width: calc(50% - 1px); flex: 1 1 calc(50% - 1px); }
+    }
 
     /* ── EXPERIENCE ── */
     .exp-timeline { position: relative; padding-left: 2rem; }
@@ -432,7 +500,18 @@
       padding: .2rem .55rem; border-radius: 4px;
       background: var(--surface-2); border: 1px solid var(--border); color: var(--dim);
     }
-    .project-links { display: flex; gap: .6rem; }
+    .project-links { display: flex; flex-direction: column; gap: .6rem; }
+    .repo-card {
+      background: var(--surface-2); border: 1px solid var(--border);
+      border-radius: 7px; padding: .6rem .85rem;
+      display: flex; align-items: center; justify-content: space-between;
+      transition: border-color .2s; text-decoration: none;
+    }
+    .repo-card:hover { border-color: var(--accent); }
+    .repo-card-left { display: flex; flex-direction: column; gap: .1rem; min-width: 0; }
+    .repo-name { font-family: var(--mono); font-size: .72rem; color: var(--accent); font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .repo-desc { font-family: var(--mono); font-size: .65rem; color: var(--dim); margin-top: .15rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .repo-link-btn { font-family: var(--mono); font-size: .7rem; color: var(--muted); display: flex; align-items: center; gap: .3rem; white-space: nowrap; flex-shrink: 0; margin-left: .75rem; }
     .project-link {
       font-family: var(--mono); font-size: .72rem; font-weight: 600;
       padding: .35rem .8rem; border-radius: 6px; border: 1px solid var(--border);
@@ -468,7 +547,7 @@
 
     /* ── SKILLS ── */
     #skills { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-    .skills-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.1rem; }
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 1.1rem; }
     .skill-card {
       background: var(--bg); border: 1px solid var(--border);
       border-radius: 10px; padding: 1.4rem 1.3rem 1.5rem;
@@ -481,7 +560,14 @@
       display: flex; align-items: center; justify-content: center;
       color: var(--accent); font-size: 1rem; margin-bottom: 1rem;
     }
-    .skill-card-title { font-size: .88rem; font-weight: 700; color: var(--text); margin-bottom: .8rem; }
+    .skill-card-title { font-size: .88rem; font-weight: 700; color: var(--text); margin-bottom: .6rem; }
+    .skill-tier-label {
+      font-family: var(--mono); font-size: .62rem; color: var(--dim);
+      text-transform: uppercase; letter-spacing: .1em; margin: .5rem 0 .3rem;
+    }
+    .skill-tier-label.separator {
+      border-top: 1px solid var(--border); padding-top: .7rem; margin-top: .7rem;
+    }
     .skill-chips { display: flex; flex-wrap: wrap; gap: .35rem; }
     .skill-chip {
       font-family: var(--mono); font-size: .68rem; font-weight: 500;
@@ -490,6 +576,11 @@
       transition: border-color .15s, color .15s; cursor: default;
     }
     .skill-chip:hover { border-color: rgba(0,200,245,.3); color: var(--muted); }
+    .skill-chip.built {
+      border-color: rgba(0,200,245,.22); color: var(--muted);
+      background: var(--accent-lo);
+    }
+    .skill-chip.built:hover { border-color: rgba(0,200,245,.5); color: var(--text); }
 
     /* ── EDUCATION ── */
     .edu-card {
@@ -567,23 +658,27 @@
     .footer-social a:hover { border-color: var(--border-2); color: var(--muted); }
     .footer-copy { font-family: var(--mono); font-size: .68rem; color: var(--dim); }
 
+    /* ── PARTICLES ── */
+    #particles-canvas {
+      position: fixed; inset: 0; z-index: 0;
+      pointer-events: none; opacity: .18;
+    }
+
     /* ── FADE UP ── */
     .fade-up { opacity: 0; transform: translateY(18px); transition: opacity .55s ease, transform .55s ease; }
     .fade-up.visible { opacity: 1; transform: translateY(0); }
 
     /* ── RESPONSIVE ── */
-    @media (max-width: 1100px) { .hero-inner { grid-template-columns: 1fr; } .hero-panel { display: none; } }
+    @media (max-width: 1100px) { .hero-inner { grid-template-columns: 1fr; } .hero-photo-col { display: none; } }
     @media (max-width: 900px) {
       .about-grid { grid-template-columns: 1fr; }
       .projects-grid { grid-template-columns: 1fr; }
       .certs-grid { grid-template-columns: 1fr; }
       .skills-grid { grid-template-columns: repeat(2, 1fr); }
-      .principles-grid { grid-template-columns: 1fr 1fr; }
       .contact-grid { grid-template-columns: 1fr; }
     }
     @media (max-width: 600px) {
       .skills-grid { grid-template-columns: 1fr; }
-      .principles-grid { grid-template-columns: 1fr; }
       .nav-links { display: none; }
       .nav-burger { display: flex; }
       .container { padding: 0 1.5rem; }
@@ -596,12 +691,18 @@
 <div id="scroll-progress"></div>
 <button id="back-to-top" title="Back to top"><i class="fa-solid fa-arrow-up"></i></button>
 
+<canvas id="particles-canvas"></canvas>
+
 <!-- NAV -->
 <nav>
   <div class="nav-inner">
     <a href="#hero" class="nav-logo">
-      <div class="nav-logo-badge">MT</div>
-      <span class="nav-logo-name">Taha<span class="nav-logo-dot">.</span></span>
+      <div class="nav-logo-badge">
+        <span class="badge-m">M</span>
+        <div class="badge-divider"></div>
+        <span class="badge-t">T</span>
+      </div>
+      <span class="nav-logo-name">Abo Heiba</span>
     </a>
     <ul class="nav-links">
       <li><a href="#about"       data-section="about">About</a></li>
@@ -684,17 +785,35 @@
       </div>
     </div>
 
-    <!-- Right: terminal -->
-    <div class="hero-panel fade-up" style="transition-delay:.1s">
-      <div class="terminal-bar">
-        <div class="t-dot t-red"></div>
-        <div class="t-dot t-amber"></div>
-        <div class="t-dot t-green-dot"></div>
-        <span class="terminal-title">taha@pipeline ~ bash</span>
+    <!-- Right: photo + metric cards -->
+    <div class="hero-photo-col fade-up" style="transition-delay:.1s">
+      <div class="photo-ring-wrap">
+        <div class="photo-ring"></div>
+        <div class="photo-ring-inner"></div>
+        <img class="hero-photo" src="photo.jpg" alt="Mohamed Taha Abo Heiba">
       </div>
-      <div class="terminal-body">
-        <span class="t-prompt"><span class="t-cmd">taha@pipeline</span> ~ $</span>
-        <span class="t-output" id="term-output"></span>
+      <div class="hero-metric-cards">
+        <div class="metric-card">
+          <div class="metric-icon"><i class="fa-solid fa-trophy"></i></div>
+          <div>
+            <span class="metric-val">#1 / 30+</span>
+            <span class="metric-desc">Best-performing trainee · NTI Huawei Big Data cohort</span>
+          </div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-icon"><i class="fa-solid fa-database"></i></div>
+          <div>
+            <span class="metric-val">200K+</span>
+            <span class="metric-desc">Records processed across Databricks &amp; SQL Server DWs</span>
+          </div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-icon"><i class="fa-solid fa-certificate"></i></div>
+          <div>
+            <span class="metric-val">2 Certs</span>
+            <span class="metric-desc">AWS CLF-C02 &amp; Huawei HCIA · both first attempt</span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -751,36 +870,43 @@
     <div class="section-label">// how I build</div>
     <h2 class="section-title">Engineering <em>Principles</em></h2>
     <div class="section-divider"></div>
-    <div class="principles-grid fade-up">
-      <div class="principle-item">
-        <div class="principle-num">01</div>
-        <div class="principle-title">Reliability before optimization</div>
-        <div class="principle-desc">A pipeline that runs correctly 100% of the time is more valuable than one that runs fast 90% of the time. Correctness is the baseline.</div>
-      </div>
-      <div class="principle-item">
-        <div class="principle-num">02</div>
-        <div class="principle-title">Observability by design</div>
-        <div class="principle-desc">Execution logs, row counts, and data quality checks are not optional — they're how you know the system is actually working. Build them in first.</div>
-      </div>
-      <div class="principle-item">
-        <div class="principle-num">03</div>
-        <div class="principle-title">Layer separation matters</div>
-        <div class="principle-desc">Bronze, Silver, Gold are not labels. They enforce clear contracts between ingestion, transformation, and serving. Each layer should be independently queryable.</div>
-      </div>
-      <div class="principle-item">
-        <div class="principle-num">04</div>
-        <div class="principle-title">Modular over monolithic</div>
-        <div class="principle-desc">Pipelines should be decomposable. A transformation layer that can't be tested in isolation is a liability — both for debugging and for evolution.</div>
-      </div>
-      <div class="principle-item">
-        <div class="principle-num">05</div>
-        <div class="principle-title">Schema-aware contracts</div>
-        <div class="principle-desc">Upstream schema changes that silently corrupt downstream outputs are a system design failure. Schema evolution requires explicit versioning and validation.</div>
-      </div>
-      <div class="principle-item">
-        <div class="principle-num">06</div>
-        <div class="principle-title">Maintainability is engineering value</div>
-        <div class="principle-desc">Code gets read far more often than it runs. Clarity, consistent naming, and reusable patterns reduce the cost of every future change.</div>
+    <div class="pipeline-scroll-wrap fade-up">
+      <div class="pipeline-flow">
+        <div class="pipe-node">
+          <div class="pipe-num">01</div>
+          <div class="pipe-title">Reliability first</div>
+          <div class="pipe-desc">Correctness before performance, always.</div>
+        </div>
+        <div class="pipe-connector"><div class="pipe-connector-inner"><div class="pipe-line"></div><span class="pipe-arrow-head">▶</span></div></div>
+        <div class="pipe-node">
+          <div class="pipe-num">02</div>
+          <div class="pipe-title">Observability by design</div>
+          <div class="pipe-desc">Logs and row counts built in, not added later.</div>
+        </div>
+        <div class="pipe-connector"><div class="pipe-connector-inner"><div class="pipe-line"></div><span class="pipe-arrow-head">▶</span></div></div>
+        <div class="pipe-node">
+          <div class="pipe-num">03</div>
+          <div class="pipe-title">Layer separation</div>
+          <div class="pipe-desc">Each zone independently queryable and testable.</div>
+        </div>
+        <div class="pipe-connector"><div class="pipe-connector-inner"><div class="pipe-line"></div><span class="pipe-arrow-head">▶</span></div></div>
+        <div class="pipe-node">
+          <div class="pipe-num">04</div>
+          <div class="pipe-title">Modular pipelines</div>
+          <div class="pipe-desc">Decomposable steps, not monolithic jobs.</div>
+        </div>
+        <div class="pipe-connector"><div class="pipe-connector-inner"><div class="pipe-line"></div><span class="pipe-arrow-head">▶</span></div></div>
+        <div class="pipe-node">
+          <div class="pipe-num">05</div>
+          <div class="pipe-title">Schema contracts</div>
+          <div class="pipe-desc">Upstream changes must not silently corrupt downstream.</div>
+        </div>
+        <div class="pipe-connector"><div class="pipe-connector-inner"><div class="pipe-line"></div><span class="pipe-arrow-head">▶</span></div></div>
+        <div class="pipe-node">
+          <div class="pipe-num">06</div>
+          <div class="pipe-title">Maintainability</div>
+          <div class="pipe-desc">Code is read more than it runs. Clarity is engineering value.</div>
+        </div>
       </div>
     </div>
   </div>
@@ -892,100 +1018,103 @@
     <h2 class="section-title">Tools &amp; <em>Technologies</em></h2>
     <div class="section-divider"></div>
     <div class="skills-grid">
+      <!-- 1. Pipeline Engineering -->
       <div class="skill-card fade-up">
         <div class="skill-card-icon"><i class="fa-solid fa-diagram-project"></i></div>
-        <div class="skill-card-title">Data Engineering</div>
+        <div class="skill-card-title">Pipeline Engineering</div>
+        <div class="skill-tier-label">Built with</div>
         <div class="skill-chips">
-          <span class="skill-chip">PySpark</span>
-          <span class="skill-chip">Spark SQL</span>
-          <span class="skill-chip">Delta Lake</span>
-          <span class="skill-chip">Databricks</span>
-          <span class="skill-chip">SSIS</span>
-          <span class="skill-chip">ETL / ELT</span>
-          <span class="skill-chip">Batch Processing</span>
-          <span class="skill-chip">Medallion Architecture</span>
+          <span class="skill-chip built">PySpark</span>
+          <span class="skill-chip built">Delta Lake</span>
+          <span class="skill-chip built">Databricks</span>
+          <span class="skill-chip built">SSIS</span>
+          <span class="skill-chip built">Medallion Architecture</span>
+          <span class="skill-chip built">Kafka</span>
         </div>
-      </div>
-      <div class="skill-card fade-up" style="transition-delay:.04s">
-        <div class="skill-card-icon"><i class="fa-solid fa-circle-nodes"></i></div>
-        <div class="skill-card-title">Big Data</div>
+        <div class="skill-tier-label separator">Familiar with</div>
         <div class="skill-chips">
-          <span class="skill-chip">Hadoop</span>
-          <span class="skill-chip">HDFS</span>
-          <span class="skill-chip">YARN</span>
-          <span class="skill-chip">Hive</span>
-          <span class="skill-chip">Kafka</span>
           <span class="skill-chip">Flink</span>
-          <span class="skill-chip">Stream Processing</span>
+          <span class="skill-chip">ETL/ELT patterns</span>
+          <span class="skill-chip">Batch Processing</span>
         </div>
       </div>
+
+      <!-- 2. Storage & Warehousing -->
+      <div class="skill-card fade-up" style="transition-delay:.04s">
+        <div class="skill-card-icon"><i class="fa-solid fa-building-columns"></i></div>
+        <div class="skill-card-title">Storage &amp; Warehousing</div>
+        <div class="skill-tier-label">Built with</div>
+        <div class="skill-chips">
+          <span class="skill-chip built">SQL Server</span>
+          <span class="skill-chip built">Star Schema</span>
+          <span class="skill-chip built">Unity Catalog</span>
+          <span class="skill-chip built">ChromaDB</span>
+        </div>
+        <div class="skill-tier-label separator">Familiar with</div>
+        <div class="skill-chips">
+          <span class="skill-chip">Dimensional Modeling</span>
+          <span class="skill-chip">HDFS</span>
+          <span class="skill-chip">HBase</span>
+          <span class="skill-chip">Snowflake Schema</span>
+        </div>
+      </div>
+
+      <!-- 3. Cloud — AWS -->
       <div class="skill-card fade-up" style="transition-delay:.08s">
         <div class="skill-card-icon"><i class="fa-brands fa-aws"></i></div>
         <div class="skill-card-title">Cloud — AWS</div>
+        <div class="skill-tier-label">Built with</div>
         <div class="skill-chips">
-          <span class="skill-chip">S3</span>
-          <span class="skill-chip">EC2</span>
-          <span class="skill-chip">RDS</span>
-          <span class="skill-chip">IAM</span>
-          <span class="skill-chip">Lambda</span>
+          <span class="skill-chip built">S3</span>
+          <span class="skill-chip built">EC2</span>
+          <span class="skill-chip built">RDS</span>
+          <span class="skill-chip built">IAM</span>
+          <span class="skill-chip built">VPC</span>
+        </div>
+        <div class="skill-tier-label separator">Familiar with</div>
+        <div class="skill-chips">
           <span class="skill-chip">Glue</span>
           <span class="skill-chip">Redshift</span>
           <span class="skill-chip">Athena</span>
-          <span class="skill-chip">VPC</span>
+          <span class="skill-chip">Lambda</span>
           <span class="skill-chip">CloudWatch</span>
         </div>
       </div>
+
+      <!-- 4. Languages & APIs -->
       <div class="skill-card fade-up" style="transition-delay:.12s">
-        <div class="skill-card-icon"><i class="fa-solid fa-building-columns"></i></div>
-        <div class="skill-card-title">Data Warehousing</div>
-        <div class="skill-chips">
-          <span class="skill-chip">SQL Server</span>
-          <span class="skill-chip">Star Schema</span>
-          <span class="skill-chip">Snowflake Schema</span>
-          <span class="skill-chip">Unity Catalog</span>
-          <span class="skill-chip">Dimensional Modeling</span>
-        </div>
-      </div>
-      <div class="skill-card fade-up" style="transition-delay:.16s">
         <div class="skill-card-icon"><i class="fa-solid fa-code"></i></div>
-        <div class="skill-card-title">Programming</div>
+        <div class="skill-card-title">Languages &amp; APIs</div>
+        <div class="skill-tier-label">Built with</div>
         <div class="skill-chips">
-          <span class="skill-chip">Python</span>
-          <span class="skill-chip">T-SQL</span>
-          <span class="skill-chip">Pandas</span>
-          <span class="skill-chip">FastAPI</span>
-          <span class="skill-chip">LangChain</span>
+          <span class="skill-chip built">Python</span>
+          <span class="skill-chip built">T-SQL</span>
+          <span class="skill-chip built">FastAPI</span>
+          <span class="skill-chip built">LangChain</span>
+          <span class="skill-chip built">Pandas</span>
+        </div>
+        <div class="skill-tier-label separator">Familiar with</div>
+        <div class="skill-chips">
           <span class="skill-chip">Bash</span>
+          <span class="skill-chip">NumPy</span>
         </div>
       </div>
-      <div class="skill-card fade-up" style="transition-delay:.2s">
+
+      <!-- 5. Analytics & Tooling -->
+      <div class="skill-card fade-up" style="transition-delay:.16s">
         <div class="skill-card-icon"><i class="fa-solid fa-chart-bar"></i></div>
-        <div class="skill-card-title">Analytics &amp; BI</div>
+        <div class="skill-card-title">Analytics &amp; Tooling</div>
+        <div class="skill-tier-label">Built with</div>
         <div class="skill-chips">
-          <span class="skill-chip">Power BI</span>
-          <span class="skill-chip">DAX</span>
-          <span class="skill-chip">Power Query</span>
+          <span class="skill-chip built">Power BI</span>
+          <span class="skill-chip built">DAX</span>
+          <span class="skill-chip built">Power Query</span>
+          <span class="skill-chip built">Git</span>
+          <span class="skill-chip built">Docker</span>
+        </div>
+        <div class="skill-tier-label separator">Familiar with</div>
+        <div class="skill-chips">
           <span class="skill-chip">Matplotlib</span>
-        </div>
-      </div>
-      <div class="skill-card fade-up" style="transition-delay:.24s">
-        <div class="skill-card-icon"><i class="fa-solid fa-database"></i></div>
-        <div class="skill-card-title">Databases</div>
-        <div class="skill-chips">
-          <span class="skill-chip">PostgreSQL</span>
-          <span class="skill-chip">MySQL</span>
-          <span class="skill-chip">ChromaDB</span>
-          <span class="skill-chip">HBase</span>
-          <span class="skill-chip">DynamoDB</span>
-        </div>
-      </div>
-      <div class="skill-card fade-up" style="transition-delay:.28s">
-        <div class="skill-card-icon"><i class="fa-brands fa-docker"></i></div>
-        <div class="skill-card-title">DevOps &amp; Tools</div>
-        <div class="skill-chips">
-          <span class="skill-chip">Docker</span>
-          <span class="skill-chip">Git</span>
-          <span class="skill-chip">GitHub</span>
           <span class="skill-chip">Linux</span>
         </div>
       </div>
@@ -1132,11 +1261,11 @@ const PROJECTS = [
     images: ['diagram'],
     diagramType: 'lakehouse',
     problemStatement: 'Raw e-commerce transactions arrive as unvalidated flat files — no schema enforcement, no lineage, no audit trail.',
-    description: 'Built a three-layer Medallion architecture on Databricks and Delta Lake. Bronze ingests raw CSV data without transformation, preserving source fidelity. Silver applies schema validation, deduplication, and null handling. Gold produces a partitioned, analytics-ready fact table governed by Unity Catalog for downstream BI consumption. The architecture enforces an explicit contract at each layer boundary — schema changes are versioned, not silent.',
+    description: 'Built a three-layer Medallion architecture on Databricks and Delta Lake, enforcing explicit schema contracts at each Bronze/Silver/Gold boundary — schema changes are versioned, not silent. Gold delivers a partitioned, Unity Catalog-governed fact table ready for downstream BI consumption.',
     impact: ['200K+ records', 'Delta Lake ACID', 'Unity Catalog governance', 'Partition by date'],
     tags: ['Databricks', 'PySpark', 'Delta Lake', 'Unity Catalog', 'Medallion', 'Spark SQL'],
     github: 'https://github.com/MoTahaAboHeiba/E-Commerce-Lakehouse-Pipeline',
-    live: null
+    repoShort: 'Medallion lakehouse · Databricks · Delta Lake',
   },
   {
     num: '02',
@@ -1145,23 +1274,22 @@ const PROJECTS = [
     images: ['diagram'],
     diagramType: 'sqldw',
     problemStatement: 'CRM and ERP data lived in disconnected CSV files with no unified reporting layer and no transformation audit trail.',
-    description: 'Designed a three-zone warehouse on SQL Server: Bronze for raw BULK INSERT ingestion, Silver for stored-procedure transformation with execution-time logging, and Gold for a star-schema serving layer (Fact_Sales, dimension tables) exposed via views. Each stored procedure logs start time, end time, and row count — providing baseline observability without external tooling. The design prioritizes modular, independently testable transformation steps over a single monolithic ETL job.',
+    description: 'Designed a three-zone warehouse on SQL Server with BULK INSERT Bronze ingestion, stored-procedure Silver transformation with execution-time logging, and a star-schema Gold serving layer (Fact_Sales + dimension views). Each stored procedure logs start time, end time, and row count — baseline observability without external tooling.',
     impact: ['60K+ records', '17 stored procedures', 'Execution logging', 'Star schema serving'],
     tags: ['SQL Server', 'T-SQL', 'SSIS', 'Stored Procedures', 'Star Schema', 'ETL'],
     github: 'https://github.com/MoTahaAboHeiba/SQL-Data-Warehouse',
+    repoShort: 'Star schema DW · SQL Server · SSIS · T-SQL',
     live: null
-  },
-  {
-    num: '03',
     title: 'RAG Document Retrieval API',
     status: 'complete',
     images: ['diagram'],
     diagramType: 'rag',
     problemStatement: 'Academic documents were static and unsearchable — no way to query across 13K+ pages of content with natural language.',
-    description: 'Built a retrieval-augmented generation pipeline: PDF ingestion → recursive character chunking → embedding via text-ada-002 → ChromaDB vector store → semantic similarity search → Groq-hosted Llama 3.3 70B for generation → FastAPI serving layer with 12 endpoints. ChromaDB was chosen for local deployment (no external vector service dependency). Groq provides sub-100ms inference latency. The serving layer is stateless and horizontally scalable.',
+    description: 'Chose ChromaDB for local vector storage (no external service dependency) and Groq-hosted Llama 3.3 70B for sub-100ms inference — both decisions made to keep the stack self-contained and horizontally scalable. The pipeline covers PDF ingestion → recursive chunking → embedding → semantic search → generation, served via a stateless 12-endpoint FastAPI layer.',
     impact: ['13K+ document chunks', '<100ms retrieval', '12 API endpoints', 'Stateless serving'],
     tags: ['FastAPI', 'LangChain', 'ChromaDB', 'Groq', 'Llama 3.3 70B', 'Python'],
     github: 'https://github.com/MoTahaAboHeiba/RAG-API',
+    repoShort: 'FastAPI · LangChain · ChromaDB · Groq',
     live: null
   },
   {
@@ -1171,10 +1299,11 @@ const PROJECTS = [
     images: ['diagram'],
     diagramType: 'powerbi',
     problemStatement: '541K raw transaction records in Excel — including nulls, invalid quantities, and cancellations — with no analytical layer.',
-    description: 'Built a complete analytics workflow: Power Query cleaning pipeline (removed 135K null IDs, 10.6K invalid quantities, 9.3K cancellations; engineered 8 new features), a DAX semantic model with 5 business measures (Revenue, AOV, customer segmentation, time-series trends, geographic breakdown), and a 3-page dashboard covering 13 months of trading data across 38 countries. Transformation steps are documented and reproducible — not manual edits.',
+    description: 'Front-loaded all cleaning in Power Query (removed 135K null IDs, cancellations, invalid rows; engineered 8 features) so the DAX semantic model handles only business logic — 5 measures across revenue, AOV, segmentation, time-series, and geographic breakdown. The result is a reproducible, documented 3-page dashboard covering 13 months across 38 countries.',
     impact: ['£9.73M revenue modeled', '4,372 customers', '38 countries', '406K clean rows'],
     tags: ['Power BI', 'Power Query', 'DAX', 'Data Modeling', 'Dashboard Design'],
     github: 'https://github.com/MoTahaAboHeiba/Online-Retail-Analytics',
+    repoShort: 'Power BI · DAX · Power Query · 406K rows',
     live: null
   }
 ];
@@ -1337,6 +1466,7 @@ function renderProjects() {
       return `<div class="project-slide ${i===0?'active':''}"><img src="${img}" alt="${p.title}" loading="lazy"></div>`;
     }).join('');
     const impactChips = p.impact.map((v, i) => `<span class="impact-chip ${i===0?'green':''}">${v}</span>`).join('');
+    const repoPath = p.github.replace('https://github.com/', '');
     return `
 <div class="project-card fade-up" style="transition-delay:${idx*0.07}s">
   <div class="project-media" id="media-${idx}">
@@ -1351,7 +1481,13 @@ function renderProjects() {
     <div class="project-impact">${impactChips}</div>
     <div class="project-tags">${p.tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div>
     <div class="project-links">
-      <a href="${p.github}" target="_blank" class="project-link"><i class="fa-brands fa-github"></i> Repository</a>
+      <a href="${p.github}" target="_blank" class="repo-card">
+        <div class="repo-card-left">
+          <span class="repo-name"><i class="fa-brands fa-github" style="margin-right:.3rem"></i>${repoPath}</span>
+          <span class="repo-desc">${p.repoShort || ''}</span>
+        </div>
+        <span class="repo-link-btn"><i class="fa-solid fa-arrow-up-right-from-square"></i> View</span>
+      </a>
       ${p.live ? `<a href="${p.live}" target="_blank" class="project-link"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live</a>` : ''}
     </div>
   </div>
@@ -1480,10 +1616,68 @@ form?.addEventListener('submit', async e => {
 
 /* INIT */
 renderProjects();
-initTerminal('term-output');
 initTerminal('term-output-about');
 initScrollAnimations();
 initActiveNav();
+
+/* ═══════════════════════════════
+   PARTICLES
+═══════════════════════════════ */
+(function() {
+  const canvas = document.getElementById('particles-canvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let W, H, dots = [];
+  const MAX = 60, SPEED = 0.3, CONNECT_DIST = 120;
+
+  function resize() {
+    W = canvas.width  = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize, { passive: true });
+
+  function rand(a, b) { return a + Math.random() * (b - a); }
+
+  for (let i = 0; i < MAX; i++) {
+    dots.push({
+      x: rand(0, window.innerWidth),
+      y: rand(0, window.innerHeight),
+      r: rand(0.5, 2),
+      vx: rand(-SPEED, SPEED),
+      vy: rand(-SPEED, SPEED)
+    });
+  }
+
+  function tick() {
+    ctx.clearRect(0, 0, W, H);
+    for (let i = 0; i < dots.length; i++) {
+      const d = dots[i];
+      d.x += d.vx; d.y += d.vy;
+      if (d.x < 0 || d.x > W) d.vx *= -1;
+      if (d.y < 0 || d.y > H) d.vy *= -1;
+      ctx.beginPath();
+      ctx.arc(d.x, d.y, d.r, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(0,200,245,.8)';
+      ctx.fill();
+      for (let j = i + 1; j < dots.length; j++) {
+        const e = dots[j];
+        const dx = d.x - e.x, dy = d.y - e.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < CONNECT_DIST) {
+          ctx.beginPath();
+          ctx.moveTo(d.x, d.y);
+          ctx.lineTo(e.x, e.y);
+          ctx.strokeStyle = 'rgba(0,200,245,.10)';
+          ctx.lineWidth = 1;
+          ctx.stroke();
+        }
+      }
+    }
+    requestAnimationFrame(tick);
+  }
+  tick();
+})();
 </script>
 </body>
 </html>
