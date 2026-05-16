@@ -154,13 +154,48 @@
   align-items: center;
   justify-content: space-between;
 }
-    .nav-logo {
-      font-family: var(--mono);
-      font-weight: 700;
-      font-size: 1.05rem;
-      color: var(--accent);
-      letter-spacing: .05em;
-    }
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: .65rem;
+  text-decoration: none;
+}
+.nav-logo-badge {
+  display: flex;
+  align-items: stretch;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid rgba(0,200,245,.3);
+  box-shadow: 0 0 12px rgba(0,200,245,.15);
+}
+.badge-m {
+  background: linear-gradient(135deg, #0d1e2e, #00c8f5);
+  color: #fff;
+  font-family: var(--mono);
+  font-weight: 700;
+  font-size: .85rem;
+  padding: .35rem .5rem;
+  letter-spacing: .02em;
+}
+.badge-t {
+  background: linear-gradient(135deg, #1a0a2e, #7c3aed);
+  color: #fff;
+  font-family: var(--mono);
+  font-weight: 700;
+  font-size: .85rem;
+  padding: .35rem .5rem;
+  letter-spacing: .02em;
+}
+.nav-logo-name {
+  font-family: var(--mono);
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--text);
+  letter-spacing: .03em;
+}
+.nav-logo-dot {
+  color: var(--accent);
+}
     .nav-logo span { color: var(--text); }
     .nav-links {
       display: flex;
@@ -973,8 +1008,11 @@
       flex-wrap: wrap;
       gap: 1.25rem;
     }
-    .footer-logo { font-family: var(--mono); font-weight: 700; font-size: .98rem; color: var(--accent); }
-    .footer-logo span { color: var(--text); }
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: .65rem;
+}
     .footer-nav { display: flex; gap: 1.4rem; flex-wrap: wrap; }
     .footer-nav a { font-size: .77rem; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; transition: color .2s; }
     .footer-nav a:hover { color: var(--accent); }
@@ -1042,7 +1080,13 @@
   <!-- Nav -->
   <nav id="navbar">
     <div class="nav-inner">
-      <a href="#hero" class="nav-logo">Mohamed Taha Abo Heiba<span></span></a>
+        <a href="#hero" class="nav-logo">
+        <div class="nav-logo-badge">
+          <span class="badge-m">M</span>
+          <span class="badge-t">T</span>
+        </div>
+        <span class="nav-logo-name">Abo Heiba<span class="nav-logo-dot"></span></span>
+      </a>
       <ul class="nav-links">
         <li><a href="#about"          data-section="about">About</a></li>
         <li><a href="#experience"     data-section="experience">Experience</a></li>
@@ -1525,7 +1569,13 @@
   <footer>
     <div class="container">
       <div class="footer-inner">
-        <div class="footer-logo">Mohamed Taha Abo Heiba<span></span></div>
+         <div class="footer-logo">
+        <div class="nav-logo-badge">
+          <span class="badge-m">M</span>
+          <span class="badge-t">T</span>
+        </div>
+        <span class="nav-logo-name">Taha<span class="nav-logo-dot">.</span></span>
+      </div>
         <nav class="footer-nav">
           <a href="#about">About</a>
           <a href="#experience">Experience</a>
