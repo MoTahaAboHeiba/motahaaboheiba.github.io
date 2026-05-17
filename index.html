@@ -1011,8 +1011,8 @@
   font-weight: 500;
   padding: .28rem .7rem;
   border-radius: 100px;
-  background: transparent;
-  border: 1px solid var(--border-2);
+  background: var(--accent-lo);
+  border: 1px solid rgba(0,200,245,.2);
   color: var(--muted);
   transition: border-color .15s, color .15s;
   cursor: default;
@@ -1278,7 +1278,11 @@
     .repo-name { font-family: var(--mono); font-size: .72rem; color: var(--accent); font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     .repo-desc { font-family: var(--mono); font-size: .65rem; color: var(--dim); margin-top: .12rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     .repo-link-btn { font-family: var(--mono); font-size: .7rem; color: var(--muted); display: flex; align-items: center; gap: .3rem; white-space: nowrap; flex-shrink: 0; margin-left: .75rem; }
-
+      .skill-chip.built {
+      border-color: rgba(0,200,245,.22); color: var(--muted);
+      background: var(--accent-lo);
+    }
+    .skill-chip.built:hover { border-color: rgba(0,200,245,.5); color: var(--text); }
     /* Responsive */
     @media (max-width: 900px) {
       .hero-inner { grid-template-columns: 1fr; }
@@ -1501,7 +1505,7 @@
     <div>
       <div class="pipe-stage-title">Reliability First</div>
       <div class="pipe-stage-desc">Correctness precedes performance. A pipeline that delivers wrong data quickly is worse than one that fails loudly at the boundary.</div>
-      <div class="pipe-stage-impl">SQL DW: per-step execution-time logging surfaces failures at the exact stored procedure — not buried in aggregate error output.</div>
+      <div class="pipe-stage-impl">From SQL DW project: per-step execution-time logging surfaces failures at the exact stored procedure — not buried in aggregate error output.</div>
     </div>
   </div>
   <div class="pipe-connector"><div class="pipe-connector-line"></div><div class="pipe-connector-dot"></div><div class="pipe-connector-dot"></div></div>
@@ -1511,7 +1515,7 @@
     <div>
       <div class="pipe-stage-title">Observability by Design</div>
       <div class="pipe-stage-desc">Logging and row-count validation are part of the initial design — not patched in after the first production incident.</div>
-      <div class="pipe-stage-impl">Lakehouse: record counts validated across all 3 medallion layers. SQL DW: each stored procedure logs its own execution duration to a dedicated log table.</div>
+      <div class="pipe-stage-impl">From Lakehouse project: record counts validated across all 3 medallion layers. SQL DW: each stored procedure logs its own execution duration to a dedicated log table.</div>
     </div>
   </div>
   <div class="pipe-connector"><div class="pipe-connector-line"></div><div class="pipe-connector-dot"></div><div class="pipe-connector-dot"></div></div>
@@ -1521,7 +1525,7 @@
     <div>
       <div class="pipe-stage-title">Layer Separation</div>
       <div class="pipe-stage-desc">Each zone — Bronze, Silver, Gold — is independently queryable and testable. Transformation logic doesn't bleed across boundaries.</div>
-      <div class="pipe-stage-impl">Lakehouse Gold exposes a governed star schema via Unity Catalog views, fully decoupled from the ETL notebooks in Silver.</div>
+      <div class="pipe-stage-impl">From Lakehouse project: Lakehouse Gold exposes a governed star schema via Unity Catalog views, fully decoupled from the ETL notebooks in Silver.</div>
     </div>
   </div>
   <div class="pipe-connector"><div class="pipe-connector-line"></div><div class="pipe-connector-dot"></div><div class="pipe-connector-dot"></div></div>
@@ -1531,7 +1535,7 @@
     <div>
       <div class="pipe-stage-title">Schema Contracts</div>
       <div class="pipe-stage-desc">Upstream schema changes must never silently corrupt downstream consumers. Validation belongs at the boundary, not at the point of failure.</div>
-      <div class="pipe-stage-impl">Delta Lake schema enforcement rejects malformed records at ingestion — they cannot propagate past the Bronze layer.</div>
+      <div class="pipe-stage-impl">From Lakehouse project: Delta Lake schema enforcement rejects malformed records at ingestion — they cannot propagate past the Bronze layer.</div>
     </div>
   </div>
   <div class="pipe-connector"><div class="pipe-connector-line"></div><div class="pipe-connector-dot"></div><div class="pipe-connector-dot"></div></div>
@@ -1541,7 +1545,7 @@
     <div>
       <div class="pipe-stage-title">Modular Composition</div>
       <div class="pipe-stage-desc">Decomposable steps, not monolithic jobs. Each transformation unit can be tested, replaced, or rerun without touching the surrounding system.</div>
-      <div class="pipe-stage-impl">SQL DW: 17 stored procedures orchestrated by 2 master procedures — any single unit reruns independently, no full-pipeline restarts.</div>
+      <div class="pipe-stage-impl">From SQL DW project: 17 stored procedures orchestrated by 2 master procedures — any single unit reruns independently, no full-pipeline restarts.</div>
     </div>
   </div>
   <div class="pipe-connector"><div class="pipe-connector-line"></div><div class="pipe-connector-dot"></div><div class="pipe-connector-dot"></div></div>
@@ -1551,7 +1555,7 @@
     <div>
       <div class="pipe-stage-title">Business Alignment</div>
       <div class="pipe-stage-desc">Data infrastructure exists to support decisions. The transformation is defined by what the analysis needs — not by what's technically interesting.</div>
-      <div class="pipe-stage-impl">Power BI: every Power Query step — removing 135K nulls, engineering 8 features — driven directly by downstream analytical requirements.</div>
+      <div class="pipe-stage-impl">From Power BI project: every Power Query step — removing 135K nulls, engineering 8 features — driven directly by downstream analytical requirements.</div>
     </div>
   </div>
 
