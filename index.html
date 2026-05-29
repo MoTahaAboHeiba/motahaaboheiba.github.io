@@ -630,9 +630,10 @@
       border: 1px solid rgba(0,200,245,.3);
       padding: .5rem 1.1rem;
       border-radius: 7px;
-      transition: background .2s;
+      transition: background .2s, transform .2s;
     }
-    .get-in-touch:hover { background: var(--accent-lo); }
+    /* CHANGE 1: Get In Touch — slide right on hover like contact links */
+    .get-in-touch:hover { background: var(--accent-lo); transform: translateX(4px); }
 
     /* Terminal */
     .terminal {
@@ -703,9 +704,10 @@
       border: 1px solid var(--border);
       border-radius: var(--radius);
       padding: 1.4rem 1.6rem;
-      transition: border-color .2s;
+      transition: border-color .2s, transform .2s;
     }
-    .exp-card:hover { border-color: var(--border-2); }
+    /* CHANGE 2: Experience cards — accent border + slide right */
+    .exp-card:hover { border-color: var(--accent); transform: translateX(4px); }
     .exp-top {
       display: flex;
       justify-content: space-between;
@@ -753,7 +755,8 @@
       flex-direction: column;
       transition: border-color .25s, transform .25s;
     }
-    .project-card:hover { border-color: var(--border-2); transform: translateY(-3px); }
+    /* CHANGE 3: Project cards — accent border + slide right (was translateY) */
+    .project-card:hover { border-color: var(--accent); transform: translateX(4px); }
     .project-media {
       position: relative;
       background: #07111c;
@@ -886,7 +889,8 @@
       align-items: flex-start;
       transition: border-color .2s, transform .2s;
     }
-    .cert-card:hover { border-color: var(--accent); transform: translateY(-3px); }
+    /* CHANGE 4: Cert cards — keep accent, change translateY to translateX */
+    .cert-card:hover { border-color: var(--accent); transform: translateX(4px); }
     .cert-icon {
       width: 48px; height: 48px;
       border-radius: 10px;
@@ -918,6 +922,7 @@
     }
     .cert-badge.green { color: var(--green); background: var(--green-lo); border: 1px solid rgba(45,212,160,.2); }
     .cert-badge.amber { color: #ff9900; background: rgba(255,153,0,.08); border: 1px solid rgba(255,153,0,.2); }
+
 /* ─── SKILLS — card grid ─── */
 #skills { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
 
@@ -983,7 +988,8 @@
   padding: 1.5rem 1.4rem 1.6rem;
   transition: border-color .2s, transform .2s;
 }
-.skill-card:hover { border-color: var(--border-2); transform: translateY(-3px); }
+/* CHANGE 5: Skill cards — accent border + slide right (was translateY) */
+.skill-card:hover { border-color: var(--accent); transform: translateX(4px); }
 .skill-card-icon {
   width: 44px; height: 44px;
   border-radius: 10px;
@@ -1031,9 +1037,10 @@
       gap: 1.4rem;
       align-items: flex-start;
       max-width: 720px;
-      transition: border-color .2s;
+      transition: border-color .2s, transform .2s;
     }
-    .edu-card:hover { border-color: var(--border-2); }
+    /* CHANGE 6: Education card — accent border + slide right */
+    .edu-card:hover { border-color: var(--accent); transform: translateX(4px); }
     .edu-icon {
       width: 48px; height: 48px;
       background: var(--accent-lo);
@@ -1137,6 +1144,16 @@
   display: flex;
   align-items: center;
   gap: .65rem;
+  cursor: pointer;
+}
+/* CHANGE 8: Footer logo — same glow hover as nav logo in hero */
+.footer-logo:hover .nav-logo-badge {
+  transform: translateY(-2px);
+  border-color: rgba(0,200,245,.6);
+  box-shadow:
+    0 0 0 1px rgba(0,200,245,.12),
+    0 12px 30px rgba(0,200,245,.22),
+    inset 0 1px 0 rgba(255,255,255,.05);
 }
     .footer-nav { display: flex; gap: 1.4rem; flex-wrap: wrap; }
     .footer-nav a { font-size: .77rem; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; transition: color .2s; }
@@ -1278,11 +1295,12 @@
     .repo-name { font-family: var(--mono); font-size: .72rem; color: var(--accent); font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     .repo-desc { font-family: var(--mono); font-size: .65rem; color: var(--dim); margin-top: .12rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     .repo-link-btn { font-family: var(--mono); font-size: .7rem; color: var(--muted); display: flex; align-items: center; gap: .3rem; white-space: nowrap; flex-shrink: 0; margin-left: .75rem; }
-      .skill-chip.built {
+    .skill-chip.built {
       border-color: rgba(0,200,245,.22); color: var(--muted);
       background: var(--accent-lo);
     }
-    .skill-chip.built:hover { border-color: rgba(0,200,245,.5); color: var(--text); }
+    /* CHANGE 7: skill-chip.built hover — match non-built HBase-style (full cyan, not var(--text)) */
+    .skill-chip.built:hover { border-color: var(--accent); color: var(--accent); }
     /* Responsive */
     @media (max-width: 900px) {
       .hero-inner { grid-template-columns: 1fr; }
@@ -1367,9 +1385,9 @@
           <div class="hero-eyebrow">
             <span class="hero-role-chip"><span id="typed-role"></span><span class="cursor"></span></span>
           </div>
-          <h1 class="hero-name">
+          <h2 class="hero-name">
             Mohamed Taha<br><em>Abo Heiba</em>
-          </h1>
+          </h2>
           <p class="hero-tagline">
             Building data systems that are reliable by design,<br>
             maintainable in practice, and useful to the business.
@@ -1390,7 +1408,7 @@
               <i class="fa-solid fa-diagram-project"></i> View Projects
             </a>
             <a href="https://motahaaboheiba.github.io/Data_Engineer_Mohamed_Taha_AboHeiba_CV.pdf" class="btn-outline" target="_blank">
-              <i class="fa-regular fa-file-pdf"></i> Download Resume
+              <i class="fa-regular fa-file-pdf"></i> Resume
             </a>
           </div>
           <div class="hero-stats">
@@ -1440,7 +1458,7 @@
             <div class="metric-icon"><i class="fa-solid fa-certificate"></i></div>
             <div>
               <span class="metric-val">2 Certs</span>
-              <span class="metric-desc">AWS CLF-C02 &amp; Huawei HCIA<br>Big Data — both first attempt</span>
+              <span class="metric-desc">AWS CLF-C02 &amp; Huawei HCIA Big Data<br>both first attempt</span>
             </div>
           </div>
           </div>
@@ -2336,14 +2354,13 @@
       { t: 'plain',  v: '{' },
       { t: 'kv',     k: '  "name"',        v: '"Mohamed Taha Abo Heiba"' },
       { t: 'kv',     k: '  "role"',        v: '"Data Engineer"' },
-      { t: 'kv',     k: '  "university"',  v: '"Fayoum University"' },
-      { t: 'kv',     k: '  "gpa"',         v: '"3.4 / 4.0"' },
-      { t: 'kv',     k: '  "graduating"',  v: '"June 2026"' },
       { t: 'kv',     k: '  "certs"',       v: '["AWS CLF-C02", "HCIA-Big Data"]' },
       { t: 'kv',     k: '  "achievement"', v: '"Best Trainee @ NTI (30+ cohort)"' },
       { t: 'kv',     k: '  "stack"',       v: '["PySpark", "Databricks", "SQL Server"]' },
+      { t: 'kv',     k: '  "RAG latency"', v: '"sub-240ms"' },
+      { t: 'kv',     k: '  "Degree"',      v: '"B.Sc. Computer Science"' },
+      { t: 'kv',     k: '  "gpa"',         v: '"3.4 / 4.0"' },
       { t: 'kv',     k: '  "records"',     v: '"200K+"' },
-      { t: 'kv',     k: '  "latency"',     v: '"sub-100ms"' },
       { t: 'kvbool', k: '  "status"',      v: '"open_to_work"' },
       { t: 'plain',  v: '}' },
       { t: 'nl' },
