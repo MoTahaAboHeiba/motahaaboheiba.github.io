@@ -358,22 +358,23 @@
 
     /* ─── HERO ─── */
 #hero {
-  min-height: 100vh;
+  height: 100vh;
   padding-top: var(--nav-h);
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
   z-index: 1;
+  overflow: hidden;
 }
 .hero-inner {
   width: 100%;
   max-width: var(--max-w);
   display: grid;
-  grid-template-columns: 1fr 520px;
-  gap: 4rem;
+  grid-template-columns: 1fr 480px;
+  gap: 3rem;
   align-items: center;
-  padding: 60px 2.5rem;
+  padding: 20px 2.5rem;
 }
     .hero-status {
       display: inline-flex;
@@ -387,7 +388,7 @@
       border: 1px solid rgba(45,212,160,.2);
       padding: .38rem .85rem;
       border-radius: 100px;
-      margin-bottom: 1.4rem;
+      margin-bottom: .8rem;
       letter-spacing: .04em;
     }
     .hero-status-dot {
@@ -425,7 +426,7 @@
     }
     @keyframes blink { 0%,50% { opacity: 1; } 51%,100% { opacity: 0; } }
     .hero-name {
-      font-size: clamp(3rem, 6vw, 4.8rem);
+      font-size: clamp(2.2rem, 5vw, 3.6rem);
       font-weight: 800;
       line-height: 1.05;
       letter-spacing: -.03em;
@@ -438,13 +439,13 @@
       color: var(--muted);
       line-height: 1.8;
       max-width: 520px;
-      margin-bottom: 1.6rem;
+      margin-bottom: .75rem;
     }
     .hero-signals {
       display: flex;
       flex-wrap: wrap;
       gap: .45rem;
-      margin-bottom: 2rem;
+      margin-bottom: .75rem;
     }
     .hero-signal {
       font-family: var(--mono);
@@ -462,7 +463,7 @@
       display: flex;
       gap: .85rem;
       flex-wrap: wrap;
-      margin-bottom: 2.5rem;
+      margin-bottom: 1rem;
     }
     .btn-primary {
       display: inline-flex;
@@ -492,9 +493,9 @@
     .btn-outline:hover { border-color: var(--accent); background: var(--accent-lo); }
     .hero-stats {
       display: flex;
-      gap: 2.5rem;
+      gap: 1.5rem;
       flex-wrap: wrap;
-      margin-top: 2rem;
+      margin-top: .75rem;
     }
     .hero-stat-num {
       font-family: var(--mono);
@@ -513,7 +514,7 @@
     .hero-social {
       display: flex;
       gap: .65rem;
-      margin-top: 1.75rem;
+      margin-top: .75rem;
     }
     .hero-social a {
       width: 36px; height: 36px;
@@ -535,7 +536,7 @@
     }
     .photo-ring-wrap {
       position: relative;
-      width: 280px; height: 280px;
+      width: 220px; height: 220px;
     }
     .photo-ring {
       position: absolute;
@@ -562,17 +563,17 @@
     .metric-cards {
       display: flex;
       flex-direction: column;
-      gap: .7rem;
+      gap: .45rem;
       width: 100%;
     }
     .metric-card {
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: var(--radius);
-      padding: .8rem 1rem;
+      padding: .55rem .85rem;
       display: flex;
       align-items: center;
-      gap: .8rem;
+      gap: .6rem;
       transition: border-color .2s, transform .2s;
     }
     .metric-card:hover { border-color: var(--accent); transform: translateX(-4px); }
@@ -1301,6 +1302,12 @@
     }
     /* CHANGE 7: skill-chip.built hover — match non-built HBase-style (full cyan, not var(--text)) */
     .skill-chip.built:hover { border-color: var(--accent); color: var(--accent); }
+    .skill-chip.studied {
+      background: transparent;
+      border: 1px dashed rgba(110,135,160,.3);
+      color: var(--dim);
+    }
+    .skill-chip.studied:hover { border-color: rgba(110,135,160,.6); color: var(--muted); }
     /* Responsive */
     @media (max-width: 900px) {
       .hero-inner { grid-template-columns: 1fr; }
@@ -1374,7 +1381,7 @@
     <a href="#skills"         onclick="closeMobile()">Skills</a>
     <a href="#education"      onclick="closeMobile()">Education</a>
     <a href="#contact"        onclick="closeMobile()">Contact</a>
-    <a href="https://motahaaboheiba.github.io/Data_Engineer_Mohamed_Taha_AboHeiba_CV.pdf" target="_blank">View My Resume</a>
+    <a href="https://motahaaboheiba.github.io/Data_Engineer_Mohamed_Taha_AboHeiba_CV.pdf" target="_blank">Download Resume</a>
   </div>
 
   <!-- Hero -->
@@ -1385,9 +1392,9 @@
           <div class="hero-eyebrow">
             <span class="hero-role-chip"><span id="typed-role"></span><span class="cursor"></span></span>
           </div>
-          <h2 class="hero-name">
+          <h1 class="hero-name">
             Mohamed Taha<br><em>Abo Heiba</em>
-          </h2>
+          </h1>
           <p class="hero-tagline">
             Building data systems that are reliable by design,<br>
             maintainable in practice, and useful to the business.
@@ -1397,7 +1404,7 @@
             <span class="hero-signal">Lakehouse Architecture</span>
             <span class="hero-signal">Data Warehousing</span>
             <span class="hero-signal">Workflow Orchestration</span>
-            <span class="hero-signal">Fault-Aware Processing</span>
+            <span class="hero-signal">DE for AI Workflows</span>
           </div>
           <div class="hero-status">
             <div class="hero-status-dot"></div>
@@ -1408,7 +1415,7 @@
               <i class="fa-solid fa-diagram-project"></i> View Projects
             </a>
             <a href="https://motahaaboheiba.github.io/Data_Engineer_Mohamed_Taha_AboHeiba_CV.pdf" class="btn-outline" target="_blank">
-              <i class="fa-regular fa-file-pdf"></i> View My Resume
+              <i class="fa-regular fa-file-pdf"></i> Download Resume
             </a>
           </div>
           <div class="hero-stats">
@@ -1417,8 +1424,8 @@
               <span class="hero-stat-label">End-to-end projects</span>
             </div>
             <div class="hero-stat">
-              <span class="hero-stat-num">200K+</span>
-              <span class="hero-stat-label">Records processed</span>
+              <span class="hero-stat-num">240ms</span>
+              <span class="hero-stat-label">Production API latency</span>
             </div>
             <div class="hero-stat">
               <span class="hero-stat-num" data-count="2">0</span>
@@ -1448,17 +1455,17 @@
               </div>
             </div>
             <div class="metric-card">
-               <div class="metric-icon"><i class="fa-solid fa-database"></i></div>
+              <div class="metric-icon"><i class="fa-solid fa-bolt"></i></div>
               <div>
-                <span class="metric-val">200K+</span>
-                <span class="metric-desc">Records processed across<br>Databricks &amp; SQL Server DWs</span>
+                <span class="metric-val">240ms</span>
+                <span class="metric-desc">End-to-end production latency<br>RAG pipeline · Hugging Face</span>
               </div>
             </div>
           <div class="metric-card">
             <div class="metric-icon"><i class="fa-solid fa-certificate"></i></div>
             <div>
               <span class="metric-val">2 Certs</span>
-              <span class="metric-desc">AWS CLF-C02 &amp; Huawei HCIA Big Data<br>both first attempt</span>
+              <span class="metric-desc">AWS CLF-C02 &amp; Huawei HCIA<br>Big Data — both first attempt</span>
             </div>
           </div>
           </div>
@@ -1489,6 +1496,11 @@
           <p>
             Certified in Huawei HCIA-Big Data (best trainee across 30+ participants, first attempt) and AWS Cloud Practitioner.
             Finishing a Computer Science degree at Fayoum University — GPA 3.4/4.0, graduating June 2026.
+          </p>
+          <p>
+            Increasingly focused on <strong>DE for AI workflows</strong> — building and benchmarking vector store pipelines,
+            embedding systems, and retrieval APIs that run in production. The same reliability principles apply:
+            schema contracts at ingestion, measurable latency, and clean separation between indexing and serving layers.
           </p>
           <a href="#contact" class="get-in-touch">
             <i class="fa-regular fa-paper-plane"></i> Get In Touch
@@ -1696,9 +1708,10 @@
           <span class="skill-chip built">SSIS</span>
           <span class="skill-chip built">Medallion Architecture</span>
           <span class="skill-chip built">Kafka</span>
-          <span class="skill-chip">Flink</span>
-          <span class="skill-chip">ETL/ELT patterns</span>
-          <span class="skill-chip">Batch Processing</span>
+          <span class="skill-chip built">ETL/ELT patterns</span>
+          <span class="skill-chip built">Batch Processing</span>
+          <span class="skill-chip studied">Airflow</span>
+          <span class="skill-chip studied">Flink</span>
         </div>
       </div>
 
@@ -1709,11 +1722,10 @@
           <span class="skill-chip built">SQL Server</span>
           <span class="skill-chip built">Star Schema</span>
           <span class="skill-chip built">Unity Catalog</span>
-          <span class="skill-chip built">ChromaDB</span>
-          <span class="skill-chip">Dimensional Modeling</span>
-          <span class="skill-chip">HDFS</span>
-          <span class="skill-chip">HBase</span>
-          <span class="skill-chip">Snowflake Schema</span>
+          <span class="skill-chip built">Dimensional Modeling</span>
+          <span class="skill-chip studied">HDFS</span>
+          <span class="skill-chip studied">HBase</span>
+          <span class="skill-chip studied">Snowflake Schema</span>
         </div>
       </div>
 
@@ -1726,11 +1738,11 @@
           <span class="skill-chip built">RDS</span>
           <span class="skill-chip built">IAM</span>
           <span class="skill-chip built">VPC</span>
-          <span class="skill-chip">Glue</span>
-          <span class="skill-chip">Redshift</span>
-          <span class="skill-chip">Athena</span>
-          <span class="skill-chip">Lambda</span>
-          <span class="skill-chip">CloudWatch</span>
+          <span class="skill-chip built">Lambda</span>
+          <span class="skill-chip built">CloudWatch</span>
+          <span class="skill-chip studied">Glue</span>
+          <span class="skill-chip studied">Redshift</span>
+          <span class="skill-chip studied">Athena</span>
         </div>
       </div>
 
@@ -1741,14 +1753,27 @@
           <span class="skill-chip built">Python</span>
           <span class="skill-chip built">T-SQL</span>
           <span class="skill-chip built">FastAPI</span>
-          <span class="skill-chip built">LangChain</span>
           <span class="skill-chip built">Pandas</span>
-          <span class="skill-chip">Bash</span>
-          <span class="skill-chip">NumPy</span>
+          <span class="skill-chip built">Bash</span>
+          <span class="skill-chip built">NumPy</span>
         </div>
       </div>
 
       <div class="skill-card fade-up" style="transition-delay:.2s">
+        <div class="skill-card-icon"><i class="fa-solid fa-brain"></i></div>
+        <div class="skill-card-title">AI Data Engineering</div>
+        <div class="skill-chips">
+          <span class="skill-chip built">RAG Pipelines</span>
+          <span class="skill-chip built">LangChain</span>
+          <span class="skill-chip built">ChromaDB</span>
+          <span class="skill-chip built">Qdrant</span>
+          <span class="skill-chip built">Embeddings</span>
+          <span class="skill-chip built">Vector Search</span>
+          <span class="skill-chip built">Groq API</span>
+        </div>
+      </div>
+
+      <div class="skill-card fade-up" style="transition-delay:.25s">
         <div class="skill-card-icon"><i class="fa-solid fa-chart-bar"></i></div>
         <div class="skill-card-title">Analytics &amp; Tooling</div>
         <div class="skill-chips">
@@ -1757,8 +1782,8 @@
           <span class="skill-chip built">Power Query</span>
           <span class="skill-chip built">Git</span>
           <span class="skill-chip built">Docker</span>
-          <span class="skill-chip">Matplotlib</span>
-          <span class="skill-chip">Linux</span>
+          <span class="skill-chip built">Matplotlib</span>
+          <span class="skill-chip built">Linux</span>
         </div>
       </div>
 
@@ -1781,7 +1806,7 @@
             GPA 3.4 / 4.0. Core coursework: Big Data Engineering, Cloud Computing, Database Management Systems,
             Advanced SQL, Data Structures &amp; Algorithms, Machine Learning, Operating Systems (Linux, Docker),
             Python Programming, Data Visualization (Power BI).<br><br>
-            <strong style="color:var(--text)">Graduation Project:</strong> EduMate — a unified academic management platform with an RAG chatbot built on LangChain and ChromaDB.
+            <strong style="color:var(--text)">Graduation Project:</strong> EduMate — a unified academic management platform with an RAG chatbot built on LangChain, ChromaDB, and Qdrant.
           </div>
         </div>
       </div>
@@ -1913,7 +1938,7 @@
       num: '01',
       title: 'E-Commerce Lakehouse — Databricks',
       status: 'complete',
-      description: 'End-to-end lakehouse processing 200K+ records from 6 CRM and ERP sources through a 3-task Databricks Jobs DAG. Bronze ingests raw data, Silver applies PySpark transformations across 6 notebooks, Gold delivers 1 Fact + 2 Dimension Delta Tables as a governed star schema in Unity Catalog.',
+      description: 'End-to-end lakehouse processing 200K+ records from 6 CRM and ERP sources, orchestrated via a 3-task Databricks Jobs workflow DAG. Bronze ingests raw data, Silver applies PySpark transformations across 6 notebooks, Gold delivers 1 Fact + 2 Dimension Delta Tables as a governed star schema in Unity Catalog.',
       tags: ['Databricks', 'PySpark', 'Spark SQL', 'Delta Lake', 'ETL', 'Unity Catalog', 'Star Schema', 'Medallion'],
       github: 'https://github.com/MoTahaAboHeiba/E-Commerce-Lakehouse-Using-Databricks',
       live: null,
@@ -1921,7 +1946,7 @@
       diagramType: 'lakehouse',
       caseStudy: {
         problem: '6 raw CRM/ERP CSV sources needed a governed, analytics-ready output layer with full lineage and reproducible transformations.',
-        architecture: 'Medallion architecture on Databricks — Bronze ingests raw, Silver cleansed via 6 PySpark notebooks, Gold exposes star schema via Unity Catalog views.',
+        architecture: 'Medallion architecture on Databricks — Bronze ingests raw, Silver cleansed via 6 PySpark notebooks orchestrated through a Databricks Jobs DAG, Gold exposes star schema via Unity Catalog views.',
         tradeoff: 'Chose Delta Lake ACID guarantees over simpler Parquet — adds schema enforcement overhead but eliminates silent data corruption across layers.',
         impact: 'Gold layer delivers Fact_Sales (200K+ records) + 2 dimension tables, analytics-ready without any downstream transformation debt.'
       }
@@ -1930,7 +1955,7 @@
       num: '02',
       title: 'SQL Server Data Warehouse',
       status: 'complete',
-      description: 'Fully scriptable data warehouse on SQL Server loading 60K+ records from 6 CRM and ERP sources. Two master stored procedures orchestrate full Bronze-to-Silver ETL. Gold layer delivers a star schema as SQL views with per-step execution-time logging — cutting ETL debugging time by 25%.',
+      description: 'Fully scriptable data warehouse on SQL Server loading 60K+ records from 6 CRM and ERP sources. Two master stored procedures orchestrate full Bronze-to-Silver ETL across 17 modular stored procedures. Gold layer delivers a star schema as SQL views — each procedure logs its own execution duration, isolating failures to the exact step without full-pipeline restarts.',
       tags: ['SQL Server', 'T-SQL', 'Stored Procedures', 'Star Schema', 'Medallion', 'ETL'],
       github: 'https://github.com/MoTahaAboHeiba/SQL-Data-Warehouse-project',
       live: null,
@@ -1940,24 +1965,24 @@
         problem: '6 disparate CRM/ERP CSV sources needed a structured warehouse with repeatable, debuggable ETL and a clean serving layer.',
         architecture: '17 stored procedures orchestrated by 2 master procedures — Bronze via BULK INSERT, Silver via T-SQL transformation, Gold as SQL views (star schema).',
         tradeoff: 'Chose stored-procedure orchestration over SSIS packages for this project — simpler to version-control and script end-to-end in a single SQL Server environment.',
-        impact: 'Per-step execution-time logging reduced ETL debugging time by 25%; Gold star schema is directly queryable by downstream analytics tools.'
+        impact: 'Per-step execution-time logging isolates failures to the exact stored procedure — eliminates full-pipeline re-runs to diagnose a single step. Gold star schema is directly queryable by downstream analytics tools.'
       }
     },
     {
       num: '03',
       title: 'EduMate — RAG Pipeline & Document Indexing',
       status: 'inprogress',
-      description: 'Data ingestion and retrieval API processing 13K+ document chunks through an automated PDF parsing to chunking to vectorisation to ChromaDB indexing pipeline. Sub-100ms semantic search latency via LangChain retriever. Exposed through FastAPI with 12 REST endpoints.',
-      tags: ['FastAPI', 'LangChain', 'ChromaDB', 'Python', 'Docker', 'RAG', 'Vector Search'],
+      description: 'Data ingestion and retrieval API processing 13K+ document chunks through an automated PDF parsing → chunking → vectorisation → dual vector store indexing pipeline. Implemented and benchmarked across ChromaDB and Qdrant. 240ms end-to-end semantic search latency in production on Hugging Face. Exposed through FastAPI with 12 REST endpoints. Currently in evaluation phase comparing retrieval performance across both vector store implementations.',
+      tags: ['FastAPI', 'LangChain', 'ChromaDB', 'Qdrant', 'Python', 'Docker', 'RAG', 'Vector Search'],
       github: 'https://github.com/MoTahaAboHeiba/EduMate-RAG',
       live: null,
       images: ['diagram'],
       diagramType: 'rag',
       caseStudy: {
         problem: 'Academic documents needed a structured retrieval system — manual keyword search over PDFs was unreliable and unscalable.',
-        architecture: 'PDF parse → text-split chunking → text-ada-002 embedding → ChromaDB vector store → LangChain retriever → Groq Llama 3.3 70B → FastAPI (12 endpoints).',
-        tradeoff: 'Chose ChromaDB over Pinecone for local, cost-free development with the same vector similarity interface — acceptable for project scale.',
-        impact: 'Sub-100ms semantic search over 13K+ chunks; 12 REST endpoints expose retrieval, indexing, and health-check operations via Docker-containerised service.'
+        architecture: 'PDF parse → text-split chunking → embedding → dual vector store (ChromaDB + Qdrant) → LangChain retriever → Groq Llama 3.3 70B → FastAPI (12 endpoints). Currently evaluating retrieval quality across both stores.',
+        tradeoff: 'Implemented both ChromaDB (local, cost-free) and Qdrant (production-grade, scalable) to benchmark retrieval quality and latency tradeoffs. 240ms end-to-end in production on Hugging Face vs sub-100ms on localhost — honest production measurement.',
+        impact: '240ms end-to-end semantic search latency in production on Hugging Face; 12 REST endpoints; dual VDB implementation enables data-driven store selection based on measured performance.'
       }
     },
     {
@@ -2154,7 +2179,7 @@
       const statusClass = p.status === 'complete' ? 'status-complete' : 'status-inprogress';
       const statusLabel = p.status === 'complete'
         ? '<i class="fa-solid fa-circle-check"></i> Complete'
-        : '<i class="fa-solid fa-rotate fa-spin"></i> In Progress';
+        : '<i class="fa-solid fa-rotate fa-spin"></i> Active Development';
       const slides = p.images.map((img, i) => {
         if (img === 'diagram') {
           return `<div class="project-slide diagram-slide ${i===0?'active':''}">${buildDiagram(p.diagramType)}</div>`;
@@ -2352,16 +2377,15 @@
       { t: 'cmd',    v: ' cat profile.json' },
       { t: 'nl' },
       { t: 'plain',  v: '{' },
-      { t: 'kv',     k: '  "name"',        v: '"Mohamed Taha Abo Heiba"' },
-      { t: 'kv',     k: '  "role"',        v: '"Data Engineer"' },
-      { t: 'kv',     k: '  "certs"',       v: '["AWS CLF-C02", "HCIA-Big Data"]' },
-      { t: 'kv',     k: '  "achievement"', v: '"Best Trainee @ NTI (30+ cohort)"' },
-      { t: 'kv',     k: '  "stack"',       v: '["PySpark", "Databricks", "SQL Server"]' },
-      { t: 'kv',     k: '  "RAG latency"', v: '"sub-240ms"' },
-      { t: 'kv',     k: '  "Degree"',      v: '"B.Sc. Computer Science"' },
-      { t: 'kv',     k: '  "gpa"',         v: '"3.4 / 4.0"' },
-      { t: 'kv',     k: '  "records"',     v: '"200K+"' },
-      { t: 'kvbool', k: '  "status"',      v: '"open_to_work"' },
+      { t: 'kv',     k: '  "name"',         v: '"Mohamed Taha Abo Heiba"' },
+      { t: 'kv',     k: '  "role"',         v: '"Data Engineer"' },
+      { t: 'kv',     k: '  "degree"',       v: '"B.Sc. Computer Science"' },
+      { t: 'kv',     k: '  "gpa"',          v: '"3.4 / 4.0"' },
+      { t: 'kv',     k: '  "certs"',        v: '["AWS CLF-C02", "HCIA-Big Data"]' },
+      { t: 'kv',     k: '  "achievement"',  v: '"Best Trainee @ NTI (30+ cohort)"' },
+      { t: 'kv',     k: '  "stack"',        v: '["PySpark", "Databricks", "SQL Server"]' },
+      { t: 'kv',     k: '  "rag_latency"',  v: '"240ms production"' },
+      { t: 'kvbool', k: '  "status"',       v: '"open_to_work"' },
       { t: 'plain',  v: '}' },
       { t: 'nl' },
       { t: 'prompt' }
