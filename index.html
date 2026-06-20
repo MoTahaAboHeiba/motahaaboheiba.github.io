@@ -1424,8 +1424,8 @@
               <span class="hero-stat-label">End-to-end projects</span>
             </div>
             <div class="hero-stat">
-              <span class="hero-stat-num">240ms</span>
-              <span class="hero-stat-label">Production API latency</span>
+              <span class="hero-stat-num" data-count="73">0</span>
+              <span class="hero-stat-label">Query retrieval evaluation set</span>
             </div>
             <div class="hero-stat">
               <span class="hero-stat-num" data-count="2">0</span>
@@ -1455,10 +1455,10 @@
               </div>
             </div>
             <div class="metric-card">
-              <div class="metric-icon"><i class="fa-solid fa-bolt"></i></div>
+              <div class="metric-icon"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
               <div>
-                <span class="metric-val">240ms</span>
-                <span class="metric-desc">End-to-end production latency<br>RAG pipeline · Hugging Face</span>
+                <span class="metric-val">+1.92% P@5</span>
+                <span class="metric-desc">Hybrid reranker uplift<br>RAG pipeline · offline eval harness</span>
               </div>
             </div>
           <div class="metric-card">
@@ -1501,6 +1501,8 @@
             Increasingly focused on <strong>DE for AI workflows</strong> — building and benchmarking vector store pipelines,
             embedding systems, and retrieval APIs that run in production. The same reliability principles apply:
             schema contracts at ingestion, measurable latency, and clean separation between indexing and serving layers.
+            That also means not trusting retrieval quality by assumption — measuring it with an offline evaluation harness
+            instead of taking a "the LLM sounds right" answer at face value.
           </p>
           <a href="#contact" class="get-in-touch">
             <i class="fa-regular fa-paper-plane"></i> Get In Touch
@@ -1583,9 +1585,9 @@
   <div class="pipe-stage fade-up" style="transition-delay:.35s">
     <div class="pipe-stage-num">06</div>
     <div>
-      <div class="pipe-stage-title">Business Alignment</div>
-      <div class="pipe-stage-desc">Data infrastructure exists to support decisions. The transformation is defined by what the analysis needs — not by what's technically interesting.</div>
-      <div class="pipe-stage-impl">From Power BI project: every Power Query step — removing 135K nulls, engineering 8 features — driven directly by downstream analytical requirements.</div>
+      <div class="pipe-stage-title">Measure, Don't Assume</div>
+      <div class="pipe-stage-desc">A system that "sounds right" isn't validated. Quality claims need a benchmark behind them, with a baseline to compare against.</div>
+      <div class="pipe-stage-impl">From EduMate-RAG: hybrid reranking change validated against a 73-query offline evaluation harness — Precision@5, Recall@5, and MRR measured before and after, not assumed.</div>
     </div>
   </div>
 
@@ -1768,7 +1770,8 @@
           <span class="skill-chip built">ChromaDB</span>
           <span class="skill-chip built">Qdrant</span>
           <span class="skill-chip built">Embeddings</span>
-          <span class="skill-chip built">Vector Search</span>
+          <span class="skill-chip built">Hybrid Retrieval</span>
+          <span class="skill-chip built">Retrieval Evaluation</span>
           <span class="skill-chip built">Groq API</span>
         </div>
       </div>
@@ -1970,19 +1973,19 @@
     },
     {
       num: '03',
-      title: 'EduMate — RAG Pipeline & Document Indexing',
+      title: 'EduMate — RAG Pipeline & Retrieval Evaluation',
       status: 'inprogress',
-      description: 'Data ingestion and retrieval API processing 13K+ document chunks through an automated PDF parsing → chunking → vectorisation → dual vector store indexing pipeline. Implemented and benchmarked across ChromaDB and Qdrant. 240ms end-to-end semantic search latency in production on Hugging Face. Exposed through FastAPI with 12 REST endpoints. Currently in evaluation phase comparing retrieval performance across both vector store implementations.',
-      tags: ['FastAPI', 'LangChain', 'ChromaDB', 'Qdrant', 'Python', 'Docker', 'RAG', 'Vector Search'],
+      description: 'Data ingestion and retrieval API processing 13K+ document chunks through an automated PDF parsing → chunking → embedding → dual vector store pipeline, with a hybrid semantic + keyword reranker on top of retrieval. ~100ms vector search on local ChromaDB in development, ~300ms roundtrip on Qdrant Cloud in production. Validated against a 73-query offline evaluation harness measuring precision, recall, and MRR. Exposed through FastAPI with a dedicated stateless endpoint for .NET backend integration, plus a standalone mode for local testing.',
+      tags: ['FastAPI', 'LangChain', 'ChromaDB', 'Qdrant', 'Python', 'Docker', 'RAG', 'Retrieval Evaluation'],
       github: 'https://github.com/MoTahaAboHeiba/EduMate-RAG',
-      live: null,
+      live: 'https://mo-taha-aboheiba-edumate-rag.hf.space',
       images: ['diagram', 'diagram'],
       diagramTypes: ['rag_flow', 'system_arch'],
       caseStudy: {
-        problem: 'Academic documents needed a structured retrieval system — manual keyword search over PDFs was unreliable and unscalable.',
-        architecture: 'PDF parse → text-split chunking → embedding → dual vector store (ChromaDB + Qdrant) → LangChain retriever → Groq Llama 3.3 70B → FastAPI (12 endpoints). Currently evaluating retrieval quality across both stores.',
-        tradeoff: 'Implemented both ChromaDB (local, cost-free) and Qdrant (production-grade, scalable) to benchmark retrieval quality and latency tradeoffs. 240ms end-to-end in production on Hugging Face vs sub-100ms on localhost — honest production measurement.',
-        impact: '240ms end-to-end semantic search latency in production on Hugging Face; 12 REST endpoints; dual VDB implementation enables data-driven store selection based on measured performance.'
+        problem: 'Pure semantic retrieval over academic PDFs missed exact technical terms — a vector search can return conceptually similar chunks while skipping the one chunk that contains the precise term the answer hinges on. Retrieval quality also needed to be measured, not assumed, before trusting any change to the pipeline.',
+        architecture: 'PDF parse → chunking → embedding → dual vector store (ChromaDB local / Qdrant Cloud prod) → retrieval optimizer combining semantic similarity with keyword-overlap reranking and deduplication → Groq Llama 3.3 70B → FastAPI, with a separate stateless endpoint contract for .NET backend integration (caps conversation history to the last 5 Q&A pairs).',
+        tradeoff: 'Run ChromaDB locally for cost-free development and Qdrant Cloud in production — chosen after measuring both: ~100ms local vector search vs ~300ms Qdrant roundtrip, an acceptable cost for managed scaling and persistence.',
+        impact: 'The first hybrid reranking pass quietly dropped short technical acronyms — CPU, RAM, OS — because the keyword filter treated 2-3 letter tokens as noise and stripped exactly the domain-critical terms semantic search needed backup on. Caught and fixed by correcting the keyword filter, then re-validated on the 73-query offline evaluation harness: Precision@5 +1.92%, Recall@5 +1.37%, MRR +0.23% over the non-reranked baseline.'
       }
     },
     {
@@ -2112,7 +2115,7 @@
   <text x="507" y="112" text-anchor="middle" fill="#00c8f5" font-size="11" font-weight="700" font-family="JetBrains Mono,monospace">ChromaDB</text>
   <text x="507" y="130" text-anchor="middle" fill="#3d5570" font-size="9" font-family="JetBrains Mono,monospace">Vector Store</text>
   <text x="507" y="148" text-anchor="middle" fill="#3d5570" font-size="9" font-family="JetBrains Mono,monospace">Similarity Search</text>
-  <text x="507" y="164" text-anchor="middle" fill="#1b2d42" font-size="8.5" font-family="JetBrains Mono,monospace">&lt;100ms latency</text>
+  <text x="507" y="164" text-anchor="middle" fill="#1b2d42" font-size="8.5" font-family="JetBrains Mono,monospace">~100ms local</text>
   <line x1="565" y1="130" x2="605" y2="130" stroke="rgba(0,200,245,.35)" stroke-width="2" marker-end="url(#arr-rag)"/>
   <rect x="605" y="95" width="120" height="70" rx="8" fill="#0c1621" stroke="#1b2d42" stroke-width="1.5"/>
   <text x="665" y="122" text-anchor="middle" fill="#00c8f5" font-size="11" font-weight="700" font-family="JetBrains Mono,monospace">Llama 3.3</text>
@@ -2269,7 +2272,7 @@
 
   <rect x="600" y="190" width="140" height="40" rx="8" fill="#0c1621" stroke="#1b2d42" stroke-width="1.5"/>
   <text x="670" y="207" text-anchor="middle" fill="#00c8f5" font-size="10" font-weight="700" font-family="JetBrains Mono,monospace">Retr. Optimizer</text>
-  <text x="670" y="218" text-anchor="middle" fill="#3d5570" font-size="8" font-family="JetBrains Mono,monospace">(Filter/Rerank)</text>
+  <text x="670" y="218" text-anchor="middle" fill="#3d5570" font-size="8" font-family="JetBrains Mono,monospace">(Hybrid Rerank)</text>
 
   <rect x="400" y="190" width="140" height="40" rx="8" fill="#0c1621" stroke="#1b2d42" stroke-width="1.5"/>
   <text x="470" y="207" text-anchor="middle" fill="#00c8f5" font-size="10" font-weight="700" font-family="JetBrains Mono,monospace">Prompt Builder</text>
@@ -2371,7 +2374,7 @@
   <rect x="10" y="310" width="760" height="60" rx="4" fill="#0c1621" stroke="#1b2d42" stroke-width="0.5" stroke-dasharray="2 2"/>
   <rect x="430" y="315" width="300" height="50" rx="8" fill="#0c1621" stroke="#1b2d42" stroke-width="1.5"/>
   <text x="580" y="336" text-anchor="middle" fill="#00c8f5" font-size="13" font-weight="700" font-family="JetBrains Mono,monospace">Vector Database</text>
-  <text x="580" y="354" text-anchor="middle" fill="#3d5570" font-size="9" font-family="JetBrains Mono,monospace">Qdrant Cloud prod · ChromaDB local · all-MiniLM-L6-v2</text>
+  <text x="580" y="354" text-anchor="middle" fill="#3d5570" font-size="9" font-family="JetBrains Mono,monospace">Qdrant Cloud prod (~300ms) · ChromaDB local (~100ms) · all-MiniLM-L6-v2</text>
   <rect x="30" y="315" width="300" height="50" rx="8" fill="#0c1621" stroke="#1b2d42" stroke-width="1.5"/>
   <text x="180" y="336" text-anchor="middle" fill="#00c8f5" font-size="13" font-weight="700" font-family="JetBrains Mono,monospace">Document Corpus</text>
   <text x="180" y="354" text-anchor="middle" fill="#3d5570" font-size="9" font-family="JetBrains Mono,monospace">CS textbooks · course materials · chunked + indexed</text>
@@ -2606,7 +2609,7 @@ if (img === 'diagram') {
       { t: 'kv',     k: '  "certs"',        v: '["AWS CLF-C02", "HCIA-Big Data"]' },
       { t: 'kv',     k: '  "achievement"',  v: '"Best Trainee @ NTI (30+ cohort)"' },
       { t: 'kv',     k: '  "stack"',        v: '["PySpark", "Databricks", "SQL Server"]' },
-      { t: 'kv',     k: '  "rag_latency"',  v: '"240ms production"' },
+      { t: 'kv',     k: '  "rag_eval"',     v: '"73-query offline harness"' },
       { t: 'kvbool', k: '  "status"',       v: '"open_to_work"' },
       { t: 'plain',  v: '}' },
       { t: 'nl' },
