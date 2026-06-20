@@ -1424,8 +1424,8 @@
               <span class="hero-stat-label">End-to-end projects</span>
             </div>
             <div class="hero-stat">
-              <span class="hero-stat-num" data-count="73">0</span>
-              <span class="hero-stat-label">Query retrieval evaluation set</span>
+              <span class="hero-stat-num">240ms</span>
+              <span class="hero-stat-label">Production API latency</span>
             </div>
             <div class="hero-stat">
               <span class="hero-stat-num" data-count="2">0</span>
@@ -1455,10 +1455,10 @@
               </div>
             </div>
             <div class="metric-card">
-              <div class="metric-icon"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
+              <div class="metric-icon"><i class="fa-solid fa-bolt"></i></div>
               <div>
-                <span class="metric-val">+1.92% P@5</span>
-                <span class="metric-desc">Hybrid reranker uplift<br>RAG pipeline · offline eval harness</span>
+                <span class="metric-val"> Avg Latancy: ~240ms</span>
+                <span class="metric-desc">End-to-end production latency<br>RAG pipeline · Hugging Face</span>
               </div>
             </div>
           <div class="metric-card">
@@ -1640,7 +1640,7 @@
             <div class="exp-company">DEPI — Digital Egypt Pioneers Initiative</div>
             <ul>
               <li>Built 4 SSIS ETL packages ingesting 7 CSV data sources into SQL Server via 17 stored procedures, automating data ingestion and transformation workflows end-to-end.</li>
-              <li>Delivered a validated dataset of 70K records powering a customer churn model achieving 97.4% accuracy, enabling data-driven retention strategies.</li>
+              <li>Delivered a validated dataset of 70K records powering a customer churn model, achieving 97.4% accuracy, enabling data-driven retention strategies.</li>
             </ul>
           </div>
         </div>
@@ -1772,7 +1772,8 @@
           <span class="skill-chip built">Embeddings</span>
           <span class="skill-chip built">Hybrid Retrieval</span>
           <span class="skill-chip built">Retrieval Evaluation</span>
-          <span class="skill-chip built">Groq API</span>
+          <span class="skill-chip built">Generation Evaluation</span>
+          <span class="skill-chip built">LLM API</span>
         </div>
       </div>
 
@@ -1975,7 +1976,7 @@
       num: '03',
       title: 'EduMate — RAG Pipeline & Retrieval Evaluation',
       status: 'inprogress',
-      description: 'Data ingestion and retrieval API processing 13K+ document chunks through an automated PDF parsing → chunking → embedding → dual vector store pipeline, with a hybrid semantic + keyword reranker on top of retrieval. ~100ms vector search on local ChromaDB in development, ~300ms roundtrip on Qdrant Cloud in production. Validated against a 73-query offline evaluation harness measuring precision, recall, and MRR. Exposed through FastAPI with a dedicated stateless endpoint for .NET backend integration, plus a standalone mode for local testing.',
+      description: 'Data ingestion and retrieval API processing 24K+ document chunks through an automated PDF parsing → chunking → embedding → dual vector store pipeline, with a hybrid semantic + keyword reranker on top of retrieval. ~100ms vector search on local ChromaDB in development, ~300ms roundtrip on Qdrant Cloud in production. Validated against a 73-query offline evaluation harness measuring precision, recall, and MRR. Exposed through FastAPI with a dedicated stateless endpoint for .NET backend integration, plus a standalone mode for local testing.',
       tags: ['FastAPI', 'LangChain', 'ChromaDB', 'Qdrant', 'Python', 'Docker', 'RAG', 'Retrieval Evaluation'],
       github: 'https://github.com/MoTahaAboHeiba/EduMate-RAG',
       live: 'https://mo-taha-aboheiba-edumate-rag.hf.space',
@@ -1985,7 +1986,7 @@
         problem: 'Pure semantic retrieval over academic PDFs missed exact technical terms — a vector search can return conceptually similar chunks while skipping the one chunk that contains the precise term the answer hinges on. Retrieval quality also needed to be measured, not assumed, before trusting any change to the pipeline.',
         architecture: 'PDF parse → chunking → embedding → dual vector store (ChromaDB local / Qdrant Cloud prod) → retrieval optimizer combining semantic similarity with keyword-overlap reranking and deduplication → Groq Llama 3.3 70B → FastAPI, with a separate stateless endpoint contract for .NET backend integration (caps conversation history to the last 5 Q&A pairs).',
         tradeoff: 'Run ChromaDB locally for cost-free development and Qdrant Cloud in production — chosen after measuring both: ~100ms local vector search vs ~300ms Qdrant roundtrip, an acceptable cost for managed scaling and persistence.',
-        impact: 'The first hybrid reranking pass quietly dropped short technical acronyms — CPU, RAM, OS — because the keyword filter treated 2-3 letter tokens as noise and stripped exactly the domain-critical terms semantic search needed backup on. Caught and fixed by correcting the keyword filter, then re-validated on the 73-query offline evaluation harness: Precision@5 +1.92%, Recall@5 +1.37%, MRR +0.23% over the non-reranked baseline.'
+        impact: 'The first hybrid reranking pass quietly dropped short technical acronyms — CPU, RAM, OS — because the keyword filter treated 2-3 letter tokens as noise and stripped exactly the domain-critical terms semantic search needed backup on. Caught and fixed by correcting the keyword filter, then re-validated on the 73-query offline evaluation harness: Precision@5 +4.92%, Recall@5 +3.37%, MRR +1.23% over the non-reranked baseline.'
       }
     },
     {
