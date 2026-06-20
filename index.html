@@ -1977,7 +1977,7 @@
       github: 'https://github.com/MoTahaAboHeiba/EduMate-RAG',
       live: null,
       images: ['diagram'],
-      diagramType: 'rag',
+      diagramType: ['img_rag_flow', 'img_system_arch'],
       caseStudy: {
         problem: 'Academic documents needed a structured retrieval system — manual keyword search over PDFs was unreliable and unscalable.',
         architecture: 'PDF parse → text-split chunking → embedding → dual vector store (ChromaDB + Qdrant) → LangChain retriever → Groq Llama 3.3 70B → FastAPI (12 endpoints). Currently evaluating retrieval quality across both stores.',
@@ -2180,12 +2180,24 @@
       const statusLabel = p.status === 'complete'
         ? '<i class="fa-solid fa-circle-check"></i> Complete'
         : '<i class="fa-solid fa-rotate fa-spin"></i> Active Development';
-      const slides = p.images.map((img, i) => {
-        if (img === 'diagram') {
-          return `<div class="project-slide diagram-slide ${i===0?'active':''}">${buildDiagram(p.diagramType)}</div>`;
-        }
-        return `<div class="project-slide ${i===0?'active':''}"><img src="${img}" alt="${p.title}" loading="lazy"></div>`;
-      }).join('');
+     const slides = p.images.map((img, i) => {
+  if (img === 'diagram') {
+    return `<div class="project-slide diagram-slide ${i===0?'active':''}">${buildDiagram(p.diagramType)}</div>`;
+  }
+  if (img === 'img_rag_flow') {
+    return `<div class="project-slide diagram-slide ${i===0?'active':''}">
+      <img src="rag_flow.png" alt="EduMate RAG Query Flow" style="width:100%;height:100%;object-fit:contain;padding:8px;">
+      <div class="slide-particles" data-pid="${p.num}"></div>
+    </div>`;
+  }
+  if (img === 'img_system_arch') {
+    return `<div class="project-slide diagram-slide ${i===0?'active':''}">
+      <img src="system_arch.png" alt="EduMate System Architecture" style="width:100%;height:100%;object-fit:contain;padding:8px;">
+      <div class="slide-particles" data-pid="${p.num}"></div>
+    </div>`;
+  }
+  return `<div class="project-slide ${i===0?'active':''}"><img src="${img}" alt="${p.title}" loading="lazy"></div>`;
+}).join('');
       const dots = p.images.length > 1
         ? p.images.map((_, i) => `<div class="carousel-dot ${i===0?'active':''}" data-dot="${i}"></div>`).join('')
         : '';
